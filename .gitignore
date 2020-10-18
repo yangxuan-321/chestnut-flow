@@ -1,0 +1,6 @@
+# Project exclude paths
+/core/target/
+/idl/target/
+/project/project/target/
+/project/target/
+/target/

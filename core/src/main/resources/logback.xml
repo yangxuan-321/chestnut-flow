@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+      <pattern>%gray(%date{HH:mm:ss.SSS, Asia/Shanghai}) %highlight(%-5level) %cyan(%logger{1}) L%L - %gray(%msg%n)
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="SPLASH" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%gray(%date{HH:mm:ss.SSS, Asia/Shanghai}) %highlight(%-5level) %cyan(%logger{1}) L%L - %green(%msg%n)
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>core/logs/chestnut/chestnut-flow.log</file>
+    <level>INFO</level>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>core/logs/chestnut/chestnut-flow.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%date{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} %-5level %logger{1} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="slick" level="INFO"/>
+  <logger name="com.zaxxer.hikari" level="INFO"/>
+  <logger name="org.apache.kafka" level="WARN"/>
+  <logger name="akka" level="INFO"/>
+<!--  <logger name="org.http4s" level="INFO"/>-->
+  <logger name="io.netty.util.internal" level="INFO"/>
+
+<!--  <logger name="com.zz.cdp.Main" additivity="false">-->
+<!--    <appender-ref ref="ROLLING_FILE"/>-->
+<!--    <appender-ref ref="SPLASH"/>-->
+<!--  </logger>-->
+
+  <root level="${akka.loglevel:-DEBUG}">
+    <appender-ref ref="ROLLING_FILE"/>
+    <appender-ref ref="CONSOLE"/>
+    <!--<appender-ref ref="ROLLING_FILE_REQUEST_RESPONSE" />-->
+  </root>
+
+</configuration>

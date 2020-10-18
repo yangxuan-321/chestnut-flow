@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package com.zz.idl.monitor;
+
+option optimize_for = SPEED;
+
+// 投放渠道
+enum ChannelType {
+    UNKNOWN_CHANNEL                     = 0;            // 未知
+    TOUTIAO_CHANNEL                     = 1;            // 头条，巨量引擎
+    TENCENT_CHANNEL                     = 2;            // 腾讯广告，广点通
+    BAIDU_CHANNEL                       = 3;            // 百度
+    ALL_CHANNEL                         = 9999;         // 全渠道
+    CAC_MANUAL_INPUT                    = 10000;        // 手动输入
+}
+
+// Auth Code 状态
+enum AuthCodeStatus {
+    READY_TOKEN                         = 0;            // 准备获取token
+    GET_TOKENING                        = 1;            // 获取token中
+    GET_TOKENED                         = 2;            // 获取token完成
+    GET_TOKEN_ERROR                     = -1;           // 获取token失败
+}
+
+// 监控服务类型
+enum MonitorServerType {
+    UNKNOWN_SERVER_MONITOR              = 0; // 未知
+    OAUTH_SERVER_MONITOR                = 1; // 授权服务监控
+    QPS_SERVER_MONITOR                  = 2; // QPS服务监控
+    BACKSTAGE_SERVER_MONITOR            = 3; // core后台服务监控
+    REFRESH_TOKEN_SERVER_MONITOR        = 4; // 刷新token服务监控
+    STRATEGY_EXEC_SERVER_MONITOR        = 5; // 策略执行服务监控
+    BASIC_DATA_SYNC_MONITOR             = 6; // 基础数据监控
+}
+
+// 动作类型
+enum ActionType {
+    ACTION_NONE                          = 0; // 无动作
+    ACTION_CHECK_PASSED                  = 1; // 检测通过
+    ACTION_SEND_EMAIL                    = 2; // 发送邮件
+    ACTION_RESTART_SERVER                = 3; // 重启服务
+    ACTION_RESTART_SERVER_AND_SEND_EMAIL = 4; // 重启服务并发送邮件
+}
+
+// 账户类型
+enum AccountType {
+    ACCOUNT_GETTING         = 0;        // 待获取
+    MANAGE_ACCOUNT          = 1;        // 账户管家
+    AGENT_ACCOUNT           = 2;        // 代理商账户
+    ADVERTISER_ACCOUNT      = 3;        // 广告主账户
+}
+
+enum Status {
+    Inactive = 0;
+    Active   = 1;
+}
+
+// 多服务采用同一监控时，用于区分主题，详见basicMonitor
+enum MonitorSubjectType {
+    UNKNOWN_SUBJECT_MONITOR                                 = 0;  // 未知
+    OAUTH_SUBJECT_MONITOR                                   = 1;  // 授权服务监控
+    QPS_SUBJECT_MONITOR                                     = 2;  // QPS服务监控
+    BACKSTAGE_SUBJECT_MONITOR                               = 3;  // core后台服务监控
+    REFRESH_TOKEN_SUBJECT_MONITOR                           = 4;  // 刷新token服务监控
+    FUND_SUBJECT_MONITOR                                    = 5;  // 广告主数据同步
+    CAMPAIGN_SUBJECT_MONITOR                                = 6;  // 广告计划
+    LINE_ITEM_SUBJECT_MONITOR                               = 7;  // 广告组
+    CREATIVE_SUBJECT_MONITOR                                = 8;  // 创意
+    CUSTOM_AUDIENCE_SUBJECT_MONITOR                         = 9;  // 人群包
+    IMAGE_SUBJECT_MONITOR                                   = 10; // 图片
+    VIDEO_SUBJECT_MONITOR                                   = 11; // 视频
+    SITE_SUBJECT_MONITOR                                    = 12; // 橙子建站
+    LANDINGURL_SUBJECT_MONITOR                              = 13; // 第三方落地页
+    ADVERTISER_REPORT_SUBJECT_MONITOR                       = 14; // 广告主报表
+    ADVERTISER_HISTORY_REPORT_SUBJECT_MONITOR               = 15; // 广告主历史数据
+    ADVERTISER_REPORT_HOURLY_SUBJECT_MONITOR                = 16; // 广告主小时报表
+    ADVERTISER_HISTORY_REPORT_HOURLY_SUBJECT_MONITOR        = 17; // 广告主历史小时报表
+    CAMPAIGN_REPORT_SUBJECT_MONITOR                         = 18; // 广告组报表
+    CAMPAIGN_HISTORY_REPORT_SUBJECT_MONITOR                 = 19; // 广告组历史报表
+    AD_REPORT_SUBJECT_MONITOR                               = 20; // 广告计划报表
+    AD_HISTORY_report_SUBJECT_MONITOR                       = 21; // 广告计划历史报表
+    CREATIVE_REPORT_SUBJECT_MONITOR                         = 22; // 广告创意报表
+    CREATIVE_HISTORY_REPORT_SUBJECT_MONITOR                 = 23; // 广告创意历史报表
+    CREATIVE_REPORT_HOURLY_SUBJECT_MONITOR                  = 24; // 广告创意小时报表
+    CREATIVE_HISTORY_REPORT_HOURLY_SUBJECT_MONITOR          = 25; // 广告创意历史小时粒度报表
+    ADVERTISER_REPORT_SYNC_EARLIEST_SUBJECT_MONITOR         = 26; // 广告主报表最早时间
+    ADVERTISER_REPORT_HOURLY_SYNC_EARLIEST_SUBJECT_MONITOR  = 27; // 广告主报表小时粒度最早时间
+    CAMPAIGN_REPORT_SYNC_EARLIEST_SUBJECT_MONITOR           = 28; // 广告组报表粒度最早时间
+    AD_REPORT_SYNC_EARLIEST_SUBJECT_MONITOR                 = 29; // 广告组报表最早时间
+    CREATIVE_REPORT_SYNC_EARLIEST_SUBJECT_MONITOR           = 30; // 广告创意报表最早时间
+    CREATIVE_REPORT_HOURLY_SYNC_EARLIEST_SUBJECT_MONITOR    = 31; // 广告创意小时粒度最早时间
+}
+

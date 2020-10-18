@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ROOT=$(dirname "$(readlink -e $0)")
+
+rm -vfr "$ROOT"/target "$ROOT"/project/target "$ROOT"/project/project "$ROOT"/*/target "$ROOT"/*/logs
