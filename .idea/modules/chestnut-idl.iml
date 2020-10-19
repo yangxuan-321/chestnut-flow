@@ -7,6 +7,7 @@
     <content url="file://$MODULE_DIR$/../../idl">
       <sourceFolder url="file://$MODULE_DIR$/../../idl/src/main/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../idl/src/main/protobuf" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../idl/target/scala-2.13/src_managed/main" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../idl/target" />
     </content>
     <orderEntry type="inheritedJdk" />
