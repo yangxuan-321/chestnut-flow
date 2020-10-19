@@ -23,6 +23,19 @@ lazy val idl = project
   .enablePlugins(UniversalPlugin)
   .settings(depOverrides)
 
+lazy val common = project
+  .in(file("common"))
+  .dependsOn(idl)
+  .settings(name := "chestnut-common")
+  .settings(version := (version in ThisBuild).value)
+  .settings(scalacOptions ++= commonScalacOptions)
+  .settings(Seq(jettyAlpnAgent, scalapbDeps))
+  .enablePlugins(AkkaGrpcPlugin)
+  .enablePlugins(JavaAgent)
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(UniversalPlugin)
+  .settings(commonDeps, depOverrides)
+
 lazy val core = project
   .in(file("core"))
   .settings(name := "chestnut-core")
@@ -33,9 +46,9 @@ lazy val core = project
   .enablePlugins(JavaAgent)
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(UniversalPlugin)
-  .settings(cdpMonitorDeps)
+  .settings(chestnutCoreDeps)
   .settings(packagerSettings)
-  .dependsOn(idl)
+  .dependsOn(common, idl)
 
 
 lazy val wartRemoverSettings = Seq(
@@ -120,7 +133,7 @@ lazy val commonDeps = libraryDependencies ++= Seq(
   "com.github.daddykotex"      %% "courier"              % "2.0.0"
 )
 
-lazy val cdpMonitorDeps = libraryDependencies ++= Seq(
+lazy val chestnutCoreDeps = libraryDependencies ++= Seq(
   "com.typesafe.slick"  %% "slick"               % slickV,
   "org.slf4j"           % "slf4j-nop"            % "1.7.26",
   "com.typesafe.slick"  %% "slick-hikaricp"      % slickV,

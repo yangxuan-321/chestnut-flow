@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sbt: com.sun.mail:javax.mail:1.6.2:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -2,12 +2,15 @@
   <library name="sbt: com.github.tminglei:slick-pg_core_2.13:0.19.2:jar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2.jar!/" />
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/com/github/tminglei/slick-pg_core_2.13/0.19.2/slick-pg_core_2.13-0.19.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
