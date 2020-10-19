@@ -6,9 +6,6 @@ import akka.actor.typed.SpawnProtocol.Command
 import akka.actor.typed._
 import akka.http.scaladsl.Http
 import com.typesafe.scalalogging.Logger
-import com.zz.cdp.monitor.dao.OceanengineSyncTaskDAO
-import com.zz.cdp.monitor.database.DatabaseExtension
-import com.zz.cdp.monitor.streams.BasicDataSyncMonitor
 import org.moda.core.database.{DatabaseComponent, DatabaseExtension}
 import org.moda.core.http.AkkaHttpServer
 //import com.zz.cdp.monitor.grpc.ThrottleGrpcClient
@@ -46,7 +43,7 @@ object Main extends App {
 //    logger.info("task: {}", x.asJson.spaces2)
 //  }
 
-  StreamsManager.start()
+//  StreamsManager.start()
 
 //  BasicDataSyncMonitor().flow().run()
 

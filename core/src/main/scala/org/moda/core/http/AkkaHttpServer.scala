@@ -6,9 +6,9 @@ import akka.actor.typed.scaladsl.adapter._
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
 import akka.stream.Materializer
-import com.moda.core.api.TestApi
+import org.moda.core.api.TestApi
 import com.typesafe.config.{Config, ConfigFactory}
-import com.zz.cdp.monitor.api._
+import org.moda.core.api._
 import com.typesafe.scalalogging.Logger
 import org.moda.core.api.{Api, TestApi}
 import org.moda.core.database.DatabaseComponent
@@ -41,7 +41,7 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
     implicit val _system: actor.ActorSystem = system.toClassic
     val i = Http().bindAndHandle(routes, address, port)
     val stream = getClass.getResourceAsStream("/issue.txt")
-    val text = scala.io.Source.fromInputStream(stream).mkString.replace("laji!", s"""Server online at http://$address:$port/ ...""")
+    val text = scala.io.Source.fromInputStream(stream).mkString.replace("chestnut!", s"""Server online at http://$address:$port/ ...""")
     logger.info(text)
     i
   }

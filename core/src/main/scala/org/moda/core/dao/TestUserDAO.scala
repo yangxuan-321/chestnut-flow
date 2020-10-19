@@ -9,7 +9,7 @@ import org.moda.idl.TestUserPO
 import scala.concurrent.Future
 
 /**
- * @author huanggh
+ * @author moda-matser
  * 2020/9/11 下午2:52
  */
 object TestUserDAO {
@@ -19,6 +19,8 @@ object TestUserDAO {
 }
 
 trait TestUserDAO extends DAO {
+
+  import dc.profile.api._
 
   val logger: Logger = Logger(getClass)
 

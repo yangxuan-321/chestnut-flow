@@ -6,6 +6,7 @@ import java.time.Instant
 import org.moda.idl.DataStatus
 import slick.ast.BaseTypedType
 import slick.lifted.MappedProjection
+import org.moda.core.database.DatabaseComponent
 
 trait ColumnTypesMapper {
 
@@ -13,7 +14,7 @@ trait ColumnTypesMapper {
 
 //  import dc.profile.api._
 
-  import org.moda.core.database.DatabaseComponent.profile.api._
+  import DatabaseComponent.profile.api._
 
   private[this] val tF: (Timestamp => Long, Long => Option[Timestamp]) = (
     { t: Timestamp =>

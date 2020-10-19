@@ -1,6 +1,6 @@
 option optimize_for = SPEED;
 
-package com.zz.idl.monitor;
+package org.moda.idl;
 
 import "scalapb/scalapb.proto";
 

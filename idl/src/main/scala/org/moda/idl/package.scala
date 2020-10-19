@@ -1,11 +1,11 @@
-package org.moda.idl
+package org.moda
 
 import java.time.Instant
 import java.util.UUID
 
 import scalapb.TypeMapper
 
-package object flow {
+package object idl {
 
   implicit val instantMapper: TypeMapper[Long, Instant] = TypeMapper(Instant.ofEpochMilli)(_.toEpochMilli)
 

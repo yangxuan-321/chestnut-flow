@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option optimize_for = SPEED;
 
-package com.zz.idl.monitor;
+package org.moda.idl;
 
 import "scalapb/scalapb.proto";
 import "google/protobuf/empty.proto";

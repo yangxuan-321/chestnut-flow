@@ -15,7 +15,7 @@ object TestApi {
 }
 
 /**
- * @author huanggh
+ * @author moda-matser
  * 2020/9/4 下午4:33
  */
 class TestApi(implicit dc: DatabaseComponent) extends Api {

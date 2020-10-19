@@ -1,6 +1,5 @@
 package org.moda.core.model
 
-import org.moda.core.database.PgColumnMapping
 import org.moda.core.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.core.model.tables.TestUserTable
 

@@ -8,7 +8,7 @@ import scala.concurrent.Future
 
 
 /**
- * @author huanggh
+ * @author moda-master
  * 2020/9/7 上午11:26
  */
 object Mail {

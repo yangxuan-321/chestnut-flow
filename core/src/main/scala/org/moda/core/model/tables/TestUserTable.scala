@@ -6,15 +6,15 @@ import org.moda.core.database.PgColumnMapping
 import org.moda.core.model.ColumnTypesMapper
 import org.moda.idl.{DataStatus, TestUserPO}
 import slick.collection.heterogeneous.HNil
-
+import org.moda.core.database.DatabaseComponent
 /**
- * @author huanggh
+ * @author moda-matser
  * 2020/9/11 下午2:41
  */
 trait TestUserTable {
 
   this: ColumnTypesMapper with PgColumnMapping =>
-  import org.moda.core.database.DatabaseComponent.profile.api._
+  import DatabaseComponent.profile.api._
 
   val testUserPOs: TableQuery[TestUserPOs] =
     TableQuery[TestUserPOs]((tag: Tag) => new TestUserPOs(tag, "test_user"))
