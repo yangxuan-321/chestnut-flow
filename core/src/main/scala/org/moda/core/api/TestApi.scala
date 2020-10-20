@@ -2,6 +2,8 @@ package org.moda.core.api
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import io.circe.generic.auto._
+import io.circe.syntax._
 import org.moda.core.dao.TestUserDAO
 import org.moda.core.database.DatabaseComponent
 
@@ -28,11 +30,13 @@ class TestApi(implicit dc: DatabaseComponent) extends Api {
   }
 
   val query: Route = path("user" / "query") {
-    val q = dao.query()
-    onComplete(q) {
-      case Success(value)  => complete(value.map(_.username).mkString(","))
-      case Failure(exception)      => exception.printStackTrace()
-        complete("failure")
+    get {
+      val q = dao.query()
+      onComplete(q) {
+        case Success(value)  => complete(value.asJson.toString)
+        case Failure(exception)      => exception.printStackTrace()
+          complete("failure")
+      }
     }
   }
 
