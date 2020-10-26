@@ -1,0 +1,199 @@
+2020-10-26T20:37:32.564+08:00 INFO  a.e.s.Slf4jLogger Slf4jLogger started
+2020-10-26T20:37:32.899+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding uuid -> java.util.UUID [0m
+2020-10-26T20:37:32.901+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding text -> java.lang.String [0m
+2020-10-26T20:37:32.901+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding bool -> Boolean [0m
+2020-10-26T20:37:32.926+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _uuid -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.927+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _text -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.928+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.928+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.928+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int2 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.928+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.929+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.929+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _bool -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.929+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _date -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.929+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _time -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.929+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _timestamp -> scala.collection.immutable.Seq [0m
+2020-10-26T20:37:32.948+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding inet -> com.github.tminglei.slickpg.InetString [0m
+2020-10-26T20:37:32.949+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding macaddr -> com.github.tminglei.slickpg.MacAddrString [0m
+2020-10-26T20:37:32.951+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding ltree -> com.github.tminglei.slickpg.LTree [0m
+2020-10-26T20:37:32.951+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _ltree -> scala.collection.immutable.List [0m
+2020-10-26T20:37:32.955+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int4range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int8range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding numrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.956+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tstzrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.957+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:37:32.959+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding hstore -> scala.collection.immutable.Map [0m
+2020-10-26T20:37:32.960+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsvector -> com.github.tminglei.slickpg.TsVector [0m
+2020-10-26T20:37:32.961+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsquery -> com.github.tminglei.slickpg.TsQuery [0m
+2020-10-26T20:37:33.033+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Starting...
+2020-10-26T20:37:33.075+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Start completed.
+2020-10-26T20:37:33.770+08:00 INFO  o.m.c.h.AkkaHttpServer < Server online at http://127.0.0.1:9000/ ... >
+ _____ _               _               _         ______ _
+/  __ \ |             | |             | |        |  ___| |
+| /  \/ |__   ___  ___| |_ _ __  _   _| |_ ______| |_  | | _____      __
+| |   | '_ \ / _ \/ __| __| '_ \| | | | __|______|  _| | |/ _ \ \ /\ / /
+| \__/\ | | |  __/\__ \ |_| | | | |_| | |_       | |   | | (_) \ V  V /
+ \____/_| |_|\___||___/\__|_| |_|\__,_|\__|      \_|   |_|\___/ \_/\_/
+2020-10-26T20:45:48.810+08:00 INFO  o.m.c.Main$ System Terminated. Goodbye.
+2020-10-26T20:54:48.618+08:00 INFO  a.e.s.Slf4jLogger Slf4jLogger started
+2020-10-26T20:54:48.913+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding uuid -> java.util.UUID [0m
+2020-10-26T20:54:48.915+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding text -> java.lang.String [0m
+2020-10-26T20:54:48.915+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding bool -> Boolean [0m
+2020-10-26T20:54:48.940+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _uuid -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.940+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _text -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.940+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int2 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _bool -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _date -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.941+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _time -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.942+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _timestamp -> scala.collection.immutable.Seq [0m
+2020-10-26T20:54:48.958+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding inet -> com.github.tminglei.slickpg.InetString [0m
+2020-10-26T20:54:48.959+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding macaddr -> com.github.tminglei.slickpg.MacAddrString [0m
+2020-10-26T20:54:48.961+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding ltree -> com.github.tminglei.slickpg.LTree [0m
+2020-10-26T20:54:48.961+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _ltree -> scala.collection.immutable.List [0m
+2020-10-26T20:54:48.964+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int4range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.964+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int8range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.964+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding numrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.964+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.965+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.965+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.965+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tstzrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.966+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:54:48.970+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding hstore -> scala.collection.immutable.Map [0m
+2020-10-26T20:54:48.972+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsvector -> com.github.tminglei.slickpg.TsVector [0m
+2020-10-26T20:54:48.972+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsquery -> com.github.tminglei.slickpg.TsQuery [0m
+2020-10-26T20:54:49.133+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Starting...
+2020-10-26T20:54:49.212+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Start completed.
+2020-10-26T20:54:49.961+08:00 INFO  o.m.c.h.AkkaHttpServer < Server online at http://127.0.0.1:9000/ ... >
+ _____ _               _               _         ______ _
+/  __ \ |             | |             | |        |  ___| |
+| /  \/ |__   ___  ___| |_ _ __  _   _| |_ ______| |_  | | _____      __
+| |   | '_ \ / _ \/ __| __| '_ \| | | | __|______|  _| | |/ _ \ \ /\ / /
+| \__/\ | | |  __/\__ \ |_| | | | |_| | |_       | |   | | (_) \ V  V /
+ \____/_| |_|\___||___/\__|_| |_|\__,_|\__|      \_|   |_|\___/ \_/\_/
+2020-10-26T20:59:09.252+08:00 INFO  o.m.c.Main$ System Terminated. Goodbye.
+2020-10-26T20:59:30.300+08:00 INFO  a.e.s.Slf4jLogger Slf4jLogger started
+2020-10-26T20:59:30.624+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding uuid -> java.util.UUID [0m
+2020-10-26T20:59:30.625+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding text -> java.lang.String [0m
+2020-10-26T20:59:30.625+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding bool -> Boolean [0m
+2020-10-26T20:59:30.651+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _uuid -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.651+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _text -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.652+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.652+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.653+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int2 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.653+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float4 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.654+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float8 -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.654+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _bool -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.654+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _date -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.654+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _time -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.654+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _timestamp -> scala.collection.immutable.Seq [0m
+2020-10-26T20:59:30.673+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding inet -> com.github.tminglei.slickpg.InetString [0m
+2020-10-26T20:59:30.674+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding macaddr -> com.github.tminglei.slickpg.MacAddrString [0m
+2020-10-26T20:59:30.675+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding ltree -> com.github.tminglei.slickpg.LTree [0m
+2020-10-26T20:59:30.676+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _ltree -> scala.collection.immutable.List [0m
+2020-10-26T20:59:30.683+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int4range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int8range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding numrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tstzrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.684+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T20:59:30.687+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding hstore -> scala.collection.immutable.Map [0m
+2020-10-26T20:59:30.691+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsvector -> com.github.tminglei.slickpg.TsVector [0m
+2020-10-26T20:59:30.692+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsquery -> com.github.tminglei.slickpg.TsQuery [0m
+2020-10-26T20:59:30.785+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Starting...
+2020-10-26T20:59:30.834+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Start completed.
+2020-10-26T20:59:31.592+08:00 INFO  o.m.c.h.AkkaHttpServer < Server online at http://127.0.0.1:9000/ ... >
+ _____ _               _               _         ______ _
+/  __ \ |             | |             | |        |  ___| |
+| /  \/ |__   ___  ___| |_ _ __  _   _| |_ ______| |_  | | _____      __
+| |   | '_ \ / _ \/ __| __| '_ \| | | | __|______|  _| | |/ _ \ \ /\ / /
+| \__/\ | | |  __/\__ \ |_| | | | |_| | |_       | |   | | (_) \ V  V /
+ \____/_| |_|\___||___/\__|_| |_|\__,_|\__|      \_|   |_|\___/ \_/\_/
+2020-10-26T20:59:41.623+08:00 ERROR a.a.ActorSystemImpl Error during processing of request: 'Cannot format given Object as a Date'. Completing with 500 Internal Server Error response. To change default exception handling behavior, provide a custom ExceptionHandler.
+java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.base/java.text.DateFormat.format(DateFormat.java:338)
+	at java.base/java.text.Format.format(Format.java:158)
+	at org.moda.common.json.PbJsonSupport.org$moda$common$json$PbJsonSupport$$$anonfun$encoderInstant$1(PbJsonSupport.scala:14)
+	at org.moda.common.json.PbJsonSupport$$anonfun$encoderInstant$2.apply(PbJsonSupport.scala:14)
+	at org.moda.common.json.PbJsonSupport$$anonfun$encoderInstant$2.apply(PbJsonSupport.scala:14)
+	at org.moda.core.api.TestApi$anon$importedEncoder$macro$17$1$$anon$2.encodeObject(TestApi.scala:43)
+	at org.moda.core.api.TestApi$anon$importedEncoder$macro$17$1$$anon$2.encodeObject(TestApi.scala:43)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder$$anon$1.encodeObject(DerivedAsObjectEncoder.scala:14)
+	at io.circe.Encoder$AsObject.apply(Encoder.scala:826)
+	at io.circe.Encoder$AsObject.apply$(Encoder.scala:826)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder.apply(DerivedAsObjectEncoder.scala:6)
+	at io.circe.MidPriorityEncoders$IterableAsArrayEncoder.encodeArray(Encoder.scala:923)
+	at io.circe.Encoder$AsArray.apply(Encoder.scala:746)
+	at io.circe.Encoder$AsArray.apply$(Encoder.scala:746)
+	at io.circe.MidPriorityEncoders$IterableAsArrayEncoder.apply(Encoder.scala:915)
+	at org.moda.common.json.Json2String$Json2String$anon$importedEncoder$macro$11$1$$anon$2.encodeObject(ResultJsonSupport.scala:11)
+	at org.moda.common.json.Json2String$Json2String$anon$importedEncoder$macro$11$1$$anon$2.encodeObject(ResultJsonSupport.scala:11)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder$$anon$1.encodeObject(DerivedAsObjectEncoder.scala:14)
+	at io.circe.Encoder$AsObject.apply(Encoder.scala:826)
+	at io.circe.Encoder$AsObject.apply$(Encoder.scala:826)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder.apply(DerivedAsObjectEncoder.scala:6)
+	at io.circe.syntax.package$EncoderOps$.asJson$extension(package.scala:10)
+	at org.moda.common.json.Json2String$Json2String.toJsonString(ResultJsonSupport.scala:11)
+	at org.moda.core.api.TestApi.$anonfun$query$5(TestApi.scala:43)
+	at akka.http.scaladsl.server.directives.RouteDirectives.$anonfun$complete$1(RouteDirectives.scala:47)
+	at akka.http.scaladsl.server.StandardRoute$$anon$1.apply(StandardRoute.scala:19)
+	at akka.http.scaladsl.server.StandardRoute$$anon$1.apply(StandardRoute.scala:19)
+	at akka.http.scaladsl.server.directives.FutureDirectives.$anonfun$onComplete$3(FutureDirectives.scala:37)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$1(FastFuture.scala:37)
+	at akka.http.scaladsl.util.FastFuture$.strictTransform$1(FastFuture.scala:41)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$3(FastFuture.scala:51)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:447)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1426)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+2020-10-26T20:59:42.947+08:00 ERROR a.a.ActorSystemImpl Error during processing of request: 'Cannot format given Object as a Date'. Completing with 500 Internal Server Error response. To change default exception handling behavior, provide a custom ExceptionHandler.
+java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.base/java.text.DateFormat.format(DateFormat.java:338)
+	at java.base/java.text.Format.format(Format.java:158)
+	at org.moda.common.json.PbJsonSupport.org$moda$common$json$PbJsonSupport$$$anonfun$encoderInstant$1(PbJsonSupport.scala:14)
+	at org.moda.common.json.PbJsonSupport$$anonfun$encoderInstant$2.apply(PbJsonSupport.scala:14)
+	at org.moda.common.json.PbJsonSupport$$anonfun$encoderInstant$2.apply(PbJsonSupport.scala:14)
+	at org.moda.core.api.TestApi$anon$importedEncoder$macro$17$1$$anon$2.encodeObject(TestApi.scala:43)
+	at org.moda.core.api.TestApi$anon$importedEncoder$macro$17$1$$anon$2.encodeObject(TestApi.scala:43)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder$$anon$1.encodeObject(DerivedAsObjectEncoder.scala:14)
+	at io.circe.Encoder$AsObject.apply(Encoder.scala:826)
+	at io.circe.Encoder$AsObject.apply$(Encoder.scala:826)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder.apply(DerivedAsObjectEncoder.scala:6)
+	at io.circe.MidPriorityEncoders$IterableAsArrayEncoder.encodeArray(Encoder.scala:923)
+	at io.circe.Encoder$AsArray.apply(Encoder.scala:746)
+	at io.circe.Encoder$AsArray.apply$(Encoder.scala:746)
+	at io.circe.MidPriorityEncoders$IterableAsArrayEncoder.apply(Encoder.scala:915)
+	at org.moda.common.json.Json2String$Json2String$anon$importedEncoder$macro$11$1$$anon$2.encodeObject(ResultJsonSupport.scala:11)
+	at org.moda.common.json.Json2String$Json2String$anon$importedEncoder$macro$11$1$$anon$2.encodeObject(ResultJsonSupport.scala:11)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder$$anon$1.encodeObject(DerivedAsObjectEncoder.scala:14)
+	at io.circe.Encoder$AsObject.apply(Encoder.scala:826)
+	at io.circe.Encoder$AsObject.apply$(Encoder.scala:826)
+	at io.circe.generic.encoding.DerivedAsObjectEncoder.apply(DerivedAsObjectEncoder.scala:6)
+	at io.circe.syntax.package$EncoderOps$.asJson$extension(package.scala:10)
+	at org.moda.common.json.Json2String$Json2String.toJsonString(ResultJsonSupport.scala:11)
+	at org.moda.core.api.TestApi.$anonfun$query$5(TestApi.scala:43)
+	at akka.http.scaladsl.server.directives.RouteDirectives.$anonfun$complete$1(RouteDirectives.scala:47)
+	at akka.http.scaladsl.server.StandardRoute$$anon$1.apply(StandardRoute.scala:19)
+	at akka.http.scaladsl.server.StandardRoute$$anon$1.apply(StandardRoute.scala:19)
+	at akka.http.scaladsl.server.directives.FutureDirectives.$anonfun$onComplete$3(FutureDirectives.scala:37)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$1(FastFuture.scala:37)
+	at akka.http.scaladsl.util.FastFuture$.strictTransform$1(FastFuture.scala:41)
+	at akka.http.scaladsl.util.FastFuture$.$anonfun$transformWith$3(FastFuture.scala:51)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:447)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1426)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)

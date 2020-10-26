@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/../../idl/src/main/protobuf" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../idl/target/scala-2.13/src_managed/main" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../idl/target" />
+      <excludeFolder url="file://$MODULE_DIR$/../../idl/target/protobuf_external" />
+      <excludeFolder url="file://$MODULE_DIR$/../../idl/target/streams" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
