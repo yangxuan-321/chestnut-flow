@@ -5,11 +5,24 @@ package org.moda.idl;
 option optimize_for = SPEED;
 
 enum Status {
-    Inactive = 0;
-    Active   = 1;
+    Inactive                = 0;
+    Active                  = 1;
 }
 
 enum DataStatus {
-    Normal  = 0;
-    Deleted = 1;
+    Normal                  = 0;
+    Deleted                 = 1;
+}
+
+// 流程状态
+enum FlowStatus {
+    FLOW_STATUS_NORMAL      = 0; // 正常启用
+    FLOW_STATUS_CLOSE       = 1; // 关闭
+    FLOW_STATUS_DELETE      = 2; // 删除
+}
+
+// 枚举状态
+enum EnumStatus {
+    ENUM_STATUS_NORMAL      = 0; // 正常
+    ENUM_STATUS_DELETE      = 1; // 删除
 }
