@@ -5,24 +5,44 @@ package org.moda.idl;
 option optimize_for = SPEED;
 
 enum Status {
-    Inactive                = 0;
-    Active                  = 1;
+    Inactive                                = 0;
+    Active                                  = 1;
 }
 
 enum DataStatus {
-    Normal                  = 0;
-    Deleted                 = 1;
+    Normal                                  = 0;
+    Deleted                                 = 1;
 }
 
 // 流程状态
 enum FlowStatus {
-    FLOW_STATUS_NORMAL      = 0; // 正常启用
-    FLOW_STATUS_CLOSE       = 1; // 关闭
-    FLOW_STATUS_DELETE      = 2; // 删除
+    FLOW_STATUS_NORMAL                      = 0; // 正常启用
+    FLOW_STATUS_CLOSE                       = 1; // 关闭
+    FLOW_STATUS_DELETE                      = 2; // 删除
 }
 
 // 枚举状态
 enum EnumStatus {
-    ENUM_STATUS_NORMAL      = 0; // 正常
-    ENUM_STATUS_DELETE      = 1; // 删除
+    ENUM_STATUS_NORMAL                      = 0; // 正常
+    ENUM_STATUS_DELETE                      = 1; // 删除
+}
+
+// 对应流程实例的状态
+enum FlowInstanceStatus {
+    FLOW_INSTANCE_STATUS_NEW                = 0; // 新建
+    FLOW_INSTANCE_STATUS_RUN                = 1; // 运行中
+    FLOW_INSTANCE_STATUS_COMPLETE           = 2; // 已完成
+    FLOW_INSTANCE_STATUS_STOP               = 3; // 终止
+    FLOW_INSTANCE_STATUS_ERROR              = 4; // 系统异常
+    FLOW_INSTANCE_STATUS_UNKNOWN            = 999;// 未知
+}
+
+// 对应节点状态
+enum NodeInstanceStatus {
+    NODE_INSTANCE_STATUS_NEW                = 0; // 新建
+    NODE_INSTANCE_STATUS_OBTAIN             = 1; // 被获取
+    NODE_INSTANCE_STATUS_COMPLETE           = 2; // 处理完成
+    NODE_INSTANCE_STATUS_STOP               = 3; // 终止
+    NODE_INSTANCE_STATUS_ERROR              = 4; // 系统处理处理异常
+    NODE_INSTANCE_STATUS_UNKNOWN            = 999;// 未知
 }

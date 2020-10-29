@@ -13,9 +13,10 @@ import "enums.proto";
 // 流程实例表
 message ChestnutWorkFlowInstance {
     int64                   id                          = 10;   // 流程实例ID
-    string                  flow_id                     = 20;   // 对应的流程id
+    int64                   flow_id                     = 20;   // 对应的流程id
+    FlowInstanceStatus      status                      = 30;   // 对应流程实例的状态
     string                  created_user                = 40;   // 创建者
     string                  update_user                 = 50;   // 更新者
-    int64                   created_at                  = 50 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
-    int64                   updated_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
+    int64                   created_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
+    int64                   updated_at                  = 70 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
 }
