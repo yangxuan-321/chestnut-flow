@@ -11,14 +11,13 @@ import "google/protobuf/wrappers.proto";
 import "enums.proto";
 
 // 流程节点表
-message ChestnutNode {
+message ChestnutNodeRouter {
     int64                   id                          = 10;   // ID
-    string                  node_name                   = 20;   // 节点名称
-    NodeType                node_type                   = 25;   // 节点类型
-    string                  icon                        = 30;   // 节点图标
-    string                  node_uuid                   = 40;   // node_uuid 就是 一个流程 纵然版本不同 uuid 也是唯一的，用来标识 是同一个模板
+    int64                   start_node_id               = 20;   // 开始节点
+    int64                   stop_node_id                = 30;   // 结束节点
+    string                  router_rule                 = 40;   // 路由规则
     int32                   node_version                = 50;   // 节点版本
-    string                  description                 = 60;   // 节点备注描述
+    string                  description                 = 60;   // 路由备注描述
     int64                   flow_id                     = 70;   // 对应的流程id
     string                  created_user                = 80;   // 创建者
     string                  update_user                 = 90;   // 更新者

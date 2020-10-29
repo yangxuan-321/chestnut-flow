@@ -46,3 +46,9 @@ enum NodeInstanceStatus {
     NODE_INSTANCE_STATUS_ERROR              = 4; // 系统处理处理异常
     NODE_INSTANCE_STATUS_UNKNOWN            = 999;// 未知
 }
+
+// 节点类型
+enum NodeType {
+    NODE_TYPE_PEOPLE                        = 0; // 人工节点
+    NODE_TYPE_AUTO                          = 1; // 自动节点
+}
