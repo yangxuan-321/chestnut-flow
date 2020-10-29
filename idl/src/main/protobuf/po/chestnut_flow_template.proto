@@ -16,7 +16,7 @@ message Template {
     string                  name                        = 20;   // 模板名称
     DataStatus              status                      = 30;   // 数据状态 枚举 - 0 正常 1- 删除
     string                  created_user                = 40;   // 创建者
-    string                  update_user                = 50;   // 更新者
-    int64                   created_at                  = 50 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
-    int64                   updated_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
+    string                  update_user                 = 50;   // 更新者
+    int64                   created_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
+    int64                   updated_at                  = 70 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
 }

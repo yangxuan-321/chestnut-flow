@@ -3,7 +3,7 @@
   <component name="ScalaCompilerConfiguration">
     <profile name="sbt 1" modules="chestnut-flow">
       <plugins>
-        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
+        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
       </plugins>
     </profile>
     <profile name="sbt 2" modules="chestnut-core">
@@ -19,11 +19,11 @@
         <parameter value="-Ywarn-dead-code" />
       </parameters>
       <plugins>
-        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
-        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/org/typelevel/kind-projector_2.13/0.10.3/kind-projector_2.13-0.10.3.jar" />
+        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
+        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/kind-projector_2.13/0.10.3/kind-projector_2.13-0.10.3.jar" />
       </plugins>
     </profile>
-    <profile name="sbt 3" modules="chestnut-common,chestnut-idl">
+    <profile name="sbt 4" modules="chestnut-common,chestnut-idl">
       <option name="postfixOps" value="true" />
       <option name="higherKinds" value="true" />
       <option name="existentials" value="true" />
@@ -36,7 +36,7 @@
         <parameter value="-Ywarn-dead-code" />
       </parameters>
       <plugins>
-        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.iadmob.com/artifactory/maven-releases/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
+        <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/wartremover/wartremover_2.13/2.4.2/wartremover_2.13-2.4.2.jar" />
       </plugins>
     </profile>
   </component>

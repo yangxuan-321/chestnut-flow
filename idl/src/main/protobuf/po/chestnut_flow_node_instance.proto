@@ -14,9 +14,9 @@ import "enums.proto";
 message ChestnutNodeInstance {
     int64                   id                          = 10;   // 节点实例ID
     string                  node_id                     = 20;   // 对应节点模板id
-    NodeInstanceStatus      status                      = 60;   // 节点状态
-    string                  created_user                = 80;   // 创建者
-    string                  update_user                 = 90;   // 更新者
-    int64                   created_at                  = 100 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
-    int64                   updated_at                  = 110 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
+    NodeInstanceStatus      status                      = 30;   // 节点状态
+    string                  created_user                = 40;   // 创建者
+    string                  update_user                 = 50;   // 更新者
+    int64                   created_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
+    int64                   updated_at                  = 70 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
 }
