@@ -1,0 +1,40 @@
+2020-10-26T21:12:39.665+08:00 INFO  o.m.c.Main$ System Terminated. Goodbye.
+2020-10-26T21:13:05.061+08:00 INFO  a.e.s.Slf4jLogger Slf4jLogger started
+2020-10-26T21:13:05.481+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding uuid -> java.util.UUID [0m
+2020-10-26T21:13:05.483+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding text -> java.lang.String [0m
+2020-10-26T21:13:05.483+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding bool -> Boolean [0m
+2020-10-26T21:13:05.520+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _uuid -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.520+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _text -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.521+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int8 -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.521+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int4 -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.521+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _int2 -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.521+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float4 -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.522+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _float8 -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.522+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _bool -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.522+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _date -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.522+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _time -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.522+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _timestamp -> scala.collection.immutable.Seq [0m
+2020-10-26T21:13:05.546+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding inet -> com.github.tminglei.slickpg.InetString [0m
+2020-10-26T21:13:05.548+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding macaddr -> com.github.tminglei.slickpg.MacAddrString [0m
+2020-10-26T21:13:05.551+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding ltree -> com.github.tminglei.slickpg.LTree [0m
+2020-10-26T21:13:05.551+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding _ltree -> scala.collection.immutable.List [0m
+2020-10-26T21:13:05.555+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int4range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.555+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding int8range -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.555+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding numrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.556+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.556+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.556+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.556+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tstzrange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.556+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding daterange -> com.github.tminglei.slickpg.Range [0m
+2020-10-26T21:13:05.560+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding hstore -> scala.collection.immutable.Map [0m
+2020-10-26T21:13:05.563+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsvector -> com.github.tminglei.slickpg.TsVector [0m
+2020-10-26T21:13:05.564+08:00 INFO  o.m.c.d.SimplePgProfile [36m >>> binding tsquery -> com.github.tminglei.slickpg.TsQuery [0m
+2020-10-26T21:13:05.699+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Starting...
+2020-10-26T21:13:05.785+08:00 INFO  c.z.h.HikariDataSource chestnut_rw - Start completed.
+2020-10-26T21:13:06.760+08:00 INFO  o.m.c.h.AkkaHttpServer < Server online at http://127.0.0.1:9000/ ... >
+ _____ _               _               _         ______ _
+/  __ \ |             | |             | |        |  ___| |
+| /  \/ |__   ___  ___| |_ _ __  _   _| |_ ______| |_  | | _____      __
+| |   | '_ \ / _ \/ __| __| '_ \| | | | __|______|  _| | |/ _ \ \ /\ / /
+| \__/\ | | |  __/\__ \ |_| | | | |_| | |_       | |   | | (_) \ V  V /
+ \____/_| |_|\___||___/\__|_| |_|\__,_|\__|      \_|   |_|\___/ \_/\_/
