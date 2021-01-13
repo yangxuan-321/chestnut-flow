@@ -10,12 +10,14 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "enums.proto";
 
-// 流程路由实例表
-message ChestnutNodeRouterInstance {
-    int64                   id                          = 10;   // 节点实例ID
-    int64                   node_router_id              = 20;   // 对应路由id
-    int64                   flow_instance_id            = 30;   // 对应流程路由实例id
-    int32                   seq                         = 50;   // 节点在流程实例中的递增序号
+// 流程参数定义表
+message ChestnutFlowParameters {
+    int64                   id                          = 10;   // ID
+    string                  flow_id                     = 20;   // 流程id
+    int32                   parameter_name              = 30;   // 参数名称
+    int32                   parameter_value             = 35;   // 参数初始化值
+    int64                   parent_enum_id              = 40;   // 父枚举id
+    Bool                    is_deleted                  = 50;   // 是否被删除 枚举 - 0 正常 1- 删除
     string                  created_user                = 60;   // 创建者
     string                  update_user                 = 70;   // 更新者
     int64                   created_at                  = 80 [(scalapb.field).type = "java.time.Instant"];   // 创建时间

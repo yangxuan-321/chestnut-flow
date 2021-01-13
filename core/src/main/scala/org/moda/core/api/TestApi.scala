@@ -41,7 +41,9 @@ class TestApi(implicit dc: DatabaseComponent) extends Api {
         case Success(value)  =>
           val res: Pretty[Seq[TestUserPO]] = new Pretty[Seq[TestUserPO]](200, "success", value)
           complete(res.toJsonString)
-        case Failure(exception)      => exception.printStackTrace()
+        case Failure(exception)      =>
+          // exception.printStackTrace()
+          
           complete("failure")
       }
     }

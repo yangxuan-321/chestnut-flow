@@ -15,7 +15,7 @@ message ChestnutParentEnum {
     int64                   id                          = 10;   // ID
     string                  enum_key                    = 20;   // 键
     string                  enum_key_desc               = 30;   // 键描述
-    EnumStatus              status                      = 50;   // 枚举状态
+    Bool                    is_deleted                  = 40;   // 是否被删除 枚举 - 0 正常 1- 删除
     string                  created_user                = 60;   // 创建者
     string                  update_user                 = 70;   // 更新者
     int64                   created_at                  = 80 [(scalapb.field).type = "java.time.Instant"];   // 创建时间

@@ -19,6 +19,7 @@ message ChestnutNodeRouter {
    int32                   node_version                = 50;   // 节点版本
    string                  description                 = 60;   // 路由备注描述
    int64                   flow_id                     = 70;   // 对应的流程id
+   Bool                    is_deleted                  = 75;   // 是否被删除 枚举 - 0 正常 1- 删除
    string                  created_user                = 80;   // 创建者
    string                  update_user                 = 90;   // 更新者
    int64                   created_at                  = 100 [(scalapb.field).type = "java.time.Instant"];   // 创建时间

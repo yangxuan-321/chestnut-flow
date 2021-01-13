@@ -31,9 +31,9 @@
               "notNull": true
             },
             {
-              "name": "status",
+              "name": "is_deleted",
               "type": "smallint",
-              "remark": "枚举状态",
+              "remark": "是否被删除 枚举 - 0 正常 1- 删除",
               "chnname": "枚举状态",
               "notNull": true
             },
@@ -72,7 +72,8 @@
               "name": "chestnut_flow_enum_enum_key",
               "isUnique": true,
               "fields": [
-                "enum_key"
+                "enum_key",
+                "is_deleted"
               ]
             }
           ],
@@ -164,9 +165,9 @@
               "chnname": "父枚举id"
             },
             {
-              "name": "status",
+              "name": "is_deleted",
               "type": "smallint",
-              "remark": "枚举状态",
+              "remark": "是否被删除 枚举 - 0 正常 1- 删除",
               "chnname": "枚举状态",
               "notNull": true
             },
@@ -263,19 +264,19 @@
         "nodes": [
           {
             "shape": "table",
-            "title": "chestnut_flow_parent_enum",
+            "title": "chestnut_flow_enum",
             "moduleName": false,
-            "x": 550,
-            "y": 250,
-            "id": "a9d2a4f9"
+            "x": 340,
+            "y": 120,
+            "id": "c75f52dd"
           },
           {
             "shape": "table",
-            "title": "chestnut_flow_enum",
+            "title": "chestnut_flow_parent_enum",
             "moduleName": false,
-            "x": 210,
-            "y": 240,
-            "id": "c75f52dd"
+            "x": 800,
+            "y": 120,
+            "id": "a9d2a4f9"
           }
         ],
         "edges": [
@@ -287,12 +288,12 @@
             "id": "dfeb0ae2",
             "controlPoints": [
               {
-                "x": 350.12908935546875,
-                "y": 242.5108695652174
+                "x": 480.12908935546875,
+                "y": 122.5108695652174
               },
               {
-                "x": 409.87091064453125,
-                "y": 192.19736842105263
+                "x": 659.8709106445312,
+                "y": 62.19736842105263
               }
             ],
             "sourceAnchor": 9,
