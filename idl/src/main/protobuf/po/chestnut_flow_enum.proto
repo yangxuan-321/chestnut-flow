@@ -18,8 +18,8 @@ message ChestnutEnum {
     int32                   value                       = 35;   // 值
     int64                   parent_enum_id              = 40;   // 父枚举id
     Bool                    is_deleted                  = 50;   // 是否被删除 枚举 - 0 正常 1- 删除
-    string                  created_user                = 60;   // 创建者
-    string                  update_user                 = 70;   // 更新者
+    int64                   created_user                = 60;   // 创建者
+    int64                   update_user                 = 70;   // 更新者
     int64                   created_at                  = 80 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
     int64                   updated_at                  = 90 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
 }
