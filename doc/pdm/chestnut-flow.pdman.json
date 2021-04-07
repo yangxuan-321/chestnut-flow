@@ -21,42 +21,48 @@
               "type": "text",
               "remark": "键",
               "chnname": "键",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "''"
             },
             {
               "name": "enum_key_desc",
               "type": "text",
               "remark": "键描述",
               "chnname": "键描述",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "''"
             },
             {
               "name": "is_deleted",
               "type": "smallint",
               "remark": "是否被删除 枚举 - 0 正常 1- 删除",
               "chnname": "枚举状态",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "created_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "update_user",
               "type": "bigint",
               "remark": "更新者",
               "chnname": "更新者",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "created_at",
               "type": "timestamp",
               "remark": "创建时间",
               "chnname": "创建时间",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "now()"
             },
             {
               "name": "updated_at",
@@ -64,7 +70,7 @@
               "remark": "更新时间",
               "chnname": "更新时间",
               "notNull": true,
-              "defaultValue": ""
+              "defaultValue": "now()"
             }
           ],
           "indexs": [
@@ -143,54 +149,64 @@
               "type": "text",
               "remark": "键",
               "chnname": "键",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "''"
             },
             {
               "name": "enum_key_desc",
               "type": "text",
               "remark": "键描述",
               "chnname": "键描述",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "''"
             },
             {
               "name": "value",
               "type": "integer",
               "remark": "值",
-              "chnname": "值"
+              "chnname": "值",
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "parent_enum_id",
               "type": "bigint",
               "remark": "父枚举id",
-              "chnname": "父枚举id"
+              "chnname": "父枚举id",
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "is_deleted",
               "type": "smallint",
               "remark": "是否被删除 枚举 - 0 正常 1- 删除",
               "chnname": "枚举状态",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "created_user",
-              "type": "text",
+              "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "update_user",
-              "type": "text",
+              "type": "bigint",
               "remark": "更新者",
               "chnname": "更新者",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "0"
             },
             {
               "name": "created_at",
               "type": "timestamp",
               "remark": "创建时间",
               "chnname": "创建时间",
-              "notNull": true
+              "notNull": true,
+              "defaultValue": "now()"
             },
             {
               "name": "updated_at",
@@ -198,7 +214,7 @@
               "remark": "更新时间",
               "chnname": "更新时间",
               "notNull": true,
-              "defaultValue": ""
+              "defaultValue": "now()"
             }
           ],
           "indexs": [
@@ -269,7 +285,7 @@
               "chnname": "id主键",
               "pk": true,
               "notNull": true,
-              "defaultValue": "0"
+              "defaultValue": ""
             },
             {
               "name": "name",
@@ -277,15 +293,15 @@
               "remark": "模板名称",
               "chnname": "模板名称",
               "notNull": true,
-              "defaultValue": "‘’"
+              "defaultValue": "''"
             },
             {
               "name": "is_deleted",
-              "type": "boolean",
+              "type": "smallint",
               "remark": "是否被删除 枚举 - 0 正常 1- 删除",
               "chnname": "删除",
               "notNull": true,
-              "defaultValue": "false"
+              "defaultValue": "0"
             },
             {
               "name": "created_user",

@@ -1,14 +1,14 @@
 CREATE TABLE chestnut_flow_enum(
     id bigserial NOT NULL,
-    enum_key text NOT NULL,
-    enum_key_desc text NOT NULL,
-    value integer,
-    parent_enum_id bigint,
-    is_deleted smallint NOT NULL,
-    created_user text NOT NULL,
-    update_user text NOT NULL,
-    created_at timestamp NOT NULL,
-    updated_at timestamp NOT NULL,
+    enum_key text DEFAULT '' NOT NULL,
+    enum_key_desc text DEFAULT '' NOT NULL,
+    value integer DEFAULT 0 NOT NULL,
+    parent_enum_id bigint DEFAULT 0 NOT NULL,
+    is_deleted smallint DEFAULT 0 NOT NULL,
+    created_user bigint DEFAULT 0 NOT NULL,
+    update_user bigint DEFAULT 0 NOT NULL,
+    created_at timestamp DEFAULT now() NOT NULL,
+    updated_at timestamp DEFAULT now() NOT NULL,
     PRIMARY KEY (id)
 );
 

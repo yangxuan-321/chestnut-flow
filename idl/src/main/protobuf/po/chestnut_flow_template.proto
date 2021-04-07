@@ -14,7 +14,7 @@ import "enums.proto";
 message Template {
     int64                   id                          = 10;   // ID
     string                  name                        = 20;   // 模板名称
-    bool                    is_deleted                  = 30;   // 是否被删除 枚举 - 0 正常 1- 删除
+    Bool                    is_deleted                  = 30;   // 是否被删除 枚举 - 0 正常 1- 删除
     int64                   created_user                = 40;   // 创建者
     int64                   update_user                 = 50;   // 更新者
     int64                   created_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
