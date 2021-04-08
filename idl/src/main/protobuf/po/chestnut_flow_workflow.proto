@@ -14,11 +14,11 @@ import "enums.proto";
 message ChestnutWorkFlow {
     int64                   id                          = 10;   // ID
     string                  flow_name                   = 20;   // 流程名称
-    string                  flow_uuid                   = 30;   // flow_uuid 就是 一个流程 纵然版本不同 uuid 也是唯一的，用来标识 是同一个模板
+    // string                  flow_uuid                   = 30;   // flow_uuid 就是 一个流程 纵然版本不同 uuid 也是唯一的，用来标识 是同一个模板
+    int64                   template_id                 = 30;   // 对应的 模板Id 纵然版本不同 模板Id用来标识 是同一个模板
     int32                   flow_version                = 40;   // 流程版本
     FlowStatus              status                      = 50;   // 流程状态
     string                  description                 = 60;   // 流程备注描述
-    int64                   template_id                 = 65;   // 对应的 模板Id
     int64                   created_user                = 70;   // 创建者
     int64                   update_user                 = 80;   // 更新者
     int64                   created_at                  = 90 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
