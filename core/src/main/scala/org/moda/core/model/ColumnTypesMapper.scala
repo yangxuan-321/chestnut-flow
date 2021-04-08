@@ -3,10 +3,10 @@ package org.moda.core.model
 import java.sql.Timestamp
 import java.time.Instant
 
-import org.moda.idl.DataStatus
+import org.moda.core.database.DatabaseComponent
+import org.moda.idl.Bool
 import slick.ast.BaseTypedType
 import slick.lifted.MappedProjection
-import org.moda.core.database.DatabaseComponent
 
 trait ColumnTypesMapper {
 
@@ -61,6 +61,6 @@ trait ColumnTypesMapper {
 //    _.split(",").map(y => Try(y.trim).toOption).collect { case Some(i) => i }
 //  )
 
-  implicit val testUserStatusColumnType: BaseTypedType[DataStatus] = MappedColumnType.base(_.value, DataStatus.fromValue)
+  implicit val BoolColumnType: BaseTypedType[Bool] = MappedColumnType.base(_.value, Bool.fromValue)
 
 }

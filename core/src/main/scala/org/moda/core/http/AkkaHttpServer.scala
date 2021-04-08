@@ -6,14 +6,12 @@ import akka.actor.typed.scaladsl.adapter._
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Directives._
 import akka.stream.Materializer
-import org.moda.core.api.TestApi
 import com.typesafe.config.{Config, ConfigFactory}
-import org.moda.core.api._
 import com.typesafe.scalalogging.Logger
-import org.moda.core.api.{Api, TestApi}
+import org.moda.core.api.{Api, AuthUserApi}
 import org.moda.core.database.DatabaseComponent
 
-import scala.concurrent.{ExecutionContextExecutor, Future}
+import scala.concurrent.Future
 
 object AkkaHttpServer {
 
@@ -35,7 +33,7 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
     val address         = config.getString("http.akka.host")
     val port            = config.getInt("http.akka.port")
     val apis: List[Api] = List(
-      TestApi()
+      AuthUserApi()
     )
     val routes = apis.map(_.routes).reduceLeft(_ ~ _)
     implicit val _system: actor.ActorSystem = system.toClassic

@@ -1,7 +1,7 @@
 package org.moda.core.api
 
 import akka.http.scaladsl.server.Route
-import org.moda.common.json.{Json2String, PbJsonSupport}
+import org.moda.common.json.PbJsonSupport
 
 /**
  * @author moda-master

@@ -2,39 +2,40 @@ package org.moda.core.model.tables
 
 import java.sql.Timestamp
 
-import org.moda.core.database.PgColumnMapping
+import org.moda.core.database.{DatabaseComponent, PgColumnMapping}
 import org.moda.core.model.ColumnTypesMapper
-import org.moda.idl.{DataStatus, TestUserPO}
+import org.moda.idl.{AuthUser, Bool}
 import slick.collection.heterogeneous.HNil
-import org.moda.core.database.DatabaseComponent
 /**
  * @author moda-matser
  * 2020/9/11 下午2:41
  */
-trait TestUserTable {
+trait AuthUserTable {
 
   this: ColumnTypesMapper with PgColumnMapping =>
   import DatabaseComponent.profile.api._
 
-  val testUserPOs: TableQuery[TestUserPOs] =
-    TableQuery[TestUserPOs]((tag: Tag) => new TestUserPOs(tag, "test_user"))
+  val authUserPOs: TableQuery[AuthUserPOs] =
+    TableQuery[AuthUserPOs]((tag: Tag) => new AuthUserPOs(tag, "auth_user"))
 
-  class TestUserPOs(tag: Tag, tableName: String) extends Table[TestUserPO](tag, tableName) {
+  class AuthUserPOs(tag: Tag, tableName: String) extends Table[AuthUser](tag, tableName) {
     def id                             = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def username: Rep[String]          = column[String]("username", O.SqlType("TEXT"), O.Default(""))
+    def email: Rep[String]             = column[String]("email", O.SqlType("TEXT"), O.Default(""))
     def password: Rep[String]          = column[String]("password", O.SqlType("TEXT"), O.Default(""))
-    def status: Rep[DataStatus]        = column[DataStatus]("status", O.SqlType("SMALLINT"), O.Default(DataStatus.Normal))
+    def isDelete:   Rep[Bool]             = column[Bool]("is_delete", O.SqlType("SMALLINT"), O.Default(Bool.False))
     def createdAt: Rep[Timestamp]      = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
     def updatedAt: Rep[Timestamp]      = column[Timestamp]("updated_at", O.SqlType("timestamptz default now()"))
 
     def * = (
         id ::
         username ::
+        email ::
         password ::
-        status ::
+        isDelete ::
         createdAt.mapToInstant ::
         updatedAt.mapToInstant ::
         HNil
-      ).mapTo[TestUserPO]
+      ).mapTo[AuthUser]
   }
 }

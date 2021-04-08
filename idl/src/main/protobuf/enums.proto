@@ -7,8 +7,8 @@ option optimize_for = SPEED;
 // 流程状态
 enum FlowStatus {
     FLOW_STATUS_NORMAL                      = 0;    // 正常
-    FLOW_STATUS_NOT_AVAILABLE               = 3;    // 暂不可用
-    FLOW_STATUS_DELETE                      = 3;    // 删除
+    FLOW_STATUS_NOT_AVAILABLE               = 1;    // 暂不可用
+    FLOW_STATUS_DELETE                      = 2;    // 删除
 }
 
 // 对应流程实例的状态
