@@ -626,6 +626,116 @@
             }
           ],
           "chnname": "流程实例表"
+        },
+        {
+          "title": "auth_user",
+          "fields": [
+            {
+              "name": "id",
+              "type": "bigserial",
+              "remark": "ID",
+              "chnname": "ID",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "username",
+              "type": "text",
+              "remark": "用户名",
+              "chnname": "用户名",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "email",
+              "type": "text",
+              "remark": "邮箱",
+              "chnname": "邮箱",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "password",
+              "type": "text",
+              "remark": "密码",
+              "chnname": "密码",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "is_delete",
+              "type": "smallint",
+              "remark": "是否删除 枚举 - 0 正常 1- 删除",
+              "chnname": "是否删除",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp",
+              "remark": "创建时间",
+              "chnname": "创建时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp",
+              "remark": "更新时间",
+              "chnname": "更新时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户表",
+          "remark": "用户表"
         }
       ],
       "graphCanvas": {

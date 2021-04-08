@@ -18,7 +18,7 @@
 
   <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>core/logs/chestnut/chestnut-flow.log</file>
-    <level>INFO</level>
+    <level>DEBUG</level>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>core/logs/chestnut/chestnut-flow.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
       <maxHistory>60</maxHistory>
@@ -28,10 +28,10 @@
     </encoder>
   </appender>
 
-  <logger name="slick" level="INFO"/>
-  <logger name="com.zaxxer.hikari" level="INFO"/>
+  <logger name="slick" level="DEBUG"/>
+  <logger name="com.zaxxer.hikari" level="DEBUG"/>
   <logger name="org.apache.kafka" level="WARN"/>
-  <logger name="akka" level="INFO"/>
+  <logger name="akka" level="DEBUG"/>
 <!--  <logger name="org.http4s" level="INFO"/>-->
   <logger name="io.netty.util.internal" level="INFO"/>
 

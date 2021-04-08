@@ -4,7 +4,8 @@ import com.typesafe.scalalogging.Logger
 import org.moda.core.database.DatabaseComponent
 import org.moda.core.model.Tables
 import org.moda.core.model.tables.AuthUserTable
-import org.moda.idl.AuthUser
+import org.moda.idl.Bool._
+import org.moda.idl._
 
 import scala.concurrent.Future
 
@@ -25,7 +26,10 @@ trait AuthUserDAO extends DAO {
   val authUserTable: AuthUserTable = new Tables(dc)
 
   def query(): Future[Seq[AuthUser]] = {
-    val q = authUserTable.authUserPOs.result
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDelete === (False: Bool))
+      .result
     logger.info("sql: {}", q.statements.mkString(","))
     dc.db.run(q)
   }

@@ -16,7 +16,7 @@ message AuthUser {
     string                  username                    = 20;   // 用户名
     string                  email                       = 30;   // 邮箱
     string                  password                    = 40;   // 密码
-    Bool                    is_delete                   = 50;   // 数据状态 枚举 - 0 正常 1- 删除
+    Bool                    is_delete                   = 50;   // 是否删除 枚举 - 0 正常 1- 删除
     int64                   created_at                  = 60 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
     int64                   updated_at                  = 70 [(scalapb.field).type = "java.time.Instant"];   // 更新时间
 }
