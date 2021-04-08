@@ -7,7 +7,7 @@ import org.moda.common.json.Json2String._
 import org.moda.common.model.Pretty
 import org.moda.core.dao.AuthUserDAO
 import org.moda.core.database.DatabaseComponent
-import org.moda.idl.AuthUser
+import org.moda.idl.{AuthUser, CreateUserReq}
 
 import scala.util._
 
@@ -31,7 +31,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     complete("Ok")
   }
 
-  val query: Route = path("user" / "query") {
+  val queryR: Route = path("v1" / "user" / "list") {
     get {
       val q = dao.query()
       onComplete(q) {
@@ -45,6 +45,14 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  override val routes: Route = mainR ~ query
+  def createR: Route = path("v1" / "user") {
+    post {
+      entity(as[CreateUserReq]){
+
+      }
+    }
+  }
+
+  override val routes: Route = mainR ~ queryR ~
 
 }

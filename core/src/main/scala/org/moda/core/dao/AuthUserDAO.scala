@@ -33,4 +33,6 @@ trait AuthUserDAO extends DAO {
     logger.info("sql: {}", q.statements.mkString(","))
     dc.db.run(q)
   }
+
+  def save()
 }
