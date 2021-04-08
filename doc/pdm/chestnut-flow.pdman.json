@@ -403,6 +403,14 @@
             "x": 800,
             "y": 120,
             "id": "a9d2a4f9"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_template",
+            "moduleName": false,
+            "x": 340,
+            "y": 470,
+            "id": "525cf1cf"
           }
         ],
         "edges": [
