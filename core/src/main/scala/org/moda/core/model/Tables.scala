@@ -1,7 +1,7 @@
 package org.moda.core.model
 
 import org.moda.core.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
-import org.moda.core.model.tables.{AuthUserTable, TestUserTable}
+import org.moda.core.model.tables.AuthUserTable
 
 object Tables {
 
