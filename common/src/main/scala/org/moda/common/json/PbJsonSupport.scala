@@ -2,7 +2,6 @@ package org.moda.common.json
 
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
 import io.circe.{Decoder, Encoder, Json}
