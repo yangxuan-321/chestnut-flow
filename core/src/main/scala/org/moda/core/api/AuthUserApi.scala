@@ -4,6 +4,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import io.circe.generic.auto._
 import org.moda.common.json.Json2String._
+import org.moda.common.json.FailFastCirceSupport._
 import org.moda.common.model.Pretty
 import org.moda.core.dao.AuthUserDAO
 import org.moda.core.database.DatabaseComponent
@@ -45,14 +46,35 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  def createR: Route = path("v1" / "user") {
-    post {
-      entity(as[CreateUserReq]){
-
+  val queryByIdR: Route = path("v1" / "user" / IntNumber) { userId =>
+    get {
+      val q = dao.queryById(userId)
+      onComplete(q) {
+        case Success(value)  =>
+          val res: Pretty[AuthUser] = new Pretty[AuthUser](200, "success", value.getOrElse(AuthUser()))
+          complete(res.toJsonString)
+        case Failure(exception)      =>
+          // exception.printStackTrace()
+          complete("failure")
       }
     }
   }
 
-  override val routes: Route = mainR ~ queryR ~
+  def createR: Route = path("v1" / "user") {
+    post {
+      entity(as[CreateUserReq]){ user =>
+        val r = dao.createUser(user);
+        onComplete(r) {
+          case Success(v) if v =>
+            val res: Pretty[Boolean] = new Pretty[Boolean](200, "success", v)
+            complete(res.toJsonString)
+          case _ =>
+            complete("failure")
+        }
+      }
+    }
+  }
+
+  override val routes: Route = mainR ~ queryR ~ queryByIdR //~ createR
 
 }

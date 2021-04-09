@@ -5,7 +5,7 @@ import org.moda.core.database.DatabaseComponent
 import org.moda.core.model.Tables
 import org.moda.core.model.tables.AuthUserTable
 import org.moda.idl.Bool._
-import org.moda.idl._
+import org.moda.idl.{CreateUserReq, _}
 
 import scala.concurrent.Future
 
@@ -21,6 +21,7 @@ object AuthUserDAO {
 
 trait AuthUserDAO extends DAO {
   import dc.profile.api._
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
   val authUserTable: AuthUserTable = new Tables(dc)
@@ -34,5 +35,24 @@ trait AuthUserDAO extends DAO {
     dc.db.run(q)
   }
 
-  def save()
+  def queryById(userId: Long): Future[Option[AuthUser]] = {
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDelete === (False: Bool))
+      .filter(_.id === userId)
+      .take(1)
+      .result
+    logger.info("sql: {}", q.statements.mkString(","))
+    dc.db.run(q).map(_.headOption)
+  }
+
+  def createUser(u: CreateUserReq): Future[Boolean] = {
+    val q = authUserTable.authUserPOs += AuthUser(
+      username = u.username,
+      email = u.email,
+      password = u.password,
+      isDelete = Bool.False
+    )
+    dc.db.run(q).map(_ > 0)
+  }
 }
