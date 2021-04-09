@@ -21,6 +21,7 @@ object AuthUserDAO {
 
 trait AuthUserDAO extends DAO {
   import dc.profile.api._
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
   val authUserTable: AuthUserTable = new Tables(dc)
@@ -34,5 +35,16 @@ trait AuthUserDAO extends DAO {
     dc.db.run(q)
   }
 
-  def save()
+  def queryById(userId: Long): Future[Option[AuthUser]] = {
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDelete === (False: Bool))
+      .filter(_.id === userId)
+      .take(1)
+      .result
+    logger.info("sql: {}", q.statements.mkString(","))
+    dc.db.run(q).map(_.headOption)
+  }
+
+//  def save()
 }

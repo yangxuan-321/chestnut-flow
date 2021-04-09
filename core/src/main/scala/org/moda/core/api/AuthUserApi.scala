@@ -45,14 +45,28 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  def createR: Route = path("v1" / "user") {
-    post {
-      entity(as[CreateUserReq]){
-
+  val queryByIdR: Route = path("v1" / "user" / IntNumber) { userId =>
+    get {
+      val q = dao.queryById(userId)
+      onComplete(q) {
+        case Success(value)  =>
+          val res: Pretty[AuthUser] = new Pretty[AuthUser](200, "success", value.getOrElse(AuthUser()))
+          complete(res.toJsonString)
+        case Failure(exception)      =>
+          // exception.printStackTrace()
+          complete("failure")
       }
     }
   }
 
-  override val routes: Route = mainR ~ queryR ~
+//  def createR: Route = path("v1" / "user") {
+//    post {
+//      entity(as[CreateUserReq]){
+//
+//      }
+//    }
+//  }
+
+  override val routes: Route = mainR ~ queryR ~ queryByIdR //~ createR
 
 }
