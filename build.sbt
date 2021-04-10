@@ -145,7 +145,8 @@ lazy val commonDeps = libraryDependencies ++= Seq(
   "com.norbitltd"              %% "spoiwo"               % "1.6.1",
   "commons-io"                 % "commons-io"            % "2.6",
   "net.dongliu"                % "apk-parser"            % "2.6.9",
-  "com.github.daddykotex"      %% "courier"              % "2.0.0"
+  "com.github.daddykotex"      %% "courier"              % "2.0.0",
+  "com.pauldijou"              %% "jwt-circe"            % "3.0.1"
 )
 
 lazy val chestnutCoreDeps = libraryDependencies ++= Seq(

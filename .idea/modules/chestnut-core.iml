@@ -12,6 +12,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="auth.chestnut-auth" exported="" />
     <orderEntry type="module" module-name="chestnut-common" exported="" />
     <orderEntry type="module" module-name="chestnut-idl" exported="" />
     <orderEntry type="library" name="sbt: ch.qos.logback:logback-classic:1.2.3:jar" level="project" />
@@ -40,6 +41,9 @@
     <orderEntry type="library" name="sbt: com.lihaoyi:geny_2.13:0.5.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:sourcecode_2.13:0.2.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.norbitltd:spoiwo_2.13:1.6.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.pauldijou:jwt-circe_2.13:3.0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.pauldijou:jwt-core_2.13:3.0.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.pauldijou:jwt-json-common_2.13:3.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.sun.mail:javax.mail:1.6.2:jar" level="project" />
     <orderEntry type="library" name="sbt: com.thesamet.scalapb:lenses_2.13:0.10.2:jar" level="project" />
     <orderEntry type="library" name="sbt: com.thesamet.scalapb:scalapb-runtime_2.13:0.10.2:jar" level="project" />

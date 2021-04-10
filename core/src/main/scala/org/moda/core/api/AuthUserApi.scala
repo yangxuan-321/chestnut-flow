@@ -51,8 +51,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
       val q = dao.queryById(userId)
       onComplete(q) {
         case Success(value)  =>
-          val res: Pretty[AuthUser] = new Pretty[AuthUser](200, "success", value.getOrElse(AuthUser()))
-          complete(res.toJsonString)
+          value.fold(complete("{}"))(x => complete(Pretty(x)))
         case Failure(exception)      =>
           // exception.printStackTrace()
           complete("failure")
@@ -66,8 +65,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
         val r = dao.createUser(user);
         onComplete(r) {
           case Success(v) if v =>
-            val res: Pretty[Boolean] = new Pretty[Boolean](200, "success", v)
-            complete(res.toJsonString)
+            complete(Pretty(v))
           case _ =>
             complete("failure")
         }

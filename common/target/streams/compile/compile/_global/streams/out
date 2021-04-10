@@ -1,4 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/my-code/chestnut-flow/common/src/main/scala/org/moda/common/json/PbJsonSupport.scala:17:16: implicit conversion method decoder should be enabled[0m
+[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/scala-code/chestnut-flow/common/src/main/scala/org/moda/common/json/PbJsonSupport.scala:17:16: implicit conversion method decoder should be enabled[0m
 [0m[[0m[33mwarn[0m] [0m[0mby making the implicit value scala.language.implicitConversions visible.[0m
 [0m[[0m[33mwarn[0m] [0m[0m----[0m
 [0m[[0m[33mwarn[0m] [0m[0mThis can be achieved by adding the import clause 'import scala.language.implicitConversions'[0m
@@ -7,10 +7,10 @@
 [0m[[0m[33mwarn[0m] [0m[0mwhy the feature should be explicitly enabled.[0m
 [0m[[0m[33mwarn[0m] [0m[0m  implicit def decoder[A <: scalapb.GeneratedEnum](f: Int => A): Decoder[A] =[0m
 [0m[[0m[33mwarn[0m] [0m[0m               ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/my-code/chestnut-flow/common/src/main/scala/org/moda/common/json/CirceSupport.scala:67:46: method pretty in class Printer is deprecated (since 0.12.0): Use print[0m
+[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/scala-code/chestnut-flow/common/src/main/scala/org/moda/common/json/CirceSupport.scala:67:46: method pretty in class Printer is deprecated (since 0.12.0): Use print[0m
 [0m[[0m[33mwarn[0m] [0m[0m      HttpEntity(`application/json`, printer.pretty(json))[0m
 [0m[[0m[33mwarn[0m] [0m[0m                                             ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/my-code/chestnut-flow/common/src/main/scala/org/moda/common/json/CirceSupport.scala:122:10: method accumulating in trait Decoder is deprecated (since 0.12.0): Use decodeAccumulating[0m
+[0m[[0m[33mwarn[0m] [0m[0m/opt/MODA/MODA-CODE/scala-code/chestnut-flow/common/src/main/scala/org/moda/common/json/CirceSupport.scala:122:10: method accumulating in trait Decoder is deprecated (since 0.12.0): Use decodeAccumulating[0m
 [0m[[0m[33mwarn[0m] [0m[0m        .accumulating(json.hcursor)[0m
 [0m[[0m[33mwarn[0m] [0m[0m         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0mthree warnings found[0m
