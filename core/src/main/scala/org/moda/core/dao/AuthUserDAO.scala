@@ -1,9 +1,10 @@
 package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
-import org.moda.core.database.DatabaseComponent
+import org.moda.auth.dao.AuthDAO
+import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
-import org.moda.core.model.tables.AuthUserTable
+import org.moda.core.model.tables.TemplateTable
 import org.moda.idl.Bool._
 import org.moda.idl.{CreateUserReq, _}
 
@@ -19,12 +20,12 @@ object AuthUserDAO {
   }
 }
 
-trait AuthUserDAO extends DAO {
+trait AuthUserDAO extends AuthDAO {
   import dc.profile.api._
   import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
-  val authUserTable: AuthUserTable = new Tables(dc)
+  val authUserTable: TemplateTable = new Tables(dc)
 
   def query(): Future[Seq[AuthUser]] = {
     val q = authUserTable

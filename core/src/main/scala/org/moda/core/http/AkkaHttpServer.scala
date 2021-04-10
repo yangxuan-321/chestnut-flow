@@ -9,11 +9,12 @@ import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.api.Api
 import org.moda.core.api.AuthUserApi
-import org.moda.core.database.DatabaseComponent
+
 import scala.concurrent.Future
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.model.headers.RawHeader
+import org.moda.common.database.DatabaseComponent
 
 object AkkaHttpServer {
 

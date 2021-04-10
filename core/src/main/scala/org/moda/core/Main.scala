@@ -6,7 +6,8 @@ import akka.actor.typed.SpawnProtocol.Command
 import akka.actor.typed._
 import akka.http.scaladsl.Http
 import com.typesafe.scalalogging.Logger
-import org.moda.core.database.{DatabaseComponent, DatabaseExtension}
+import org.moda.common.database.DatabaseComponent
+import org.moda.core.database.DatabaseExtension
 import org.moda.core.http.AkkaHttpServer
 //import com.zz.cdp.monitor.grpc.ThrottleGrpcClient
 //import com.zz.cdp.monitor.streams.{ApiThrottleMonitor, BackstageMonitor, OAuthMonitor, RefreshTokenMonitor}

@@ -1,8 +1,7 @@
-package org.moda.core.database
+package org.moda.common.database
 
 import java.sql.{Date, Time, Timestamp}
 import java.util.UUID
-
 import com.github.tminglei.slickpg._
 import slick.basic.Capability
 import slick.jdbc.JdbcType

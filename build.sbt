@@ -146,16 +146,22 @@ lazy val commonDeps = libraryDependencies ++= Seq(
   "commons-io"                 % "commons-io"            % "2.6",
   "net.dongliu"                % "apk-parser"            % "2.6.9",
   "com.github.daddykotex"      %% "courier"              % "2.0.0",
-  "com.pauldijou"              %% "jwt-circe"            % "3.0.1"
+  "com.pauldijou"              %% "jwt-circe"            % "3.0.1",
+  "com.typesafe.slick"         %% "slick"               % slickV,
+  "org.slf4j"                  % "slf4j-nop"            % "1.7.26",
+  "com.typesafe.slick"         %% "slick-hikaricp"      % slickV,
+  "org.postgresql"             % "postgresql"           % "42.2.16",
+  "com.github.tminglei"        %% "slick-pg"            % "0.19.2",
+  "com.github.tminglei"        %% "slick-pg_circe-json" % "0.19.2"
 )
 
 lazy val chestnutCoreDeps = libraryDependencies ++= Seq(
-  "com.typesafe.slick"  %% "slick"               % slickV,
-  "org.slf4j"           % "slf4j-nop"            % "1.7.26",
-  "com.typesafe.slick"  %% "slick-hikaricp"      % slickV,
-  "org.postgresql"      % "postgresql"           % "42.2.16",
-  "com.github.tminglei" %% "slick-pg"            % "0.19.2",
-  "com.github.tminglei" %% "slick-pg_circe-json" % "0.19.2"
+//  "com.typesafe.slick"  %% "slick"               % slickV,
+//  "org.slf4j"           % "slf4j-nop"            % "1.7.26",
+//  "com.typesafe.slick"  %% "slick-hikaricp"      % slickV,
+//  "org.postgresql"      % "postgresql"           % "42.2.16",
+//  "com.github.tminglei" %% "slick-pg"            % "0.19.2",
+//  "com.github.tminglei" %% "slick-pg_circe-json" % "0.19.2"
 )
 
 lazy val depOverrides = libraryDependencies ++= Seq(

@@ -2,18 +2,18 @@ package org.moda.core.model.tables
 
 import java.sql.Timestamp
 
-import org.moda.core.database.{DatabaseComponent, PgColumnMapping}
-import org.moda.core.model.ColumnTypesMapper
+import org.moda.common.database.PgColumnMapping
+import org.moda.common.model.ColumnTypesMapper
 import org.moda.idl.{AuthUser, Bool}
 import slick.collection.heterogeneous.HNil
 /**
  * @author moda-matser
  * 2020/9/11 下午2:41
  */
-trait AuthUserTable {
+trait TemplateTable {
 
   this: ColumnTypesMapper with PgColumnMapping =>
-  import DatabaseComponent.profile.api._
+  import org.moda.common.database.DatabaseComponent.profile.api._
 
   val authUserPOs: TableQuery[AuthUserPOs] =
     TableQuery[AuthUserPOs]((tag: Tag) => new AuthUserPOs(tag, "auth_user"))

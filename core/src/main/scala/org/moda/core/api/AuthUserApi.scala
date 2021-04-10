@@ -6,9 +6,9 @@ import io.circe.generic.auto._
 import org.moda.auth.api.{Api, Pretty}
 import org.moda.common.json.FailFastCirceSupport._
 import org.moda.core.dao.AuthUserDAO
-import org.moda.core.database.DatabaseComponent
 import org.moda.idl.{AuthUser, CreateUserReq}
 import org.moda.auth.api
+import org.moda.common.database.DatabaseComponent
 
 import scala.util._
 

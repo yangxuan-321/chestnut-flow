@@ -1,4 +1,4 @@
-package org.moda.core.database
+package org.moda.common.database
 
 trait HasDatabaseComponent {
 

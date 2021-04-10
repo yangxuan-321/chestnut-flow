@@ -2,8 +2,7 @@ package org.moda.core.model
 
 import org.moda.common.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.core.database.PgColumnMapping
-import org.moda.core.model.tables.TemplateTable
+import org.moda.core.model.tables.AuthUserTable
 
 object Tables {
 
@@ -15,4 +14,4 @@ class Tables(val dc: DatabaseComponent)
   extends HasDatabaseComponent
     with ColumnTypesMapper
     with PgColumnMapping
-    with TemplateTable
+    with AuthUserTable

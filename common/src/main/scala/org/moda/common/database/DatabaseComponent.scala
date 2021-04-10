@@ -1,4 +1,4 @@
-package org.moda.core.database
+package org.moda.common.database
 
 import slick.jdbc.JdbcBackend.Database
 import slick.jdbc.{JdbcProfile, PostgresProfile}
