@@ -3,8 +3,9 @@ package org.moda.core.api
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import io.circe.generic.auto._
-import org.moda.common.json.Json2String._
+import org.moda.auth.api.Api
 import org.moda.common.json.FailFastCirceSupport._
+import org.moda.common.json.Json2String._
 import org.moda.common.model.Pretty
 import org.moda.core.dao.AuthUserDAO
 import org.moda.core.database.DatabaseComponent

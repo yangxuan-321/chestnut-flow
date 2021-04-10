@@ -4,14 +4,16 @@ import akka.actor
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.adapter._
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.server.Directives._
 import akka.stream.Materializer
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
-import org.moda.core.api.{Api, AuthUserApi}
+import org.moda.auth.api.Api
+import org.moda.core.api.AuthUserApi
 import org.moda.core.database.DatabaseComponent
-
 import scala.concurrent.Future
+import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
+import akka.http.scaladsl.model.headers.RawHeader
 
 object AkkaHttpServer {
 
@@ -20,8 +22,6 @@ object AkkaHttpServer {
 }
 
 class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: DatabaseComponent) {
-
-  import scala.concurrent.ExecutionContext.Implicits.global
 
   //  implicit val ec: ExecutionContextExecutor = system.toClassic.dispatcher
 

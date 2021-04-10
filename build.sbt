@@ -9,7 +9,7 @@ lazy val root = project
   .settings(coverageSettings)
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(UniversalPlugin)
-  .aggregate(core, idl)
+  .aggregate(core)
 
 lazy val idl = project
   .in(file("idl"))
@@ -36,8 +36,22 @@ lazy val common = project
   .enablePlugins(UniversalPlugin)
   .settings(commonDeps, depOverrides)
 
+lazy val auth = project
+  .in(file("auth"))
+  .dependsOn(common)
+  .settings(name := "chestnut-auth")
+  .settings(version := (version in ThisBuild).value)
+  .settings(scalacOptions ++= commonScalacOptions)
+  .settings(Seq(jettyAlpnAgent, scalapbDeps))
+  .enablePlugins(AkkaGrpcPlugin)
+  .enablePlugins(JavaAgent)
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(UniversalPlugin)
+  .settings(depOverrides)
+
 lazy val core = project
   .in(file("core"))
+  .dependsOn(auth, common, idl)
   .settings(name := "chestnut-core")
   .settings(version := (version in ThisBuild).value)
   .settings(scalacOptions ++= commonScalacOptions)
@@ -46,9 +60,10 @@ lazy val core = project
   .enablePlugins(JavaAgent)
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(UniversalPlugin)
+  .settings(depOverrides)
   .settings(chestnutCoreDeps)
   .settings(packagerSettings)
-  .dependsOn(common, idl)
+
 
 
 lazy val wartRemoverSettings = Seq(
