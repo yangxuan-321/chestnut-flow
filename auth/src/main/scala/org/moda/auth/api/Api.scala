@@ -1,6 +1,5 @@
 package org.moda.auth.api
 
-
 import akka.http.scaladsl.server.Route
 import org.moda.common.json.PbJsonSupport
 
@@ -9,7 +8,7 @@ import org.moda.common.json.PbJsonSupport
  * @date 2020/9/4 下午4:32
  */
 trait Api extends PbJsonSupport {
+  def publicR: Route
 
-  def routes: Route
-
+  def authedR: Route
 }

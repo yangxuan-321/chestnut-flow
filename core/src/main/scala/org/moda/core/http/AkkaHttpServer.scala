@@ -35,7 +35,7 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
     val apis: List[Api] = List(
       AuthUserApi()
     )
-    val routes = apis.map(_.routes).reduceLeft(_ ~ _)
+    val routes = apis.map(_.authedR).reduceLeft(_ ~ _)
     implicit val _system: actor.ActorSystem = system.toClassic
     val i = Http().bindAndHandle(routes, address, port)
     val stream = getClass.getResourceAsStream("/issue.txt")

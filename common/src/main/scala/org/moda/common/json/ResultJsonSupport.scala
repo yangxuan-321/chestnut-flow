@@ -1,7 +1,6 @@
 package org.moda.common.json
 
 import io.circe.Encoder
-import org.moda.common.model.Pretty
 import io.circe.syntax._
 import io.circe.generic.auto._
 
