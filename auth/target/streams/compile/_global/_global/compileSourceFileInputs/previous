@@ -1,0 +1,1 @@
+["sbt.Task[scala.collection.immutable.Map[java.lang.String, scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]]",{"2.13.1":{"hashes":[["/opt/MODA/MODA-CODE/my-code/chestnut-flow/auth/src/main/scala/org/moda/auth/Api.scala","1ce842c35ba2b893d979e895590a3ecd281ac5b0"]],"lastModifiedTimes":[]}}]

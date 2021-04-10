@@ -23,7 +23,7 @@
         <plugin path="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/typelevel/kind-projector_2.13/0.10.3/kind-projector_2.13-0.10.3.jar" />
       </plugins>
     </profile>
-    <profile name="sbt 4" modules="chestnut-common,chestnut-idl">
+    <profile name="sbt 4" modules="auth.chestnut-auth,chestnut-auth,chestnut-common,chestnut-flow-chestnut-auth,chestnut-idl">
       <option name="postfixOps" value="true" />
       <option name="higherKinds" value="true" />
       <option name="existentials" value="true" />

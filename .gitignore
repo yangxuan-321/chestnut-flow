@@ -1,9 +1,13 @@
 # Project exclude paths
-/core/target/
-/idl/target/
-/project/project/target/
-/project/target/
-/target/
-/common/target/
-/.idea/
-/core/logs/
+core/target/
+core/logs/
+idl/target/
+common/target/
+auth/target/
+project/project/
+project/target/
+target/
+.idea/
+*.iml
+
+

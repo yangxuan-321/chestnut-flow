@@ -3,12 +3,12 @@ package org.moda.core.api
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import io.circe.generic.auto._
-import org.moda.common.json.Json2String._
+import org.moda.auth.api.{Api, Pretty}
 import org.moda.common.json.FailFastCirceSupport._
-import org.moda.common.model.Pretty
 import org.moda.core.dao.AuthUserDAO
 import org.moda.core.database.DatabaseComponent
 import org.moda.idl.{AuthUser, CreateUserReq}
+import org.moda.auth.api
 
 import scala.util._
 
@@ -37,8 +37,8 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
       val q = dao.query()
       onComplete(q) {
         case Success(value)  =>
-          val res: Pretty[Seq[AuthUser]] = new Pretty[Seq[AuthUser]](200, "success", value)
-          complete(res.toJsonString)
+          val res = Pretty(value)
+          complete(res)
         case Failure(exception)      =>
           // exception.printStackTrace()
           complete("failure")
@@ -75,6 +75,5 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  override val routes: Route = mainR ~ queryR ~ queryByIdR ~ createR
-
+  override val authedR: Route = mainR ~ queryR ~ queryByIdR //~ createR
 }
