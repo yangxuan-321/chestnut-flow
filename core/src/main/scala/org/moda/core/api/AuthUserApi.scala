@@ -75,6 +75,6 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  override val routes: Route = mainR ~ queryR ~ queryByIdR //~ createR
+  override val routes: Route = mainR ~ queryR ~ queryByIdR ~ createR
 
 }
