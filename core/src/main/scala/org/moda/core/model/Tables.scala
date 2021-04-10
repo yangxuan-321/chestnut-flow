@@ -2,7 +2,6 @@ package org.moda.core.model
 
 import org.moda.common.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.core.database.PgColumnMapping
 import org.moda.core.model.tables.TemplateTable
 
 object Tables {
