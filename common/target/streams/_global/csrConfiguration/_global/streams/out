@@ -1,2 +1,0 @@
-[warn] insecure HTTP request is deprecated 'http://maven.aliyun.com/nexus/content/groups/public/'; switch to HTTPS or opt-in as ("aliyun" at "http://maven.aliyun.com/nexus/content/groups/public/").withAllowInsecureProtocol(true)
-[warn] insecure HTTP request is deprecated 'http://maven.aliyun.com/nexus/content/groups/public/'; switch to HTTPS or opt-in as ("aliyun" at "http://maven.aliyun.com/nexus/content/groups/public/").withAllowInsecureProtocol(true)
