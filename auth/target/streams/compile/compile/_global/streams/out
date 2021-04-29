@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/opt/MODA/MODA-CODE/my-code/chestnut-flow/auth/src/main/scala/org/moda/auth/middleware/TokenAuthenticate.scala:11:32: not found: type SimpleAuthUser[0m
-[0m[[0m[31merror[0m] [0m[0m  def authenticate: Directive1[SimpleAuthUser] = {[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
