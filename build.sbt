@@ -129,24 +129,25 @@ ThisBuild / publishArtifact in packageDoc := false
 ThisBuild / publishArtifact in packageSrc := true
 
 lazy val commonDeps = libraryDependencies ++= Seq(
-  "com.typesafe.akka"           %%  "akka-actor-typed"      % akkaV,
-  "org.typelevel"               %%  "cats-core"             % catsV,
-  "io.circe"                    %%  "circe-core"            % circeV,
-  "io.circe"                    %%  "circe-generic"         % circeV,
-  "io.circe"                    %%  "circe-parser"          % circeV,
-  "io.circe"                    %%  "circe-generic-extras"  % circeV,
-  "io.prometheus"               %   "simpleclient"          % prometheusV,
-  "io.prometheus"               %   "simpleclient_hotspot"  % prometheusV,
-  "io.prometheus"               %   "simpleclient_common"   % prometheusV,
-  "ch.qos.logback"              %   "logback-classic"       % "1.2.3",
-  "com.typesafe.scala-logging"  %%  "scala-logging"         % "3.9.2",
-  "com.github.pureconfig"       %%  "pureconfig"            % "0.12.1",
-  "com.typesafe"                %   "config"                % "1.4.0",
-  "com.norbitltd"               %%  "spoiwo"                % "1.6.1",
-  "commons-io"                  %   "commons-io"            % "2.6",
-  "net.dongliu"                 %   "apk-parser"            % "2.6.9",
-  "com.github.daddykotex"       %%  "courier"               % "2.0.0",
-  "com.pauldijou"               %% "jwt-circe"              % "3.0.1"
+  "com.typesafe.akka"           %%  "akka-actor-typed"              % akkaV,
+  "org.typelevel"               %%  "cats-core"                     % catsV,
+  "io.circe"                    %%  "circe-core"                    % circeV,
+  "io.circe"                    %%  "circe-generic"                 % circeV,
+  "io.circe"                    %%  "circe-parser"                  % circeV,
+  "io.circe"                    %%  "circe-generic-extras"          % circeV,
+  "io.prometheus"               %   "simpleclient"                  % prometheusV,
+  "io.prometheus"               %   "simpleclient_hotspot"          % prometheusV,
+  "io.prometheus"               %   "simpleclient_common"           % prometheusV,
+  "ch.qos.logback"              %   "logback-classic"               % "1.2.3",
+  "com.typesafe.scala-logging"  %%  "scala-logging"                 % "3.9.2",
+  "com.github.pureconfig"       %%  "pureconfig"                    % "0.12.1",
+  "com.typesafe"                %   "config"                        % "1.4.0",
+  "com.norbitltd"               %%  "spoiwo"                        % "1.6.1",
+  "commons-io"                  %   "commons-io"                    % "2.6",
+  "net.dongliu"                 %   "apk-parser"                    % "2.6.9",
+  "com.github.daddykotex"       %%  "courier"                       % "2.0.0",
+  "com.pauldijou"               %% "jwt-circe"                      % "3.0.1",
+  "org.reactivemongo"           %% "reactivemongo-extensions-bson"  % "0.10.0.0-SNAPSHOT"
 )
 
 lazy val chestnutCoreDeps = libraryDependencies ++= Seq(
