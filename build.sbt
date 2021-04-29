@@ -128,6 +128,8 @@ ThisBuild / sources in doc in Compile := List()
 ThisBuild / publishArtifact in packageDoc := false
 ThisBuild / publishArtifact in packageSrc := true
 
+resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
 lazy val commonDeps = libraryDependencies ++= Seq(
   "com.typesafe.akka"           %%  "akka-actor-typed"              % akkaV,
   "org.typelevel"               %%  "cats-core"                     % catsV,
@@ -146,8 +148,9 @@ lazy val commonDeps = libraryDependencies ++= Seq(
   "commons-io"                  %   "commons-io"                    % "2.6",
   "net.dongliu"                 %   "apk-parser"                    % "2.6.9",
   "com.github.daddykotex"       %%  "courier"                       % "2.0.0",
-  "com.pauldijou"               %% "jwt-circe"                      % "3.0.1",
-  "org.reactivemongo"           %% "reactivemongo-extensions-bson"  % "0.10.0.0-SNAPSHOT",
+  "com.pauldijou"               %%  "jwt-circe"                     % "3.0.1",
+  "org.reactivemongo"           %%  "reactivemongo"                 % "1.0.2",
+//  "net.fehmicansaglam"          %% "reactivemongo-extensions-bson"  % "0.10.0.4",
   "com.typesafe.slick"          %% "slick"                          % slickV,
   "org.slf4j"                   % "slf4j-nop"                       % "1.7.26",
   "com.typesafe.slick"          %% "slick-hikaricp"                 % slickV,
