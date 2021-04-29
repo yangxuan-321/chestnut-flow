@@ -1,13 +1,18 @@
 package org.moda.common.json
 
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.Date
+
 import akka.http.scaladsl.marshalling.{Marshaller, ToEntityMarshaller}
-import akka.http.scaladsl.model.{ContentTypeRange, HttpCharsets, HttpEntity, MediaType}
 import akka.http.scaladsl.model.MediaTypes.`application/json`
+import akka.http.scaladsl.model.{ContentTypeRange, HttpEntity}
 import akka.http.scaladsl.unmarshalling.{FromEntityUnmarshaller, Unmarshaller}
 import akka.util.ByteString
 import cats.data.NonEmptyList
 import cats.syntax.show._
-import io.circe.{jawn, Decoder, DecodingFailure, Encoder, Json, Printer}
+import io.circe._
+
 import scala.collection.immutable.Seq
 
 
@@ -98,6 +103,9 @@ trait BaseCirceSupport {
     * @return unmarshaller for `A`
     */
   implicit def unmarshaller[A: Decoder]: FromEntityUnmarshaller[A]
+
+  val yyMMddHHmmssFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  implicit def encoderInstant[A <: Instant]: Encoder[A] = (x: A) => Json.fromString(yyMMddHHmmssFormat.format(new Date(x.toEpochMilli)))
 }
 
 /**

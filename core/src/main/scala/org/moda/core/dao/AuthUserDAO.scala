@@ -36,7 +36,7 @@ trait AuthUserDAO extends AuthDAO {
     dc.db.run(q)
   }
 
-  def queryById(userId: Long): Future[Option[AuthUser]] = {
+  def queryById(userId: Long): Future[AuthUser] = {
     val q = authUserTable
       .authUserPOs
       .filter(_.isDelete === (False: Bool))
@@ -44,7 +44,7 @@ trait AuthUserDAO extends AuthDAO {
       .take(1)
       .result
     logger.info("sql: {}", q.statements.mkString(","))
-    dc.db.run(q).map(_.headOption)
+    dc.db.run(q).map(_.headOption.getOrElse(AuthUser()))
   }
 
   def createUser(u: CreateUserReq): Future[Boolean] = {

@@ -4,17 +4,15 @@ import akka.actor
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.adapter._
 import akka.http.scaladsl.Http
+import akka.http.scaladsl.server.Directives._
 import akka.stream.Materializer
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.api.Api
+import org.moda.common.database.DatabaseComponent
 import org.moda.core.api.AuthUserApi
 
 import scala.concurrent.Future
-import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.Route
-import akka.http.scaladsl.model.headers.RawHeader
-import org.moda.common.database.DatabaseComponent
 
 object AkkaHttpServer {
 
