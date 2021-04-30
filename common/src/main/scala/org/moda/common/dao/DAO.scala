@@ -1,14 +1,13 @@
 package org.moda.common.dao
 
-import org.moda.common.database.HasDatabaseComponent
+import org.moda.common.database.{HasDatabaseComponent, PgColumnMapping}
+import org.moda.common.model.ColumnTypesMapper
 import org.moda.idl.Page
 import slick.ast.Ordering.{Asc, Desc, Direction}
 import slick.lifted.{CanBeQueryCondition, Query}
 
 
-trait DAO extends HasDatabaseComponent with ColumnMapper {
-
-  protected val tables = Tables()
+trait DAO extends HasDatabaseComponent with ColumnTypesMapper with PgColumnMapping {
 
   implicit final class MaybeFilter[E, U](query: Query[E, U, Seq]) {
 
@@ -36,14 +35,11 @@ trait DAO extends HasDatabaseComponent with ColumnMapper {
       * @param page : Page
       * @return Query[E, U, Seq]
       */
-    def paging(page: Page): Query[E, U, Seq] =
-      (
-        if (page.pageNumber <= 0)
-          query
-        else
-          query.drop((page.pageNumber - 1) * page.pageSize)
-        )
-        .take(page.pageSize)
+    def paging(page: Page): Query[E, U, Seq] = {
+      val q = if (page.pageNumber <= 0) query
+      else query.drop((page.pageNumber - 1) * page.pageSize)
+      q.take(page.pageSize)
+    }
   }
 
 
@@ -54,13 +50,10 @@ trait DAO extends HasDatabaseComponent with ColumnMapper {
     */
   def sortSeq(page: Page): Seq[(String, Direction)] = {
 
-    val sortSeq:Seq[(String,Direction)] = page.sort.map(_.map(x => {
+    val sortSeq:Seq[(String,Direction)] = page.sort.map(x => {
       (x.fieldName, if (x.desc) Desc else Asc )
-    })).getOrElse(Seq.empty[(String, Direction)])
-
-  sortSeq
-
+    })
+    sortSeq
   }
-
 
 }
