@@ -10,3 +10,13 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "enums.proto";
 
+message Sort {
+  string        field_name      = 1;
+  bool          desc            = 2;
+}
+
+message Page {
+  int32             page_number     = 1;  // 第几页
+  int32             page_size       = 2;  // 每页多少条
+  repeated Sort     sort            = 3;  // 排序方式
+}
