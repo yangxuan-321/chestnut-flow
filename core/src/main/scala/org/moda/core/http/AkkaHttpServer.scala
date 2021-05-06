@@ -9,6 +9,7 @@ import akka.stream.Materializer
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.api.Api
+import org.moda.auth.middleware.TokenAuthenticate
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.api.AuthUserApi
 
@@ -28,13 +29,15 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
 
   private[this] val logger = Logger(getClass)
 
+  private[this] val auth: TokenAuthenticate = TokenAuthenticate(dc)
+
   def server(): Future[Http.ServerBinding] = {
     val address         = config.getString("http.akka.host")
     val port            = config.getInt("http.akka.port")
     val apis: List[Api] = List(
       AuthUserApi()
     )
-    val routes = apis.map(_.authedR).reduceLeft(_ ~ _)
+    val routes = apis.map(ax => auth.authenticate {x => ax.authedR(x)}).reduceLeft(_ ~ _)
     implicit val _system: actor.ActorSystem = system.toClassic
     val i = Http().bindAndHandle(routes, address, port)
     val stream = getClass.getResourceAsStream("/issue.txt")

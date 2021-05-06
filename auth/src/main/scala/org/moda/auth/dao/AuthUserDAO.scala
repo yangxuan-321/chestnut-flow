@@ -1,10 +1,9 @@
-package org.moda.core.dao
+package org.moda.auth.dao
 
 import com.typesafe.scalalogging.Logger
-import org.moda.auth.dao.AuthDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
-import org.moda.core.model.tables.TemplateTable
+import org.moda.core.model.tables.AuthUserTable
 import org.moda.idl.Bool._
 import org.moda.idl.{CreateUserReq, _}
 
@@ -22,10 +21,11 @@ object AuthUserDAO {
 
 trait AuthUserDAO extends AuthDAO {
   import dc.profile.api._
+
   import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
-  val authUserTable: TemplateTable = new Tables(dc)
+  val authUserTable: AuthUserTable = new Tables(dc)
 
   def query(): Future[Seq[AuthUser]] = {
     val q = authUserTable
@@ -36,7 +36,7 @@ trait AuthUserDAO extends AuthDAO {
     dc.db.run(q)
   }
 
-  def queryById(userId: Long): Future[AuthUser] = {
+  def queryById(userId: Long): Future[Option[AuthUser]] = {
     val q = authUserTable
       .authUserPOs
       .filter(_.isDelete === (False: Bool))
@@ -44,7 +44,7 @@ trait AuthUserDAO extends AuthDAO {
       .take(1)
       .result
     logger.info("sql: {}", q.statements.mkString(","))
-    dc.db.run(q).map(_.headOption.getOrElse(AuthUser()))
+    dc.db.run(q).map(_.headOption)
   }
 
   def createUser(u: CreateUserReq): Future[Boolean] = {

@@ -41,6 +41,7 @@ package object api {
     final case object Forbidden           extends ApiStatus(403, "Forbidden")
     final case object TokenInvalid        extends ApiStatus(7, "TokenInvalid")
     final case object TokenExpired        extends ApiStatus(9, "TokenExpired")
+    final case object UserNotExistsError  extends ApiStatus(10, "UserNotExistsError")
 
     final case object InternalServerError extends ApiStatus(500, "服务器错误")
 

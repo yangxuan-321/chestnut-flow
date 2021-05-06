@@ -1,7 +1,7 @@
 package org.moda.auth.api
 
 import akka.http.scaladsl.server.Route
-import org.moda.common.json.PbJsonSupport
+import org.moda.idl.SimpleAuthUser
 
 /**
  * @author moda-master
@@ -9,7 +9,7 @@ import org.moda.common.json.PbJsonSupport
  */
 //trait Api extends PbJsonSupport {
 trait Api {
-  // def publicR: Route {}
+  def publicR: Route
 
-  def authedR: Route
+  def authedR: SimpleAuthUser => Route
 }
