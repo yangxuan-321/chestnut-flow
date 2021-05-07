@@ -56,4 +56,16 @@ trait AuthUserDAO extends AuthDAO {
     )
     dc.db.run(q).map(_ > 0)
   }
+
+  def findUserByUsernameOrEmail(uu: String): Future[Option[AuthUser]] = {
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDelete === (False: Bool))
+      .filter {xx => xx.username === uu || xx.email === uu }
+      .take(1)
+      .result
+
+    logger.info("findUserByUsernameOrEmail: {}", q.statements.mkString(","))
+    dc.db.run(q).map(_.headOption)
+  }
 }

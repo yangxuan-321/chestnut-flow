@@ -15,5 +15,4 @@ message SimpleAuthUser {
     int64                   id                          = 10;   // ID
     string                  username                    = 20;   // 用户名
     string                  email                       = 30;   // 邮箱
-    string                  password                    = 40;   // 密码
 }

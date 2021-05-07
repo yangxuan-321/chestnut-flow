@@ -9,10 +9,22 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 import "enums.proto";
+import "pojo/simple_auth_user.proto";
 
 
 message CreateUserReq {
     string                  username                    = 20;   // 用户名
     string                  email                       = 30;   // 邮箱
     string                  password                    = 40;   // 密码
+}
+
+// 用户验证信息登录表单
+message LoginForm {
+    string                  username        = 1;            // 用户名
+    string                  password        = 2;            // 密码
+}
+
+message LoginResult {
+    SimpleAuthUser          user            = 1 [(scalapb.field).no_box = true];;
+    string                  token           = 2;
 }

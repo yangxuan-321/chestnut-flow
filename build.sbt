@@ -35,6 +35,7 @@ lazy val common = project
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(UniversalPlugin)
   .settings(commonDeps, depOverrides)
+  .settings(silencerSettings)
 
 lazy val auth = project
   .in(file("auth"))
