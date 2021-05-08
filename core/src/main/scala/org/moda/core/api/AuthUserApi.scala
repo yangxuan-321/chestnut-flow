@@ -2,14 +2,15 @@ package org.moda.core.api
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import akka.io.Tcp.Register
 import io.circe.generic.auto._
-import org.moda.auth.api.{Api, Pretty}
+import org.moda.auth.api.{Api, ApiError, Pretty}
 import org.moda.auth.dao.AuthUserDAO
 import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.auth.service.UserService
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
-import org.moda.idl.{CreateUserReq, LoginForm, LoginResult, SimpleAuthUser}
+import org.moda.idl.{AuthUser, Bool, CreateUserReq, LoginForm, LoginResult, RegisterUserInfo, SimpleAuthUser}
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
@@ -48,7 +49,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
             complete(res)
           case Failure(exception)      =>
             // exception.printStackTrace()
-            complete("failure")
+            complete(ApiError.internalServerError)
         }
       }
     }
@@ -62,7 +63,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
             complete(Pretty(value))
           case Failure(exception)      =>
             // exception.printStackTrace()
-            complete("failure")
+            complete(ApiError.internalServerError)
         }
       }
     }
@@ -70,13 +71,18 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   val createR: SimpleAuthUser => Route = SimpleAuthUser =>
     path("v1" / "user") {
      post {
-      entity(as[CreateUserReq]){ user =>
-        val r = userDAO.createUser(user)
+      entity(as[CreateUserReq]){ u =>
+        val r = userDAO.createUser(AuthUser(
+          username = u.username,
+          email = u.email,
+          password = u.password,
+          isDelete = Bool.False
+        ))
         onComplete(r) {
           case Success(v) if v =>
             complete(Pretty(v))
           case _ =>
-            complete("failure")
+            complete(ApiError.internalServerError)
         }
       }
      }
@@ -100,7 +106,25 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
           case Success(v) =>
             complete(Pretty(v))
           case _ =>
-            complete("failure")
+            complete(ApiError.internalServerError)
+        }
+      }
+    }
+  }
+
+  val registerR: Route = path("v1" / "user" / "register") {
+    post {
+      entity(as[RegisterUserInfo]) { params =>
+        val res = userService.registerUser(params)
+        onComplete(res) {
+          case Success(Left(v)) =>
+            complete(ApiError.internalServerError.copy(message = Some(v)))
+          case Success(Right(false)) =>
+            complete(ApiError.internalServerError.copy(message = Some("注册失败")))
+          case Success(Right(true)) =>
+            complete(Pretty(true))
+          case _ =>
+            complete(ApiError.internalServerError)
         }
       }
     }
@@ -109,5 +133,5 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   override val authedR: SimpleAuthUser => Route =
     u => queryR(u) ~ queryByIdR(u) ~ createR(u)
 
-  override def publicR: Route = mainR ~ loginR
+  override def publicR: Route = mainR ~ loginR ~ registerR
 }

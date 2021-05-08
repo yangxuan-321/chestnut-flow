@@ -47,13 +47,8 @@ trait AuthUserDAO extends AuthDAO {
     dc.db.run(q).map(_.headOption)
   }
 
-  def createUser(u: CreateUserReq): Future[Boolean] = {
-    val q = authUserTable.authUserPOs += AuthUser(
-      username = u.username,
-      email = u.email,
-      password = u.password,
-      isDelete = Bool.False
-    )
+  def createUser(u: AuthUser): Future[Boolean] = {
+    val q = authUserTable.authUserPOs += u
     dc.db.run(q).map(_ > 0)
   }
 

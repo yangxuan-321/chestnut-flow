@@ -106,6 +106,15 @@ trait BaseCirceSupport {
 
   val yyMMddHHmmssFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
   implicit def encoderInstant[A <: Instant]: Encoder[A] = (x: A) => Json.fromString(yyMMddHHmmssFormat.format(new Date(x.toEpochMilli)))
+
+  implicit def encoderEnum[A <: scalapb.GeneratedEnum]: Encoder[A] = (x: A) => Json.fromInt(x.value)
+
+  implicit def decoderEnum[A <: scalapb.GeneratedEnum](f: Int => A): Decoder[A] =
+    Decoder.decodeOption[Int].emap {
+      case Some(x) => Right(f(x))
+      case _ => Right(f(0))
+    }
+
 }
 
 /**

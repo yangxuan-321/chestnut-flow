@@ -75,10 +75,11 @@ package object api {
 
     def apply(status: ApiStatus): ApiError = ApiError(status, None)
 
-    def tokenExpired: ApiError = ApiError(status = ApiStatus.TokenExpired)
+    def tokenExpired: ApiError = ApiError(status = ApiStatus.TokenExpired, "token过期")
 
-    def tokenInvalid: ApiError = ApiError(status = ApiStatus.TokenInvalid)
+    def tokenInvalid: ApiError = ApiError(status = ApiStatus.TokenInvalid, message = "不合法的token")
 
+    def internalServerError: ApiError = ApiError(status = ApiStatus.InternalServerError, message = "服务器内部错误")
   }
 
   implicit def apiStatusEncoder[A <: ApiStatus]: Encoder[A] =

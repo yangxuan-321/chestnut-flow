@@ -8,7 +8,7 @@ import org.moda.auth.jwt.JWTAuth
 import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.util.MessageDigest
-import org.moda.idl.{AuthUser, LoginForm, SimpleAuthUser}
+import org.moda.idl.{AuthUser, LoginForm, RegisterUserInfo, SimpleAuthUser}
 
 import scala.concurrent.Future
 
@@ -17,7 +17,6 @@ object UserService {
   def apply()(implicit dc: DatabaseComponent): UserService = new UserService {
     val userDAO: AuthUserDAO = AuthUserDAO()
   }
-
 }
 
 trait UserService {
@@ -39,6 +38,24 @@ trait UserService {
         Some(SimpleAuthUser(id = u.id, username = u.username, email = u.email))
       case _ => Option.empty[SimpleAuthUser]
     }
+  }
+
+  def registerUser(f: RegisterUserInfo): Future[Either[String, Boolean]] = {
+    for {
+      u <- userDAO.findUserByUsernameOrEmail(f.username)
+      b <- u match {
+        case Some(v) if f.username == v.username  =>  Future { Left("用户名已经存在") }
+        case Some(v) if f.email == v.email        =>  Future { Left("邮箱已经重复") }
+        case Some(_)                              =>  Future { Left("用户已经被注册") }
+        case None                                 =>
+          userDAO.createUser(AuthUser(
+            username = f.username,
+            email = f.email,
+            password = MessageDigest.md5AsHex(f.password)
+          )).map(Right(_))
+        case _                                    =>  Future { Left("未知错误") }
+      }
+    } yield b
   }
 
   def validatePassword(raw: String, hash: String): Boolean = {
