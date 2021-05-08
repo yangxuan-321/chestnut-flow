@@ -2,7 +2,6 @@ package org.moda.core.api
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
-import akka.io.Tcp.Register
 import io.circe.generic.auto._
 import org.moda.auth.api.{Api, ApiError, Pretty}
 import org.moda.auth.dao.AuthUserDAO
@@ -10,8 +9,8 @@ import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.auth.service.UserService
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
-import org.moda.idl.{AuthUser, Bool, CreateUserReq, LoginForm, LoginResult, RegisterUserInfo, SimpleAuthUser}
-
+import org.moda.common.json.PbJsonExtendSupport._
+import org.moda.idl._
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
