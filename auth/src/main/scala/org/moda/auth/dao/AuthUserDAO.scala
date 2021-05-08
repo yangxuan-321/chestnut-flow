@@ -1,8 +1,8 @@
 package org.moda.auth.dao
 
 import com.typesafe.scalalogging.Logger
+import org.moda.auth.model.Tables
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.model.Tables
 import org.moda.core.model.tables.AuthUserTable
 import org.moda.idl.Bool._
 import org.moda.idl.{CreateUserReq, _}

@@ -1,4 +1,4 @@
-package org.moda.core.model
+package org.moda.auth.model
 
 import org.moda.common.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.common.model.ColumnTypesMapper

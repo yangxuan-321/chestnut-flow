@@ -1,7 +1,7 @@
 package org.moda.auth.dao
 
+import org.moda.auth.model.Tables
 import org.moda.common.dao.DAO
-import org.moda.core.model.Tables
 
 trait AuthDAO extends DAO {
 

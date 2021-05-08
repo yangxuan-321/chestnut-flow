@@ -82,7 +82,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
      }
     }
 
-  val loginR: Route = path("api" / "v1" / "login") {
+  val loginR: Route = path("v1" / "user" / "login") {
     post {
       entity(as[LoginForm]) { params =>
         val res: OptionT[Future, LoginResult] = for {
@@ -109,5 +109,5 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   override val authedR: SimpleAuthUser => Route =
     u => queryR(u) ~ queryByIdR(u) ~ createR(u)
 
-  override def publicR: Route = mainR
+  override def publicR: Route = mainR ~ loginR
 }
