@@ -11,17 +11,18 @@ import com.typesafe.scalalogging.Logger
 import org.moda.auth.api.Api
 import org.moda.auth.middleware.TokenAuthenticate
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.api.AuthUserApi
+import org.moda.core.api.{AuthUserApi, SimpleMongoApi}
+import reactivemongo.api.DB
 
 import scala.concurrent.Future
 
 object AkkaHttpServer {
 
-  def apply()(implicit system: ActorSystem[_], mat: Materializer, dc: DatabaseComponent) = new AkkaHttpServer()
+  def apply()(implicit system: ActorSystem[_], mat: Materializer, dc: DatabaseComponent, mongo: DB) = new AkkaHttpServer()
 
 }
 
-class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: DatabaseComponent) {
+class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: DatabaseComponent, mongo: DB) {
 
   //  implicit val ec: ExecutionContextExecutor = system.toClassic.dispatcher
 
@@ -35,7 +36,8 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
     val address         = config.getString("http.akka.host")
     val port            = config.getInt("http.akka.port")
     val apis: List[Api] = List(
-      AuthUserApi()
+      AuthUserApi(),
+      SimpleMongoApi()
     )
     val routes = apis.map { ax =>
       ax.publicR ~ auth.authenticate {x => ax.authedR(x)}

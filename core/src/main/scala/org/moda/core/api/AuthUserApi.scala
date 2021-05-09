@@ -13,6 +13,7 @@ import org.moda.common.json.PbJsonExtendSupport._
 import org.moda.idl._
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
+import org.moda.mongo.config.MongoConn
 
 
 

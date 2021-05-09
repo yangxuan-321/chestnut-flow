@@ -8,10 +8,13 @@ import akka.http.scaladsl.Http
 import com.typesafe.scalalogging.Logger
 import org.moda.common.database.{DatabaseComponent, DatabaseExtension}
 import org.moda.core.http.AkkaHttpServer
+import org.moda.mongo.config.MongoConn
 import pureconfig.ConfigSource
+import reactivemongo.api.DB
 
-import scala.concurrent.duration.Duration
+import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
+
 
 object Main extends App {
 
@@ -23,6 +26,7 @@ object Main extends App {
   val selfUuid: String                      = UUID.randomUUID().toString
   implicit val system: ActorSystem[Command] = ActorSystem(SpawnProtocol(), systemId)
   implicit val dc: DatabaseComponent        = DatabaseExtension(system).databaseComponent
+  implicit val mongo: DB = Await.result(MongoConn.chestnutMongo, 5.minutes)
 
   val bindingFuture: Future[Http.ServerBinding] = AkkaHttpServer().server()
 

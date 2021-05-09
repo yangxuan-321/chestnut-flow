@@ -50,9 +50,22 @@ lazy val auth = project
   .enablePlugins(UniversalPlugin)
   .settings(depOverrides)
 
+lazy val mongo = project
+  .in(file("mongo"))
+  .dependsOn(common)
+  .settings(name := "chestnut-mongo")
+  .settings(version := (version in ThisBuild).value)
+  .settings(scalacOptions ++= commonScalacOptions)
+  .settings(Seq(jettyAlpnAgent, scalapbDeps))
+  .enablePlugins(AkkaGrpcPlugin)
+  .enablePlugins(JavaAgent)
+  .enablePlugins(JavaAppPackaging)
+  .enablePlugins(UniversalPlugin)
+  .settings(depOverrides)
+
 lazy val core = project
   .in(file("core"))
-  .dependsOn(auth, common, idl)
+  .dependsOn(auth, common, idl, mongo)
   .settings(name := "chestnut-core")
   .settings(version := (version in ThisBuild).value)
   .settings(scalacOptions ++= commonScalacOptions)
@@ -151,6 +164,7 @@ lazy val commonDeps = libraryDependencies ++= Seq(
   "com.github.daddykotex"       %%  "courier"                       % "2.0.0",
   "com.pauldijou"               %%  "jwt-circe"                     % "3.0.1",
   "org.reactivemongo"           %%  "reactivemongo"                 % "1.0.3",
+  "org.reactivemongo" % "reactivemongo-shaded-native" % "1.0.3-linux-x86-64" % "runtime",
   // "net.fehmicansaglam"          %   "reactivemongo-extensions-core"  % "0.10.0.4",
   "com.typesafe.slick"          %%  "slick"                         % slickV,
   "org.slf4j"                   %   "slf4j-nop"                     % "1.7.26",
