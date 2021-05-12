@@ -80,6 +80,8 @@ package object api {
     def tokenInvalid: ApiError = ApiError(status = ApiStatus.TokenInvalid, message = "不合法的token")
 
     def internalServerError: ApiError = ApiError(status = ApiStatus.InternalServerError, message = "服务器内部错误")
+
+    def forbiddenError: ApiError = ApiError(status = ApiStatus.Forbidden, message = "没有权限")
   }
 
   implicit def apiStatusEncoder[A <: ApiStatus]: Encoder[A] =

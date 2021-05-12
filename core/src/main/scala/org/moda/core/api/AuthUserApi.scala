@@ -5,12 +5,14 @@ import akka.http.scaladsl.server.Route
 import io.circe.generic.auto._
 import org.moda.auth.api.{Api, ApiError, Pretty}
 import org.moda.auth.dao.AuthUserDAO
+import org.moda.auth.middleware.TokenAuthenticate
 import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.auth.service.UserService
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
 import org.moda.common.json.PbJsonExtendSupport._
 import org.moda.idl._
+
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 import org.moda.mongo.config.MongoConn
@@ -34,6 +36,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   import scala.concurrent.ExecutionContext.Implicits.global
   val userDAO: AuthUserDAO = AuthUserDAO()
   val userService: UserService = UserService()
+  private[this] val auth: TokenAuthenticate = TokenAuthenticate(dc)
 
   val mainR: Route = path("main") {
     complete("Ok")
@@ -88,7 +91,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
      }
     }
 
-  val loginR: Route = path("v1" / "user" / "login") {
+  val loginR: Route = path("v0" / "user" / "login") {
     post {
       entity(as[LoginForm]) { params =>
         val res: OptionT[Future, LoginResult] = for {
@@ -112,19 +115,21 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  val registerR: Route = path("v1" / "user" / "register") {
-    post {
-      entity(as[RegisterUserInfo]) { params =>
-        val res = userService.registerUser(params)
-        onComplete(res) {
-          case Success(Left(v)) =>
-            complete(ApiError.internalServerError.copy(message = Some(v)))
-          case Success(Right(false)) =>
-            complete(ApiError.internalServerError.copy(message = Some("注册失败")))
-          case Success(Right(true)) =>
-            complete(Pretty(true))
-          case _ =>
-            complete(ApiError.internalServerError)
+  val registerR: Route = path("v2" / "user" / "register") {
+    auth.rootAuthenticate {param =>
+      post {
+        entity(as[RegisterUserInfo]) { params =>
+          val res = userService.registerUser(params)
+          onComplete(res) {
+            case Success(Left(v)) =>
+              complete(ApiError.internalServerError.copy(message = Some(v)))
+            case Success(Right(false)) =>
+              complete(ApiError.internalServerError.copy(message = Some("注册失败")))
+            case Success(Right(true)) =>
+              complete(Pretty(true))
+            case _ =>
+              complete(ApiError.internalServerError)
+          }
         }
       }
     }

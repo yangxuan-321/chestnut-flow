@@ -39,9 +39,13 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
       AuthUserApi(),
       SimpleMongoApi()
     )
-    val routes = apis.map { ax =>
-      ax.publicR ~ auth.authenticate {x => ax.authedR(x)}
-    }.reduceLeft(_ ~ _)
+//    val routes = apis.map { ax =>
+//      ax.publicR ~ auth.authenticate {x => ax.authedR(x)}
+//    }.reduceLeft(_ ~ _)
+    val publicRoutes = apis.map(_.publicR).reduceLeft(_ ~ _)
+    val authRoutes = apis.map {ax => auth.authenticate {x => ax.authedR(x)} }.reduceLeft(_ ~ _)
+    val routes = publicRoutes ~ authRoutes
+
     implicit val _system: actor.ActorSystem = system.toClassic
     val i = Http().bindAndHandle(routes, address, port)
     val stream = getClass.getResourceAsStream("/issue.txt")

@@ -687,7 +687,22 @@
               "defaultValue": "now()"
             }
           ],
-          "indexs": [],
+          "indexs": [
+            {
+              "name": "idx_auth_user_username",
+              "isUnique": true,
+              "fields": [
+                "username"
+              ]
+            },
+            {
+              "name": "idx_auth_user_email",
+              "isUnique": true,
+              "fields": [
+                "email"
+              ]
+            }
+          ],
           "headers": [
             {
               "fieldName": "chnname",

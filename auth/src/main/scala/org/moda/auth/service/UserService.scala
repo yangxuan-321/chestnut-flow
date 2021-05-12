@@ -43,11 +43,12 @@ trait UserService {
   def registerUser(f: RegisterUserInfo): Future[Either[String, Boolean]] = {
     for {
       u <- userDAO.findUserByUsernameOrEmail(f.username)
-      b <- u match {
-        case Some(v) if f.username == v.username  =>  Future { Left("用户名已经存在") }
-        case Some(v) if f.email == v.email        =>  Future { Left("邮箱已经重复") }
-        case Some(_)                              =>  Future { Left("用户已经被注册") }
-        case None                                 =>
+      e <- userDAO.findUserByUsernameOrEmail(f.email)
+      b <- (u, e) match {
+        case (Some(_), Some(_))                   =>  Future { Left("用户名和邮箱已经存在") }
+        case (Some(_), _)                         =>  Future { Left("用户名已经存在") }
+        case (_, Some(_))                         =>  Future { Left("邮箱已经存在") }
+        case (None, None)                         =>
           userDAO.createUser(AuthUser(
             username = f.username,
             email = f.email,

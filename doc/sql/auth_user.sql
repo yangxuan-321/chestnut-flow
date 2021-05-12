@@ -8,7 +8,8 @@ CREATE TABLE auth_user(
     updated_at timestamp DEFAULT now() NOT NULL,
     PRIMARY KEY (id)
 );
-
+CREATE UNIQUE INDEX idx_auth_user_username ON auth_user(username);
+CREATE UNIQUE INDEX idx_auth_user_email ON auth_user(email);
 COMMENT ON COLUMN auth_user.id IS 'ID';
 COMMENT ON COLUMN auth_user.username IS '用户名';
 COMMENT ON COLUMN auth_user.email IS '邮箱';

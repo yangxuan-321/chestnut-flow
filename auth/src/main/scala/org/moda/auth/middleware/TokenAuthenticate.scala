@@ -2,6 +2,7 @@ package org.moda.auth.middleware
 
 import akka.http.scaladsl.server.Directive1
 import akka.http.scaladsl.server.Directives._
+import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import io.circe.generic.auto._
 import org.moda.auth.api.{ApiError, ApiStatus}
@@ -21,7 +22,9 @@ class TokenAuthenticate(implicit dc: DatabaseComponent) {
   import scala.concurrent.ExecutionContext.Implicits.global
   val logger: Logger = Logger(getClass)
   private val headerName = "authorization"
-
+  val config: Config = ConfigFactory.load().getConfig("auth.root-key")
+  private[this] val rootAuthKeyName: String = config.getString("name")
+  private[this] val rootAuthKeyValue: String = config.getString("value")
   private val userService = UserService()
 
   // 普通接口 鉴权
@@ -54,11 +57,16 @@ class TokenAuthenticate(implicit dc: DatabaseComponent) {
     }
   }
 
-
-
   private[this] def parseUserInfo(token: String): Directive1[SimpleAuthUser] = {
     token match {
       case "" => complete(ApiError(status = ApiStatus.UnKnownError, Some(s"token is empty")))
+    }
+  }
+
+  def rootAuthenticate: Directive1[Boolean] = {
+    optionalHeaderValueByName(rootAuthKeyName).flatMap {
+      case Some(v) if v == rootAuthKeyValue   =>  provide(true)
+      case _                                  =>  complete(ApiError.forbiddenError)
     }
   }
 }
