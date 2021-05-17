@@ -469,7 +469,16 @@
               "defaultValue": "now()"
             }
           ],
-          "indexs": [],
+          "indexs": [
+            {
+              "name": "idx_chestnut_flow_workflow",
+              "isUnique": true,
+              "fields": [
+                "flow_version",
+                "template_id"
+              ]
+            }
+          ],
           "headers": [
             {
               "fieldName": "chnname",
@@ -757,17 +766,9 @@
         "nodes": [
           {
             "shape": "table",
-            "title": "chestnut_flow_template",
-            "moduleName": false,
-            "x": 340,
-            "y": 630,
-            "id": "525cf1cf"
-          },
-          {
-            "shape": "table",
             "title": "chestnut_flow_parent_enum",
             "moduleName": false,
-            "x": 280,
+            "x": 330,
             "y": 350,
             "id": "a9d2a4f9"
           },
@@ -775,17 +776,41 @@
             "shape": "table",
             "title": "chestnut_flow_enum",
             "moduleName": false,
-            "x": 550,
-            "y": 90,
+            "x": 710,
+            "y": 100,
             "id": "c75f52dd"
           },
           {
             "shape": "table",
             "title": "auth_user",
             "moduleName": false,
-            "x": 1010,
-            "y": 410,
+            "x": 1180,
+            "y": 170,
             "id": "806092d2"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_template",
+            "moduleName": false,
+            "x": 900,
+            "y": 460,
+            "id": "525cf1cf"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_workflow",
+            "moduleName": false,
+            "x": 340,
+            "y": 680,
+            "id": "ec43c2d4"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_workflow_instance",
+            "moduleName": false,
+            "x": -180,
+            "y": 940,
+            "id": "fdc96cd9"
           }
         ],
         "edges": [
@@ -794,56 +819,56 @@
             "relation": "0,n:1",
             "source": "c75f52dd",
             "target": "a9d2a4f9",
-            "id": "dfeb0ae2",
+            "id": "b35b5e8c",
             "controlPoints": [
               {
-                "x": 409.87091064453125,
-                "y": 92.5108695652174
+                "x": 569.8709106445312,
+                "y": 102.5108695652174
               },
               {
-                "x": 139.87091064453125,
+                "x": 470.12908935546875,
                 "y": 292.1973684210526
               }
             ],
             "sourceAnchor": 8,
+            "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "ec43c2d4",
+            "target": "525cf1cf",
+            "id": "abdc9ed8",
+            "controlPoints": [
+              {
+                "x": 483.4573059082031,
+                "y": 642.3369565217391
+              },
+              {
+                "x": 768.5427856445312,
+                "y": 412.22058823529414
+              }
+            ],
+            "sourceAnchor": 5,
             "targetAnchor": 0
           },
           {
             "shape": "erdRelation",
             "relation": "0,n:1",
-            "source": "525cf1cf",
-            "target": "806092d2",
-            "id": "bdea9fb9",
+            "source": "fdc96cd9",
+            "target": "ec43c2d4",
+            "id": "e603fc82",
             "controlPoints": [
               {
-                "x": 471.45721435546875,
-                "y": 642.5735294117646
+                "x": -18.542556762695312,
+                "y": 912.3382352941177
               },
               {
-                "x": 883.5349731445312,
-                "y": 362.22058823529414
+                "x": 196.54269409179688,
+                "y": 602.1630434782609
               }
             ],
-            "sourceAnchor": 7,
-            "targetAnchor": 0
-          },
-          {
-            "shape": "erdRelation",
-            "relation": "0,n:1",
-            "source": "a9d2a4f9",
-            "target": "806092d2",
-            "id": "0e7547a2",
-            "controlPoints": [
-              {
-                "x": 139.87091064453125,
-                "y": 372.61842105263156
-              },
-              {
-                "x": 883.5349731445312,
-                "y": 362.22058823529414
-              }
-            ],
-            "sourceAnchor": 8,
+            "sourceAnchor": 3,
             "targetAnchor": 0
           }
         ]
@@ -863,22 +888,22 @@
         {
           "relation": "0,n:1",
           "from": {
-            "entity": "chestnut_flow_template",
-            "field": "created_user"
+            "entity": "chestnut_flow_workflow",
+            "field": "template_id"
           },
           "to": {
-            "entity": "auth_user",
+            "entity": "chestnut_flow_template",
             "field": "id"
           }
         },
         {
           "relation": "0,n:1",
           "from": {
-            "entity": "chestnut_flow_parent_enum",
-            "field": "created_user"
+            "entity": "chestnut_flow_workflow_instance",
+            "field": "flow_id"
           },
           "to": {
-            "entity": "auth_user",
+            "entity": "chestnut_flow_workflow",
             "field": "id"
           }
         }
