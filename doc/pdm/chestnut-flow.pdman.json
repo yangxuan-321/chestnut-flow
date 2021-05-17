@@ -760,6 +760,174 @@
           ],
           "chnname": "用户表",
           "remark": "用户表"
+        },
+        {
+          "title": "chestnut_flow_node",
+          "fields": [
+            {
+              "name": "id",
+              "type": "bigserial",
+              "remark": "ID",
+              "chnname": "ID",
+              "pk": true,
+              "notNull": true,
+              "autoIncrement": false,
+              "uiHint": ""
+            },
+            {
+              "name": "node_name",
+              "type": "text",
+              "remark": "节点名称",
+              "chnname": "节点名称",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "node_type",
+              "type": "smallint",
+              "remark": "节点类型",
+              "chnname": "节点类型",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "icon",
+              "type": "text",
+              "remark": "节点图标",
+              "chnname": "节点图标",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "node_uuid",
+              "type": "text",
+              "remark": "node_uuid 就是 一个流程 纵然版本不同 uuid 也是唯一的，用来标识 是同一个模板",
+              "chnname": "node_uuid",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "node_version",
+              "type": "integer",
+              "remark": "节点版本",
+              "chnname": "节点版本",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "description",
+              "type": "text",
+              "remark": "节点备注描述",
+              "chnname": "节点备注描述",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "flow_id",
+              "type": "bigint",
+              "remark": "对应的流程id",
+              "chnname": "对应的流程id",
+              "defaultValue": "0",
+              "notNull": true
+            },
+            {
+              "name": "is_deleted",
+              "type": "smallint",
+              "remark": "是否被删除 枚举 - 0 正常 1- 删除",
+              "chnname": "是否被删除",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_user",
+              "type": "bigint",
+              "remark": "创建者",
+              "chnname": "创建者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "update_user",
+              "type": "bigint",
+              "remark": "更新者",
+              "chnname": "更新者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp",
+              "remark": "创建时间",
+              "chnname": "创建时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp",
+              "remark": "更新时间",
+              "chnname": "更新时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            }
+          ],
+          "indexs": [
+            {
+              "name": "idx_chestnut_flow_node_uuid",
+              "isUnique": true,
+              "fields": [
+                "node_uuid"
+              ]
+            }
+          ],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "流程节点表",
+          "remark": "流程节点表"
         }
       ],
       "graphCanvas": {
