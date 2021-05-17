@@ -75,11 +75,10 @@
           ],
           "indexs": [
             {
-              "name": "chestnut_flow_enum_enum_key",
+              "name": "idx_chestnut_flow_parent_enum_enum_key",
               "isUnique": true,
               "fields": [
-                "enum_key",
-                "is_deleted"
+                "enum_key"
               ]
             }
           ],
@@ -219,9 +218,10 @@
           ],
           "indexs": [
             {
-              "name": "chestnut_flow_enum_enum_key",
+              "name": "idx_chestnut_flow_enum",
               "isUnique": true,
               "fields": [
+                "parent_enum_id",
                 "enum_key"
               ]
             }
@@ -757,27 +757,35 @@
         "nodes": [
           {
             "shape": "table",
-            "title": "chestnut_flow_enum",
+            "title": "chestnut_flow_template",
             "moduleName": false,
             "x": 340,
-            "y": 120,
-            "id": "c75f52dd"
+            "y": 630,
+            "id": "525cf1cf"
           },
           {
             "shape": "table",
             "title": "chestnut_flow_parent_enum",
             "moduleName": false,
-            "x": 800,
-            "y": 120,
+            "x": 280,
+            "y": 350,
             "id": "a9d2a4f9"
           },
           {
             "shape": "table",
-            "title": "chestnut_flow_template",
+            "title": "chestnut_flow_enum",
             "moduleName": false,
-            "x": 340,
-            "y": 470,
-            "id": "525cf1cf"
+            "x": 550,
+            "y": 90,
+            "id": "c75f52dd"
+          },
+          {
+            "shape": "table",
+            "title": "auth_user",
+            "moduleName": false,
+            "x": 1010,
+            "y": 410,
+            "id": "806092d2"
           }
         ],
         "edges": [
@@ -789,15 +797,53 @@
             "id": "dfeb0ae2",
             "controlPoints": [
               {
-                "x": 480.12908935546875,
-                "y": 122.5108695652174
+                "x": 409.87091064453125,
+                "y": 92.5108695652174
               },
               {
-                "x": 659.8709106445312,
-                "y": 62.19736842105263
+                "x": 139.87091064453125,
+                "y": 292.1973684210526
               }
             ],
-            "sourceAnchor": 9,
+            "sourceAnchor": 8,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "525cf1cf",
+            "target": "806092d2",
+            "id": "bdea9fb9",
+            "controlPoints": [
+              {
+                "x": 471.45721435546875,
+                "y": 642.5735294117646
+              },
+              {
+                "x": 883.5349731445312,
+                "y": 362.22058823529414
+              }
+            ],
+            "sourceAnchor": 7,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "a9d2a4f9",
+            "target": "806092d2",
+            "id": "0e7547a2",
+            "controlPoints": [
+              {
+                "x": 139.87091064453125,
+                "y": 372.61842105263156
+              },
+              {
+                "x": 883.5349731445312,
+                "y": 362.22058823529414
+              }
+            ],
+            "sourceAnchor": 8,
             "targetAnchor": 0
           }
         ]
@@ -811,6 +857,28 @@
           },
           "to": {
             "entity": "chestnut_flow_parent_enum",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_template",
+            "field": "created_user"
+          },
+          "to": {
+            "entity": "auth_user",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_parent_enum",
+            "field": "created_user"
+          },
+          "to": {
+            "entity": "auth_user",
             "field": "id"
           }
         }

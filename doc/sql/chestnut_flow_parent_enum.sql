@@ -9,7 +9,7 @@ CREATE TABLE chestnut_flow_parent_enum(
     updated_at timestamp DEFAULT now() NOT NULL,
     PRIMARY KEY (id)
 );
-
+CREATE UNIQUE INDEX idx_chestnut_flow_parent_enum_enum_key ON chestnut_flow_parent_enum(enum_key);
 COMMENT ON TABLE chestnut_flow_parent_enum IS '父枚举表';
 COMMENT ON COLUMN chestnut_flow_parent_enum.id IS 'ID-主键';
 COMMENT ON COLUMN chestnut_flow_parent_enum.enum_key IS '键';

@@ -11,7 +11,7 @@ CREATE TABLE chestnut_flow_enum(
     updated_at timestamp DEFAULT now() NOT NULL,
     PRIMARY KEY (id)
 );
-
+CREATE UNIQUE INDEX idx_chestnut_flow_enum ON chestnut_flow_enum(parent_enum_id, enum_key);
 COMMENT ON TABLE chestnut_flow_enum IS '枚举表';
 COMMENT ON COLUMN chestnut_flow_enum.id IS 'ID-主键';
 COMMENT ON COLUMN chestnut_flow_enum.enum_key IS '键';
