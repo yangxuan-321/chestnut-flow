@@ -928,16 +928,174 @@
           ],
           "chnname": "流程节点表",
           "remark": "流程节点表"
+        },
+        {
+          "title": "chestnut_flow_node_instance",
+          "fields": [
+            {
+              "name": "id",
+              "type": "bigserial",
+              "remark": "ID",
+              "chnname": "ID",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "flow_instance_id",
+              "type": "bigint",
+              "remark": "对应流程实例id",
+              "chnname": "对应流程实例id",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "node_id",
+              "type": "bigint",
+              "remark": "对应节点id",
+              "chnname": "对应节点id",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "status",
+              "type": "smallint",
+              "remark": "节点实例状态",
+              "chnname": "节点实例状态",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "seq",
+              "type": "integer",
+              "remark": "节点在流程实例中的递增序号",
+              "chnname": "节点在流程实例中的递增序号",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_user",
+              "type": "bigint",
+              "remark": "创建者",
+              "chnname": "创建者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "update_user",
+              "type": "bigint",
+              "remark": "更新者",
+              "chnname": "更新者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp",
+              "remark": "创建时间",
+              "chnname": "创建时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp",
+              "remark": "更新时间",
+              "chnname": "更新时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "流程节点实例表",
+          "remark": "流程节点实例表"
         }
       ],
       "graphCanvas": {
         "nodes": [
           {
             "shape": "table",
+            "title": "chestnut_flow_workflow_instance",
+            "moduleName": false,
+            "x": 100,
+            "y": 750,
+            "id": "fdc96cd9"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_node",
+            "moduleName": false,
+            "x": 90,
+            "y": 1030,
+            "id": "09c9f1c6"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_workflow",
+            "moduleName": false,
+            "x": 760,
+            "y": 780,
+            "id": "ec43c2d4"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_template",
+            "moduleName": false,
+            "x": 1250,
+            "y": 760,
+            "id": "525cf1cf"
+          },
+          {
+            "shape": "table",
             "title": "chestnut_flow_parent_enum",
             "moduleName": false,
-            "x": 330,
-            "y": 350,
+            "x": 90,
+            "y": 430,
             "id": "a9d2a4f9"
           },
           {
@@ -945,40 +1103,24 @@
             "title": "chestnut_flow_enum",
             "moduleName": false,
             "x": 710,
-            "y": 100,
+            "y": 350,
             "id": "c75f52dd"
           },
           {
             "shape": "table",
             "title": "auth_user",
             "moduleName": false,
-            "x": 1180,
-            "y": 170,
+            "x": 1190,
+            "y": 380,
             "id": "806092d2"
           },
           {
             "shape": "table",
-            "title": "chestnut_flow_template",
+            "title": "chestnut_flow_node_instance",
             "moduleName": false,
-            "x": 900,
-            "y": 460,
-            "id": "525cf1cf"
-          },
-          {
-            "shape": "table",
-            "title": "chestnut_flow_workflow",
-            "moduleName": false,
-            "x": 340,
-            "y": 680,
-            "id": "ec43c2d4"
-          },
-          {
-            "shape": "table",
-            "title": "chestnut_flow_workflow_instance",
-            "moduleName": false,
-            "x": -180,
-            "y": 940,
-            "id": "fdc96cd9"
+            "x": -430,
+            "y": 920,
+            "id": "aa752137"
           }
         ],
         "edges": [
@@ -991,11 +1133,11 @@
             "controlPoints": [
               {
                 "x": 569.8709106445312,
-                "y": 102.5108695652174
+                "y": 352.5108695652174
               },
               {
-                "x": 470.12908935546875,
-                "y": 292.1973684210526
+                "x": 230.12908935546875,
+                "y": 372.1973684210526
               }
             ],
             "sourceAnchor": 8,
@@ -1009,12 +1151,12 @@
             "id": "abdc9ed8",
             "controlPoints": [
               {
-                "x": 483.4573059082031,
-                "y": 642.3369565217391
+                "x": 903.4573059082031,
+                "y": 742.3369565217391
               },
               {
-                "x": 768.5427856445312,
-                "y": 412.22058823529414
+                "x": 1118.5427856445312,
+                "y": 712.2205882352941
               }
             ],
             "sourceAnchor": 5,
@@ -1028,15 +1170,72 @@
             "id": "e603fc82",
             "controlPoints": [
               {
-                "x": -18.542556762695312,
-                "y": 912.3382352941177
+                "x": 261.4574432373047,
+                "y": 722.3382352941177
               },
               {
-                "x": 196.54269409179688,
-                "y": 602.1630434782609
+                "x": 616.5426940917969,
+                "y": 702.1630434782609
               }
             ],
             "sourceAnchor": 3,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "09c9f1c6",
+            "target": "ec43c2d4",
+            "id": "77677d58",
+            "controlPoints": [
+              {
+                "x": 234.46218872070312,
+                "y": 1042.5431034482758
+              },
+              {
+                "x": 616.5426940917969,
+                "y": 702.1630434782609
+              }
+            ],
+            "sourceAnchor": 13,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "aa752137",
+            "target": "fdc96cd9",
+            "id": "9553d8c2",
+            "controlPoints": [
+              {
+                "x": -235.20252990722656,
+                "y": 872.2738095238095
+              },
+              {
+                "x": -61.45744323730469,
+                "y": 702.2205882352941
+              }
+            ],
+            "sourceAnchor": 3,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "aa752137",
+            "target": "09c9f1c6",
+            "id": "c4dffa00",
+            "controlPoints": [
+              {
+                "x": -235.20252990722656,
+                "y": 892.3690476190476
+              },
+              {
+                "x": -54.462188720703125,
+                "y": 922.1293103448276
+              }
+            ],
+            "sourceAnchor": 5,
             "targetAnchor": 0
           }
         ]
@@ -1072,6 +1271,39 @@
           },
           "to": {
             "entity": "chestnut_flow_workflow",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_node",
+            "field": "description"
+          },
+          "to": {
+            "entity": "chestnut_flow_workflow",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_node_instance",
+            "field": "flow_instance_id"
+          },
+          "to": {
+            "entity": "chestnut_flow_workflow_instance",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_node_instance",
+            "field": "node_id"
+          },
+          "to": {
+            "entity": "chestnut_flow_node",
             "field": "id"
           }
         }
