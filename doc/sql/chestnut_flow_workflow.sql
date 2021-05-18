@@ -12,7 +12,7 @@ CREATE TABLE chestnut_flow_workflow(
     PRIMARY KEY (id)
 );
 
-CREATE UNIQUE INDEX idx_chestnut_flow_workflow ON chestnut_flow_workflow(template_id, template_id);
+CREATE UNIQUE INDEX idx_chestnut_flow_workflow ON chestnut_flow_workflow(template_id, flow_version);
 
 COMMENT ON TABLE chestnut_flow_workflow IS '流程表';
 COMMENT ON COLUMN chestnut_flow_workflow.id IS 'ID';
