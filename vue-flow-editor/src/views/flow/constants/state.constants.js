@@ -1,0 +1,13 @@
+export default {
+  DEFAULT: Symbol('DEFAULT'),
+  MOVING: Symbol('MOVING'),
+  JOINING: Symbol('JOINING'),
+  MOVING_ACTIVE: Symbol('MOVING_ACTIVE'),
+  ADDING: Symbol('ADDING'),
+  EDITING: Symbol('EDITING'),
+  EXPORT: Symbol('EXPORT'),
+  IMPORT: Symbol('IMPORT'),
+  IMPORT_DRAGGING: Symbol('IMPORT_DRAGGING'),
+  QUICK_JOINING: Symbol('QUICK_JOINING'),
+  PANNING: Symbol('PANNING')
+}
