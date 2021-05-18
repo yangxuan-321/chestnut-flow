@@ -41,3 +41,11 @@ enum NodeType {
     NODE_TYPE_PEOPLE                        = 0; // 人工节点
     NODE_TYPE_AUTO                          = 1; // 自动节点
 }
+
+// 参数类型
+enum ParamType {
+    PARAM_TYPE_ENUM                         = 0; // 枚举
+    PARAM_TYPE_LONG                         = 1; // 整形
+    PARAM_TYPE_DOUBLE                       = 2; // 浮点类型
+    PARAM_TYPE_STRING                       = 3; // 字符类型
+}

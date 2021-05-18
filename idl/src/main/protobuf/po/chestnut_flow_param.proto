@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option optimize_for = SPEED;
+
+package org.moda.idl;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "enums.proto";
+
+// 流程参数表
+message ChestnutParam {
+    int64                   id                          = 10;   // ID
+    int64                   flow_id                     = 20;   // 流程id
+    int64                   param_name                  = 30;   // 参数名称
+    ParamType               param_type                  = 40;   // 参数类型
+    string                  param_init_value            = 50;   // 参数初始值
+    string                  param_desc                  = 60;   // 参数备注
+    int64                   created_user                = 70;   // 创建者
+    int64                   update_user                 = 80;   // 更新者
+    int64                   created_at                  = 90 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
+    int64                   updated_at                  = 100[(scalapb.field).type = "java.time.Instant"];   // 更新时间
+}
