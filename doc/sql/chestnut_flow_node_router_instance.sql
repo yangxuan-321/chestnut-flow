@@ -11,10 +11,10 @@ CREATE TABLE chestnut_flow_node_router_instance(
 );
 
 COMMENT ON TABLE chestnut_flow_node_router_instance IS '流程路由实例表';
-COMMENT ON COLUMN chestnut_flow_node_router_instance.id IS '节点实例ID';
+COMMENT ON COLUMN chestnut_flow_node_router_instance.id IS 'ID';
 COMMENT ON COLUMN chestnut_flow_node_router_instance.node_router_id IS '对应路由id';
-COMMENT ON COLUMN chestnut_flow_node_router_instance.flow_instance_id IS '对应流程路由实例id';
-COMMENT ON COLUMN chestnut_flow_node_router_instance.seq IS '节点在流程实例中的递增序号';
+COMMENT ON COLUMN chestnut_flow_node_router_instance.flow_instance_id IS '对应流程实例id';
+COMMENT ON COLUMN chestnut_flow_node_router_instance.seq IS '路由在流程实例中的递增序号';
 COMMENT ON COLUMN chestnut_flow_node_router_instance.created_user IS '创建者';
 COMMENT ON COLUMN chestnut_flow_node_router_instance.update_user IS '更新者';
 COMMENT ON COLUMN chestnut_flow_node_router_instance.created_at IS '创建时间';

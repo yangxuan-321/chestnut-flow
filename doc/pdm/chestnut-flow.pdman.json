@@ -281,8 +281,8 @@
             {
               "name": "id",
               "type": "bigserial",
-              "remark": "id主键",
-              "chnname": "id主键",
+              "remark": "ID",
+              "chnname": "ID",
               "pk": true,
               "notNull": true,
               "defaultValue": ""
@@ -533,8 +533,8 @@
             {
               "name": "id",
               "type": "bigserial",
-              "remark": "流程实例ID",
-              "chnname": "流程实例ID",
+              "remark": "ID",
+              "chnname": "ID",
               "pk": true,
               "notNull": true
             },
@@ -1210,8 +1210,8 @@
             {
               "name": "id",
               "type": "bigserial",
-              "remark": "节点实例ID",
-              "chnname": "节点实例ID",
+              "remark": "ID",
+              "chnname": "ID",
               "notNull": true,
               "pk": true
             },
@@ -1226,7 +1226,7 @@
             {
               "name": "flow_instance_id",
               "type": "bigint",
-              "remark": "对应流程路由实例id",
+              "remark": "对应流程实例id",
               "chnname": "对应流程路由实例id",
               "notNull": true,
               "defaultValue": "0"
@@ -1234,7 +1234,7 @@
             {
               "name": "seq",
               "type": "integer",
-              "remark": "节点在流程实例中的递增序号",
+              "remark": "路由在流程实例中的递增序号",
               "chnname": "节点在流程实例中的递增序号",
               "notNull": true,
               "defaultValue": "0"
@@ -1326,38 +1326,6 @@
         "nodes": [
           {
             "shape": "table",
-            "title": "chestnut_flow_workflow_instance",
-            "moduleName": false,
-            "x": 100,
-            "y": 750,
-            "id": "fdc96cd9"
-          },
-          {
-            "shape": "table",
-            "title": "chestnut_flow_node",
-            "moduleName": false,
-            "x": 90,
-            "y": 1030,
-            "id": "09c9f1c6"
-          },
-          {
-            "shape": "table",
-            "title": "chestnut_flow_workflow",
-            "moduleName": false,
-            "x": 760,
-            "y": 780,
-            "id": "ec43c2d4"
-          },
-          {
-            "shape": "table",
-            "title": "chestnut_flow_template",
-            "moduleName": false,
-            "x": 1250,
-            "y": 760,
-            "id": "525cf1cf"
-          },
-          {
-            "shape": "table",
             "title": "chestnut_flow_parent_enum",
             "moduleName": false,
             "x": 90,
@@ -1384,9 +1352,57 @@
             "shape": "table",
             "title": "chestnut_flow_node_instance",
             "moduleName": false,
-            "x": -430,
-            "y": 920,
+            "x": -540,
+            "y": 1390,
             "id": "aa752137"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_node",
+            "moduleName": false,
+            "x": 90,
+            "y": 1520,
+            "id": "09c9f1c6"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_workflow_instance",
+            "moduleName": false,
+            "x": 90,
+            "y": 1150,
+            "id": "fdc96cd9"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_workflow",
+            "moduleName": false,
+            "x": 810,
+            "y": 1340,
+            "id": "ec43c2d4"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_template",
+            "moduleName": false,
+            "x": 1290,
+            "y": 1250,
+            "id": "525cf1cf"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_node_router_instance",
+            "moduleName": false,
+            "x": 120,
+            "y": 770,
+            "id": "678e6414"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_node_router",
+            "moduleName": false,
+            "x": -430,
+            "y": 770,
+            "id": "63b7538c"
           }
         ],
         "edges": [
@@ -1417,12 +1433,12 @@
             "id": "abdc9ed8",
             "controlPoints": [
               {
-                "x": 903.4573059082031,
-                "y": 742.3369565217391
+                "x": 953.4573059082031,
+                "y": 1302.336956521739
               },
               {
-                "x": 1118.5427856445312,
-                "y": 712.2205882352941
+                "x": 1158.5427856445312,
+                "y": 1202.2205882352941
               }
             ],
             "sourceAnchor": 5,
@@ -1436,12 +1452,12 @@
             "id": "e603fc82",
             "controlPoints": [
               {
-                "x": 261.4574432373047,
-                "y": 722.3382352941177
+                "x": 251.4574432373047,
+                "y": 1122.3382352941176
               },
               {
-                "x": 616.5426940917969,
-                "y": 702.1630434782609
+                "x": 666.5426940917969,
+                "y": 1262.1630434782608
               }
             ],
             "sourceAnchor": 3,
@@ -1456,11 +1472,11 @@
             "controlPoints": [
               {
                 "x": 234.46218872070312,
-                "y": 1042.5431034482758
+                "y": 1532.5431034482758
               },
               {
-                "x": 616.5426940917969,
-                "y": 702.1630434782609
+                "x": 666.5426940917969,
+                "y": 1262.1630434782608
               }
             ],
             "sourceAnchor": 13,
@@ -1474,12 +1490,12 @@
             "id": "9553d8c2",
             "controlPoints": [
               {
-                "x": -235.20252990722656,
-                "y": 872.2738095238095
+                "x": -345.20252990722656,
+                "y": 1342.2738095238096
               },
               {
-                "x": -61.45744323730469,
-                "y": 702.2205882352941
+                "x": -71.45744323730469,
+                "y": 1102.2205882352941
               }
             ],
             "sourceAnchor": 3,
@@ -1493,16 +1509,35 @@
             "id": "c4dffa00",
             "controlPoints": [
               {
-                "x": -235.20252990722656,
-                "y": 892.3690476190476
+                "x": -345.20252990722656,
+                "y": 1362.3690476190477
               },
               {
                 "x": -54.462188720703125,
-                "y": 922.1293103448276
+                "y": 1412.1293103448277
               }
             ],
             "sourceAnchor": 5,
             "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "678e6414",
+            "target": "63b7538c",
+            "id": "db8394a8",
+            "controlPoints": [
+              {
+                "x": -74.79747009277344,
+                "y": 732.3026315789474
+              },
+              {
+                "x": -285.5319519042969,
+                "y": 682.15
+              }
+            ],
+            "sourceAnchor": 2,
+            "targetAnchor": 1
           }
         ]
       },
@@ -1570,6 +1605,17 @@
           },
           "to": {
             "entity": "chestnut_flow_node",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_node_router_instance",
+            "field": "node_router_id"
+          },
+          "to": {
+            "entity": "chestnut_flow_node_router",
             "field": "id"
           }
         }

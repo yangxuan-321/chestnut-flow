@@ -10,7 +10,7 @@ CREATE TABLE chestnut_flow_workflow_instance(
 );
 
 COMMENT ON TABLE chestnut_flow_workflow_instance IS '流程实例表';
-COMMENT ON COLUMN chestnut_flow_workflow_instance.id IS '流程实例ID';
+COMMENT ON COLUMN chestnut_flow_workflow_instance.id IS 'ID';
 COMMENT ON COLUMN chestnut_flow_workflow_instance.flow_id IS '对应的流程id';
 COMMENT ON COLUMN chestnut_flow_workflow_instance.status IS '对应流程实例的状态';
 COMMENT ON COLUMN chestnut_flow_workflow_instance.created_user IS '创建者';
