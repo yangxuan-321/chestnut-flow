@@ -1663,6 +1663,22 @@
             "x": -430,
             "y": 770,
             "id": "63b7538c"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_node_instance_param",
+            "moduleName": false,
+            "x": 340,
+            "y": 1990,
+            "id": "b6b08053"
+          },
+          {
+            "shape": "table",
+            "title": "chestnut_flow_param",
+            "moduleName": false,
+            "x": -140,
+            "y": 1990,
+            "id": "459addb2"
           }
         ],
         "edges": [
@@ -1798,6 +1814,25 @@
             ],
             "sourceAnchor": 2,
             "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b6b08053",
+            "target": "459addb2",
+            "id": "2abf669f",
+            "controlPoints": [
+              {
+                "x": 182.2642364501953,
+                "y": 1982.4642857142858
+              },
+              {
+                "x": 8.130111694335938,
+                "y": 1912.1630434782608
+              }
+            ],
+            "sourceAnchor": 6,
+            "targetAnchor": 1
           }
         ]
       },
@@ -1876,6 +1911,17 @@
           },
           "to": {
             "entity": "chestnut_flow_node_router",
+            "field": "id"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "chestnut_flow_node_instance_param",
+            "field": "param_id"
+          },
+          "to": {
+            "entity": "chestnut_flow_param",
             "field": "id"
           }
         }
