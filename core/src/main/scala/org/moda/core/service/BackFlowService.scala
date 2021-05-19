@@ -12,10 +12,10 @@ import scala.concurrent.Future
 import scala.io.Source
 
 object BackFlowService {
-  def apply()(implicit dc: DatabaseComponent, mongo: DB): MongoService = new MongoService()
+  def apply()(implicit dc: DatabaseComponent): BackFlowService = new BackFlowService()
 }
 
-class BackFlowService(implicit dc: DatabaseComponent, mongo: DB) {
+class BackFlowService(implicit dc: DatabaseComponent) {
   val logger: Logger = Logger(getClass)
   import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -29,7 +29,7 @@ class BackFlowService(implicit dc: DatabaseComponent, mongo: DB) {
     Future {x}
   }
 
-  def assembleTypeGroupData(): String = {
+  private[this] def assembleTypeGroupData(): String = {
     val f = Source.fromFile(new File("/data/TypeGroupData.json"))
     val c: String = f.getLines().toList.foldLeft("")((r, e) => r + e)
     f.close()

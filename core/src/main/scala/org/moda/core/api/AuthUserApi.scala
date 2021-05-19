@@ -10,12 +10,10 @@ import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.auth.service.UserService
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
-import org.moda.common.json.PbJsonExtendSupport._
 import org.moda.idl._
 
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
-import org.moda.mongo.config.MongoConn
 
 
 

@@ -1,9 +1,12 @@
 package org.moda.core.api
 
-import akka.http.scaladsl.server.Directives.{complete, get, onComplete, path}
+import akka.http.scaladsl.server.Directives.{complete, get, onComplete, path, _}
 import akka.http.scaladsl.server.Route
+import io.circe.generic.auto._
 import org.moda.auth.api.{Api, ApiError, Pretty}
 import org.moda.common.database.DatabaseComponent
+import org.moda.common.json.FailFastCirceSupport._
+import org.moda.core.service.BackFlowService
 import org.moda.idl.SimpleAuthUser
 
 import scala.util.{Failure, Success}
@@ -15,10 +18,11 @@ object BackFlowApi {
 }
 
 class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
-  val queryR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "user" / "list") {
+  val backFlowService: BackFlowService = BackFlowService()
+  val typeGroupsR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "back" / "type-groups") {
       get {
-        val q = userDAO.query()
+        val q = backFlowService.typeGroups()
         onComplete(q) {
           case Success(value)  =>
             val res = Pretty(value)
@@ -29,4 +33,8 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
         }
       }
     }
+
+  override def authedR: SimpleAuthUser => Route = typeGroupsR
+
+  override def publicR: Route = ???
 }
