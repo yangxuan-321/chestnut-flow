@@ -4,20 +4,19 @@
 
 > 说明:
 UI 参考 node-red
-[mock server](https://github.com/jigang-duan/flow-editor-mock.git)
 静态版本在static分支(不依赖server,只是为了展示)
 
 ## Build Setup
 
 ```bash
-# 克隆项目
-git clone https://github.com/jigang-duan/vue-flow-editor.git
-
 # 进入项目目录
 cd vue-flow-editor
 
 # 安装依赖
 npm install
+
+# 如果 npm 报错 Cannot find module 'core-js/modules/es6.regexp.constructor'
+cnpm install core-js@2
 
 # 启动服务
 npm run dev

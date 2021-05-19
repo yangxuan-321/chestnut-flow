@@ -10,4 +10,12 @@ target/
 .idea/
 *.iml
 
+vue-flow-editor/node_modules/
+vue-flow-editor/dist/
+vue-flow-editor/npm-debug.log*
+vue-flow-editor/yarn-debug.log*
+vue-flow-editor/yarn-error.log*
+vue-flow-editor/package-lock.json
+vue-flow-editor/tests/**/coverage/
+
 
