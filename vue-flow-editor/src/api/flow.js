@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 // const BaseURL = 'http://192.168.10.235:3000/mock/32/flow'
-const BaseURL = 'http://localhost:8080/flow'
+const BaseURL = 'http://localhost:9000/v1/back'
 
 const mapTypeGoups = (group) => {
   return {
@@ -41,7 +41,7 @@ const mapProcessGroup = processGroup => {
 
 export const fetchProcessorTypes = async() => {
   const typeGoups = await request({
-    url: `${BaseURL}/dataflow/processor-types`,
+    url: `${BaseURL}/type-groups`,
     method: 'get'
   })
   return typeGoups.map(mapTypeGoups)

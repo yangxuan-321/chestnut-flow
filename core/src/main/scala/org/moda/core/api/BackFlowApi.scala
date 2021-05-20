@@ -19,13 +19,12 @@ object BackFlowApi {
 
 class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
   val backFlowService: BackFlowService = BackFlowService()
-  val typeGroupsR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "back" / "type-groups") {
+  val typeGroupsR: Route = path("v1" / "back" / "type-groups") {
       get {
         val q = backFlowService.typeGroups()
         onComplete(q) {
           case Success(value)  =>
-            val res = Pretty(value)
+            val res = value
             complete(res)
           case Failure(exception)      =>
             // exception.printStackTrace()
@@ -34,7 +33,11 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
-  override def authedR: SimpleAuthUser => Route = typeGroupsR
+//  override def authedR: Option[SimpleAuthUser => Route] = Some {
+//    u => typeGroupsR(u)
+//  }
 
-  override def publicR: Route = ???
+  override def publicR: Option[Route] = Some{
+    typeGroupsR
+  }
 }

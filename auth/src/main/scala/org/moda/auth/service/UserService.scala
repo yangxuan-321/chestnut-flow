@@ -68,6 +68,6 @@ trait UserService {
   }
 
   def tokenEncode(u: UserAuthToken): String = {
-    JWTAuth.default.encode[UserAuthToken](u)(key)
+    JWTAuth.default.encode[UserAuthToken](u, 24 * 3600 * 1000L)(key)
   }
 }

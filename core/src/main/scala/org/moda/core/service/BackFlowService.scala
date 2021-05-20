@@ -30,7 +30,8 @@ class BackFlowService(implicit dc: DatabaseComponent) {
   }
 
   private[this] def assembleTypeGroupData(): String = {
-    val f = Source.fromFile(new File("/data/TypeGroupData.json"))
+
+    val f = Source.fromInputStream(getClass.getResourceAsStream("/data/TypeGroupData.json"))
     val c: String = f.getLines().toList.foldLeft("")((r, e) => r + e)
     f.close()
     c

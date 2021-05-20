@@ -133,8 +133,11 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  override val authedR: SimpleAuthUser => Route =
-    u => queryR(u) ~ queryByIdR(u) ~ createR(u)
+  override val authedR: Option[SimpleAuthUser => Route] = Some {
+      u => queryR(u) ~ queryByIdR(u) ~ createR(u)
+    }
 
-  override def publicR: Route = mainR ~ loginR ~ registerR
+  override def publicR: Option[Route] = Some{
+    mainR ~ loginR ~ registerR
+  }
 }

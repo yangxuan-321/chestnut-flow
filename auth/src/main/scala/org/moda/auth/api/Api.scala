@@ -20,7 +20,7 @@ trait Api {
 //    }
 
 
-  def publicR: Route
+  def publicR: Option[Route] = None
 
-  def authedR: SimpleAuthUser => Route
+  def authedR: Option[SimpleAuthUser => Route] = None
 }

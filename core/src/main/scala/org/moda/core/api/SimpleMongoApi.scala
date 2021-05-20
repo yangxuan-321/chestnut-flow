@@ -37,7 +37,7 @@ class SimpleMongoApi(implicit dc: DatabaseComponent, mongo: DB) extends Api {
       }
     }
 
-  override def publicR: Route = mongoNodeR0
-
-  override def authedR: SimpleAuthUser => Route = ???
+  override def publicR: Option[Route] = Some{
+    mongoNodeR0
+  }
 }
