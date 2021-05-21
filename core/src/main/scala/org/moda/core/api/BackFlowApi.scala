@@ -33,11 +33,25 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val processGroupsR: Route = path("v1" / "back" / "process-groups" / Remaining) { id =>
+    get {
+      val q = backFlowService.processGroups(id)
+      onComplete(q) {
+        case Success(value)  =>
+          val res = value
+          complete(res)
+        case Failure(exception)      =>
+          // exception.printStackTrace()
+          complete(ApiError.internalServerError)
+      }
+    }
+  }
+
 //  override def authedR: Option[SimpleAuthUser => Route] = Some {
 //    u => typeGroupsR(u)
 //  }
 
   override def publicR: Option[Route] = Some{
-    typeGroupsR
+    typeGroupsR ~ processGroupsR
   }
 }
