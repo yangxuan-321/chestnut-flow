@@ -10,12 +10,18 @@ target/
 .idea/
 *.iml
 
-vue-flow-editor/node_modules/
-vue-flow-editor/dist/
-vue-flow-editor/npm-debug.log*
-vue-flow-editor/yarn-debug.log*
-vue-flow-editor/yarn-error.log*
-vue-flow-editor/package-lock.json
-vue-flow-editor/tests/**/coverage/
+vue-easy-flow/node_modules/
+vue-easy-flow/dist/
+vue-easy-flow/npm-debug.log*
+vue-easy-flow/yarn-debug.log*
+vue-easy-flow/yarn-error.log*
+vue-easy-flow/package-lock.json
+vue-easy-flow/tests/**/coverage/
+vue-easy-flow/.DS_Store
+# Editor directories and files
+vue-easy-flow/*.suo
+vue-easy-flow/*.ntvs*
+vue-easy-flow/*.njsproj
+vue-easy-flow/*.sln
 
 
