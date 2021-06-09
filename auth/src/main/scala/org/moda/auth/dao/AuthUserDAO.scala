@@ -3,9 +3,10 @@ package org.moda.auth.dao
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.model.Tables
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.model.tables.AuthUserTable
+import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
 import org.moda.idl.Bool._
 import org.moda.idl.{CreateUserReq, _}
+import reactivemongo.api.commands
 
 import scala.concurrent.Future
 
@@ -26,6 +27,7 @@ trait AuthUserDAO extends AuthDAO {
 
   val logger: Logger = Logger(getClass)
   val authUserTable: AuthUserTable = new Tables(dc)
+  val userRoleTable: UserRoleTable = new Tables(dc)
 
   def query(): Future[Seq[AuthUser]] = {
     val q = authUserTable
@@ -61,6 +63,18 @@ trait AuthUserDAO extends AuthDAO {
       .result
 
     logger.info("findUserByUsernameOrEmail: {}", q.statements.mkString(","))
+    dc.db.run(q).map(_.headOption)
+  }
+
+  def queryUserInfoById(userId: Long): Future[Option[(AuthUser, UserRole)]] = {
+    val q = authUserTable.authUserPOs
+      .filter(_.id === userId)
+      .filter(_.isDelete === (False: Bool))
+      .join(userRoleTable.userRolePOs)
+      .on(_.id === _.userId)
+      .take(1)
+      .result
+    logger.info("sql: {}", q.statements.mkString(","))
     dc.db.run(q).map(_.headOption)
   }
 }

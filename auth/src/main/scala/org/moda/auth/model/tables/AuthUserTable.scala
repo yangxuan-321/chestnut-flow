@@ -1,4 +1,4 @@
-package org.moda.core.model.tables
+package org.moda.auth.model.tables
 
 import java.sql.Timestamp
 
@@ -24,6 +24,8 @@ trait AuthUserTable {
     def username: Rep[String]          = column[String]("username", O.SqlType("TEXT"), O.Default(""))
     def email: Rep[String]             = column[String]("email", O.SqlType("TEXT"), O.Default(""))
     def password: Rep[String]          = column[String]("password", O.SqlType("TEXT"), O.Default(""))
+    def nickname: Rep[String]          = column[String]("nickname", O.SqlType("TEXT"), O.Default(""))
+    def avatar: Rep[String]            = column[String]("avatar", O.SqlType("TEXT"), O.Default(""))
     def isDelete:   Rep[Bool]          = column[Bool]("is_delete", O.SqlType("SMALLINT"), O.Default(Bool.False))
     def createdAt: Rep[Timestamp]      = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
     def updatedAt: Rep[Timestamp]      = column[Timestamp]("updated_at", O.SqlType("timestamptz default now()"))
@@ -33,6 +35,8 @@ trait AuthUserTable {
         username ::
         email ::
         password ::
+        nickname ::
+        avatar ::
         isDelete ::
         createdAt.mapToInstant ::
         updatedAt.mapToInstant ::

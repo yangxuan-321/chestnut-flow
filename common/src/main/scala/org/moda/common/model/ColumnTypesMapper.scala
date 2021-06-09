@@ -4,7 +4,7 @@ import java.sql.Timestamp
 import java.time.Instant
 
 import org.moda.common.database.DatabaseComponent
-import org.moda.idl.Bool
+import org.moda.idl.{Bool, RoleType}
 import slick.ast.BaseTypedType
 import slick.lifted.MappedProjection
 
@@ -61,4 +61,5 @@ trait ColumnTypesMapper {
 
   implicit val BoolColumnType: BaseTypedType[Bool] = MappedColumnType.base(_.value, Bool.fromValue)
 
+  implicit val RoleTypeColumnType: BaseTypedType[RoleType] = MappedColumnType.base(_.value, RoleType.fromValue)
 }

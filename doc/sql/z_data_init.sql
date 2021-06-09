@@ -1,0 +1,2 @@
+insert into auth_user(username, email, password, nickname, avatar) values('admin', 'admin', 'c8796a35dddfc4ae790c80eb3e835be3', '管理员', '');
+insert into user_role(user_id, user_role) values((select id from auth_user where username = 'admin' limit 1), 0);

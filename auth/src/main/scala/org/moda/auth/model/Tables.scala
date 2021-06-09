@@ -1,8 +1,8 @@
 package org.moda.auth.model
 
+import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
 import org.moda.common.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.core.model.tables.AuthUserTable
 
 object Tables {
 
@@ -15,3 +15,4 @@ class Tables(val dc: DatabaseComponent)
     with ColumnTypesMapper
     with PgColumnMapping
     with AuthUserTable
+    with UserRoleTable

@@ -8,7 +8,8 @@ import org.moda.auth.jwt.JWTAuth
 import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.util.MessageDigest
-import org.moda.idl.{AuthUser, LoginForm, RegisterUserInfo, SimpleAuthUser}
+import org.moda.common.util.trans.UserTrans
+import org.moda.idl.{AuthUser, LoginForm, RegisterUserInfo, SimpleAuthUser, UserInfo}
 
 import scala.concurrent.Future
 
@@ -57,6 +58,21 @@ trait UserService {
         case _                                    =>  Future { Left("未知错误") }
       }
     } yield b
+  }
+
+  def userInfo(uid: Long): Future[Option[UserInfo]] = {
+    userDAO.queryUserInfoById(uid) map {
+      case Some((u, r)) =>
+        Some(UserInfo(
+            id = u.id,
+            username = u.username,
+            email = u.email,
+            nickname = u.nickname,
+            avatar = u.avatar,
+            roles = Seq(UserTrans.roleType2Str(r.userRole))
+        ))
+      case _       => Option.empty[UserInfo]
+    }
   }
 
   def validatePassword(raw: String, hash: String): Boolean = {

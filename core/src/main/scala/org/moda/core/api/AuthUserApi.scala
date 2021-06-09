@@ -10,6 +10,7 @@ import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.auth.service.UserService
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
+import org.moda.common.json.PbJsonExtendSupport._
 import org.moda.idl._
 
 import scala.concurrent.Future
@@ -69,6 +70,22 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val userInfoR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "user" / "info") {
+      get {
+        val q = userService.userInfo(u.id)
+        onComplete(q) {
+          case Success(Some(value))  =>
+            complete(Pretty(value))
+          case Success(_) =>
+            complete(ApiError.userNotExistsError)
+          case Failure(exception)      =>
+            // exception.printStackTrace()
+            complete(ApiError.internalServerError)
+        }
+      }
+    }
+
   val createR: SimpleAuthUser => Route = SimpleAuthUser =>
     path("v1" / "user") {
      post {
@@ -104,8 +121,10 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
 
         val r = res.getOrElse(LoginResult())
         onComplete(r) {
-          case Success(v) =>
+          case Success(v) if v.user.id > 0 =>
             complete(Pretty(v))
+          case Success(_) =>
+            complete(ApiError.userNotFoundOrPasswordError)
           case _ =>
             complete(ApiError.internalServerError)
         }
@@ -134,7 +153,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   }
 
   override val authedR: Option[SimpleAuthUser => Route] = Some {
-      u => queryR(u) ~ queryByIdR(u) ~ createR(u)
+      u => queryR(u) ~ queryByIdR(u) ~ createR(u) ~ userInfoR(u)
     }
 
   override def publicR: Option[Route] = Some{

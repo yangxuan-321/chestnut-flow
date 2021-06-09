@@ -35,13 +35,14 @@ package object api {
 
     override def fromName(name: String): Option[ApiStatus] = nMap.get(name)
 
-    final case object UnKnownError        extends ApiStatus(-1, "UnknownError")
-    final case object Ok                  extends ApiStatus(0, "Ok")
-    final case object ParameterError      extends ApiStatus(1, "ParameterError")
-    final case object Forbidden           extends ApiStatus(403, "Forbidden")
-    final case object TokenInvalid        extends ApiStatus(7, "TokenInvalid")
-    final case object TokenExpired        extends ApiStatus(9, "TokenExpired")
-    final case object UserNotExistsError  extends ApiStatus(10, "UserNotExistsError")
+    final case object UnKnownError                extends ApiStatus(-1, "UnknownError")
+    final case object Ok                          extends ApiStatus(0, "Ok")
+    final case object ParameterError              extends ApiStatus(1, "ParameterError")
+    final case object Forbidden                   extends ApiStatus(403, "Forbidden")
+    final case object TokenInvalid                extends ApiStatus(7, "TokenInvalid")
+    final case object TokenExpired                extends ApiStatus(9, "TokenExpired")
+    final case object UserNotExistsError          extends ApiStatus(10, "UserNotExistsError")
+    final case object UserNotFoundOrPasswordError extends ApiStatus(11, "UserNotFoundOrPasswordError")
 
     final case object InternalServerError extends ApiStatus(500, "服务器错误")
 
@@ -82,6 +83,11 @@ package object api {
     def internalServerError: ApiError = ApiError(status = ApiStatus.InternalServerError, message = "服务器内部错误")
 
     def forbiddenError: ApiError = ApiError(status = ApiStatus.Forbidden, message = "没有权限")
+
+    def userNotFoundOrPasswordError: ApiError =
+      ApiError(status = ApiStatus.UserNotFoundOrPasswordError, message = "用户不存在或者密码错误")
+
+    def userNotExistsError: ApiError = ApiError(status = ApiStatus.UserNotExistsError, message = "用户信息不存在")
   }
 
   implicit def apiStatusEncoder[A <: ApiStatus]: Encoder[A] =

@@ -16,3 +16,12 @@ message SimpleAuthUser {
     string                  username                    = 20;   // 用户名
     string                  email                       = 30;   // 邮箱
 }
+
+message UserInfo {
+    int64                   id                          = 10;   // ID
+    string                  username                    = 20;   // 用户名
+    string                  email                       = 30;   // 邮箱
+    string                  nickname                    = 35;   // 昵称
+    string                  avatar                      = 36;   // 头像
+    repeated string         roles                       = 40;   // 角色
+}

@@ -6,6 +6,7 @@ import io.circe.generic.auto._
 import org.moda.auth.api.{Api, ApiError, Pretty}
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.json.FailFastCirceSupport._
+import org.moda.common.json.PbJsonExtendSupport._
 import org.moda.core.service.BackFlowService
 import org.moda.idl.SimpleAuthUser
 
