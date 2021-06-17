@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+option optimize_for = SPEED;
+
+package org.moda.idl;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "enums.proto";
+import "pojo/simple_point.proto";
+
+
+message FlowManagerSaveReq {
+    FlowManagerMetaData                 meta_data                   = 10;   // 流程元数据
+    FlowManagerFlowData                 flow_data                   = 20;   // 流程数据
+}
+
+message FlowManagerMetaData {
+    string                              flow_name                   = 10;   // 流程名称
+    string                              flow_version                = 20;   // 流程版本
+}
+
+message FlowManagerFlowData {
+    repeated FlowManagerFlowDataNode    nodes                       = 10;   // 流程图中的组件列表
+    repeated FlowManagerFlowDataEdge    edges                       = 20;   // 流程图中的连线列表
+}
+
+// 流程中组件的连线
+message FlowManagerFlowDataEdge {
+    string                              id                          = 10;   // 连线uuid
+    string                              type                        = 20;   // 连线类型
+    string                              source_node_id              = 30;   // 源组件id
+    string                              target_node_id              = 40;   // 目标组件id
+    SimplePoint                         start_point                 = 50;   // 开始的坐标
+    SimplePoint                         end_point                   = 60;   // 结束的坐标
+    repeated SimplePoint                points_list                 = 70;   // 坐标列表
+    FlowManagerFlowDataEleProp          properties                  = 80;   // 节点属性
+}
+
+// 流程中的组件
+message FlowManagerFlowDataNode {
+    string                              id                          = 10;   // 节点组件uuid
+    string                              type                        = 20;   // 节点组件类型
+    int32                               x                           = 30;   // 节点中心位置 X
+    int32                               y                           = 40;   // 节点中心位置 Y
+    FlowManagerFlowDataEleProp          properties                  = 50;   // 节点属性
+    FlowManagerFlowDataNodeText         text                        = 60;   // 节点文本信息
+}
+
+// 节点详细属性
+message FlowManagerFlowDataEleProp {
+    google.protobuf.StringValue         desc                        = 10;   // 节点描述
+    FlowManagerFlowDataNodePropScript   script                      = 20;   // 脚本
+}
+
+// 节点详细属性 - 脚本信息
+message FlowManagerFlowDataNodePropScript {
+    int32                               type                        = 10;   // 脚本类型
+    string                              content                     = 20;   // 脚本内容
+}
+
+// 节点文本信息
+message FlowManagerFlowDataNodeText {
+    int32                               x                           = 10;   // X
+    int32                               y                           = 20;   // Y
+    string                              value                       = 30;   // 值
+}

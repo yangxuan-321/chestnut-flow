@@ -56,3 +56,11 @@ enum RoleType {
     READ_WRITE                              = 1; // 可读可写
     READ                                    = 2; // 可读
 }
+
+enum BackFlowNodeType {
+    BACK_FLOW_NODE_TYPE_UNKNOWN             = 0; // 普通节点
+    BACK_FLOW_NODE_TYPE_START               = 1; // 开始节点
+    BACK_FLOW_NODE_TYPE_RECT                = 2; // 开始节点
+    BACK_FLOW_NODE_TYPE_SWITCH              = 3; // 判断节点
+    BACK_FLOW_NODE_TYPE_END                 = 4; // 结束节点
+}
