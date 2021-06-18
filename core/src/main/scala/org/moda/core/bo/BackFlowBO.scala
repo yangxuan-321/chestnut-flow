@@ -2,8 +2,11 @@ package org.moda.core.bo
 
 import com.typesafe.scalalogging.Logger
 import org.moda.common.database.DatabaseComponent
+import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowJsonDAO}
 import org.moda.idl.BackFlowNodeType._
-import org.moda.idl.{BackFlowNodeType, FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.idl.{BackFlowNodeType, Bool, ChestnutTemplate, ChestnutWorkFlowJson, FlowManagerSaveReq, SimpleAuthUser}
+import io.circe.generic.auto._
+import io.circe.syntax._
 
 import scala.concurrent.Future
 
@@ -16,6 +19,9 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
   import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
+
+  val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
+  val workFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
 
   def verifyFlowData(req: FlowManagerSaveReq): Boolean = {
     // 1. 做完整性校验 -- 必须有开始节点和结束节点
@@ -61,17 +67,30 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
    * @param u
    * @return
    */
-  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Option[Int]] = {
-
+  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Long] = {
+    templateDAO.insertTemplate(assembleTemplate(req, u))
   }
+
+  def assembleTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): ChestnutTemplate =
+    ChestnutTemplate(
+      name = req.metaData.fold("")(_.flowName),
+      isDeleted = Bool.False,
+      createUser = u.id
+    )
 
   /**
    * 保存json的格式数据
    * @param req
    */
-  def saveFlowJson(req: FlowManagerSaveReq): Future[Int] = {
-    Future {0}
+  def saveFlowJson(req: FlowManagerSaveReq, templateId: Long): Future[Boolean] = {
+    workFlowJsonDAO.insertWorkFlowJsonTable(assembleFlowJson(req, templateId))
   }
+
+  def assembleFlowJson(req: FlowManagerSaveReq, templateId: Long): ChestnutWorkFlowJson = ChestnutWorkFlowJson(
+    templateId = templateId,
+    flowVersion = req.metaData.fold("")(_.flowVersion),
+    flowData = req.flowData.fold("{}")(_.asJson.toString)
+  )
 
   def saveFlowData(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Boolean] = {
     Future {true}

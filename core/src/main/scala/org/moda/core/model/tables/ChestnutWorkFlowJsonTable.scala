@@ -1,10 +1,8 @@
 package org.moda.core.model.tables
 
-import java.sql.Timestamp
-
 import org.moda.common.database.PgColumnMapping
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.idl.{AuthUser, Bool}
+import org.moda.idl.ChestnutWorkFlowJson
 import slick.collection.heterogeneous.HNil
 /**
  * @author moda-matser
@@ -15,31 +13,19 @@ trait ChestnutWorkFlowJsonTable {
   this: ColumnTypesMapper with PgColumnMapping =>
   import org.moda.common.database.DatabaseComponent.profile.api._
 
-  val authUserPOs: TableQuery[AuthUserPOs] =
-    TableQuery[AuthUserPOs]((tag: Tag) => new AuthUserPOs(tag, "auth_user"))
+  val authUserPOs: TableQuery[ChestnutWorkFlowJsonPOs] =
+    TableQuery[ChestnutWorkFlowJsonPOs]((tag: Tag) => new ChestnutWorkFlowJsonPOs(tag, "chestnut_flow_workflow_json"))
 
-  class AuthUserPOs(tag: Tag, tableName: String) extends Table[AuthUser](tag, tableName) {
-    def id                             = column[Long]("id", O.PrimaryKey, O.AutoInc)
-    def username: Rep[String]          = column[String]("username", O.SqlType("TEXT"), O.Default(""))
-    def email: Rep[String]             = column[String]("email", O.SqlType("TEXT"), O.Default(""))
-    def password: Rep[String]          = column[String]("password", O.SqlType("TEXT"), O.Default(""))
-    def nickname: Rep[String]          = column[String]("nickname", O.SqlType("TEXT"), O.Default(""))
-    def avatar: Rep[String]            = column[String]("avatar", O.SqlType("TEXT"), O.Default(""))
-    def isDelete:   Rep[Bool]          = column[Bool]("is_delete", O.SqlType("SMALLINT"), O.Default(Bool.False))
-    def createdAt: Rep[Timestamp]      = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
-    def updatedAt: Rep[Timestamp]      = column[Timestamp]("updated_at", O.SqlType("timestamptz default now()"))
+  class ChestnutWorkFlowJsonPOs(tag: Tag, tableName: String) extends Table[ChestnutWorkFlowJson](tag, tableName) {
+    def templateId: Rep[Long]         = column[Long]("template_id", O.SqlType("BIGINT"), O.Default(0L))
+    def flowVersion: Rep[String]        = column[String]("flow_version", O.SqlType("TEXT"), O.Default(""))
+    def flowData: Rep[String]           = column[String]("flow_data", O.SqlType("TEXT"), O.Default(""))
 
     def * = (
-        id ::
-        username ::
-        email ::
-        password ::
-        nickname ::
-        avatar ::
-        isDelete ::
-        createdAt.mapToInstant ::
-        updatedAt.mapToInstant ::
-        HNil
-      ).mapTo[AuthUser]
+      templateId ::
+      flowVersion ::
+      flowData ::
+      HNil
+    ).mapTo[ChestnutWorkFlowJson]
   }
 }

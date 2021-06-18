@@ -94,7 +94,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
           username = u.username,
           email = u.email,
           password = u.password,
-          isDelete = Bool.False
+          isDeleted = Bool.False
         ))
         onComplete(r) {
           case Success(v) if v =>

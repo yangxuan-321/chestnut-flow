@@ -28,12 +28,12 @@ class BackFlowService(implicit dc: DatabaseComponent) {
     // 2.保存数据
     if (verify) {
       val res = for {
-        a <- OptionT(backFlowBO.saveTemplate(req, u))
-        b <- OptionT.liftF(backFlowBO.saveFlowJson(req))
-        c <- OptionT.liftF(backFlowBO.saveFlowData(req, u))
-      } yield a > 0 && b > 0 && c
+        a <- backFlowBO.saveTemplate(req, u)
+        b <- if (a > 0) backFlowBO.saveFlowJson(req, a) else Future{false}
+        c <- if (b) backFlowBO.saveFlowData(req, u) else Future{false}
+      } yield a > 0 && b && c
 
-      res.getOrElse(false).map(if (_) Right(true) else Left("保存出错"))
+      res.map(if (_) Right(true) else Left("保存出错"))
     } else Future {Left("流程数据格式不正确")}
 
   }

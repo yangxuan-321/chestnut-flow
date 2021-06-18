@@ -11,7 +11,7 @@ import "google/protobuf/wrappers.proto";
 import "enums.proto";
 
 // 流程实例参数表
-message ChestnutNodeInstanceParam {
+message ChestnutWorkFlowInstanceParam {
     int64                   id                          = 10;   // ID
     int64                   flow_instance_id            = 20;   // 流程实例id
     string                  param_value                 = 50;   // 参数值

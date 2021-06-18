@@ -15,5 +15,5 @@ import "pojo/flow_manager.proto";
 message ChestnutWorkFlowJson {
     int64                   template_id                     = 10;   // template_id
     string                  flow_version                    = 20;   // 流程版本
-    FlowManagerFlowData     flow_data                       = 30;   // 对应到前端的流程json格式
+    string                  flow_data                       = 30;   // 对应到前端的流程json格式
 }

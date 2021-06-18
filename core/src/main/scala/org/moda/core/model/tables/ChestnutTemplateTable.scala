@@ -4,7 +4,7 @@ import java.sql.Timestamp
 
 import org.moda.common.database.PgColumnMapping
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.idl.{AuthUser, Bool}
+import org.moda.idl.{AuthUser, Bool, ChestnutTemplate}
 import slick.collection.heterogeneous.HNil
 /**
  * @author moda-matser
@@ -18,26 +18,24 @@ trait ChestnutTemplateTable {
   val authUserPOs: TableQuery[ChestnutTemplatePOs] =
     TableQuery[ChestnutTemplatePOs]((tag: Tag) => new ChestnutTemplatePOs(tag, "chestnut_flow_template"))
 
-  class ChestnutTemplatePOs(tag: Tag, tableName: String) extends Table[AuthUser](tag, tableName) {
+  class ChestnutTemplatePOs(tag: Tag, tableName: String) extends Table[ChestnutTemplate](tag, tableName) {
     def id                              = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def name: Rep[String]               = column[String]("name", O.SqlType("TEXT"), O.Default(""))
-    def isDeleted: Rep[Bool]            = column[String]("is_deleted", O.SqlType("TEXT"), O.Default(""))
-    def createdAt: Rep[Timestamp]       = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
-    def updatedAt: Rep[Timestamp]       = column[Timestamp]("updated_at", O.SqlType("timestamptz default now()"))
+    def isDeleted: Rep[Bool]            = column[Bool]("is_deleted", O.SqlType("SMALLINT"), O.Default(Bool.False))
+    def createUser: Rep[Long]           = column[Long]("create_user", O.SqlType("BIGINT"), O.Default(0L))
+    def updateUser: Rep[Long]           = column[Long]("update_user", O.SqlType("BIGINT"), O.Default(0L))
     def createdAt: Rep[Timestamp]       = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
     def updatedAt: Rep[Timestamp]       = column[Timestamp]("updated_at", O.SqlType("timestamptz default now()"))
 
     def * = (
         id ::
-        username ::
-        email ::
-        password ::
-        nickname ::
-        avatar ::
-        isDelete ::
+        name ::
+        isDeleted ::
+        createUser ::
+        updateUser ::
         createdAt.mapToInstant ::
         updatedAt.mapToInstant ::
         HNil
-      ).mapTo[AuthUser]
+      ).mapTo[ChestnutTemplate]
   }
 }
