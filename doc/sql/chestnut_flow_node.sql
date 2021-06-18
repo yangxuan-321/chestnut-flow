@@ -8,7 +8,7 @@ CREATE TABLE chestnut_flow_node(
     description text DEFAULT '' NOT NULL,
     flow_id bigint DEFAULT 0 NOT NULL,
     is_deleted smallint DEFAULT 0 NOT NULL,
-    created_user bigint DEFAULT 0 NOT NULL,
+    create_user bigint DEFAULT 0 NOT NULL,
     update_user bigint DEFAULT 0 NOT NULL,
     created_at timestamp DEFAULT now() NOT NULL,
     updated_at timestamp DEFAULT now() NOT NULL,
@@ -27,7 +27,7 @@ COMMENT ON COLUMN chestnut_flow_node.node_version IS '节点版本';
 COMMENT ON COLUMN chestnut_flow_node.description IS '节点备注描述';
 COMMENT ON COLUMN chestnut_flow_node.flow_id IS '对应的流程id';
 COMMENT ON COLUMN chestnut_flow_node.is_deleted IS '是否被删除 枚举 - 0 正常 1- 删除';
-COMMENT ON COLUMN chestnut_flow_node.created_user IS '创建者';
+COMMENT ON COLUMN chestnut_flow_node.create_user IS '创建者';
 COMMENT ON COLUMN chestnut_flow_node.update_user IS '更新者';
 COMMENT ON COLUMN chestnut_flow_node.created_at IS '创建时间';
 COMMENT ON COLUMN chestnut_flow_node.updated_at IS '更新时间';

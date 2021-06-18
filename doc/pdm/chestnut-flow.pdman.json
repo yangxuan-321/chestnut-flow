@@ -5,277 +5,6 @@
       "chnname": "",
       "entities": [
         {
-          "title": "chestnut_flow_parent_enum",
-          "fields": [
-            {
-              "name": "id",
-              "type": "bigserial",
-              "remark": "ID-主键",
-              "chnname": "ID",
-              "pk": true,
-              "notNull": true,
-              "autoIncrement": true
-            },
-            {
-              "name": "enum_key",
-              "type": "text",
-              "remark": "键",
-              "chnname": "键",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "enum_key_desc",
-              "type": "text",
-              "remark": "键描述",
-              "chnname": "键描述",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "is_deleted",
-              "type": "smallint",
-              "remark": "是否被删除 枚举 - 0 正常 1- 删除",
-              "chnname": "枚举状态",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_user",
-              "type": "bigint",
-              "remark": "创建者",
-              "chnname": "创建者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "update_user",
-              "type": "bigint",
-              "remark": "更新者",
-              "chnname": "更新者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_at",
-              "type": "timestamp",
-              "remark": "创建时间",
-              "chnname": "创建时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            },
-            {
-              "name": "updated_at",
-              "type": "timestamp",
-              "remark": "更新时间",
-              "chnname": "更新时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            }
-          ],
-          "indexs": [
-            {
-              "name": "idx_chestnut_flow_parent_enum_enum_key",
-              "isUnique": true,
-              "fields": [
-                "enum_key"
-              ]
-            }
-          ],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "父枚举表",
-          "remark": "父枚举表"
-        },
-        {
-          "title": "chestnut_flow_enum",
-          "fields": [
-            {
-              "name": "id",
-              "type": "bigserial",
-              "remark": "ID-主键",
-              "chnname": "ID",
-              "pk": true,
-              "notNull": true,
-              "autoIncrement": true
-            },
-            {
-              "name": "enum_key",
-              "type": "text",
-              "remark": "键",
-              "chnname": "键",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "enum_key_desc",
-              "type": "text",
-              "remark": "键描述",
-              "chnname": "键描述",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "value",
-              "type": "integer",
-              "remark": "值",
-              "chnname": "值",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "parent_enum_id",
-              "type": "bigint",
-              "remark": "父枚举id",
-              "chnname": "父枚举id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "is_deleted",
-              "type": "smallint",
-              "remark": "是否被删除 枚举 - 0 正常 1- 删除",
-              "chnname": "枚举状态",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_user",
-              "type": "bigint",
-              "remark": "创建者",
-              "chnname": "创建者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "update_user",
-              "type": "bigint",
-              "remark": "更新者",
-              "chnname": "更新者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_at",
-              "type": "timestamp",
-              "remark": "创建时间",
-              "chnname": "创建时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            },
-            {
-              "name": "updated_at",
-              "type": "timestamp",
-              "remark": "更新时间",
-              "chnname": "更新时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            }
-          ],
-          "indexs": [
-            {
-              "name": "idx_chestnut_flow_enum",
-              "isUnique": true,
-              "fields": [
-                "parent_enum_id",
-                "enum_key"
-              ]
-            }
-          ],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "枚举表",
-          "remark": "枚举表"
-        },
-        {
           "title": "chestnut_flow_template",
           "fields": [
             {
@@ -304,7 +33,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "",
               "chnname": "创建者",
@@ -336,7 +65,16 @@
               "defaultValue": "now()"
             }
           ],
-          "indexs": [],
+          "indexs": [
+            {
+              "name": "idx_chestnut_flow_template",
+              "isUnique": true,
+              "fields": [
+                "name",
+                "is_deleted"
+              ]
+            }
+          ],
           "headers": [
             {
               "fieldName": "chnname",
@@ -414,9 +152,17 @@
             },
             {
               "name": "flow_version",
-              "type": "integer",
+              "type": "text",
               "remark": "流程版本",
               "chnname": "流程版本",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "version",
+              "type": "integer",
+              "remark": "流程版本-小版本",
+              "chnname": "小版本",
               "notNull": true,
               "defaultValue": "0"
             },
@@ -437,7 +183,7 @@
               "defaultValue": "''"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -475,7 +221,8 @@
               "isUnique": true,
               "fields": [
                 "template_id",
-                "flow_version"
+                "flow_version",
+                "version"
               ]
             }
           ],
@@ -555,7 +302,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -672,7 +419,7 @@
               "defaultValue": "''"
             },
             {
-              "name": "is_delete",
+              "name": "is_deleted",
               "type": "smallint",
               "remark": "是否删除 枚举 - 0 正常 1- 删除",
               "chnname": "是否删除",
@@ -839,7 +586,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -973,7 +720,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -1075,7 +822,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "node_id",
+              "name": "source_node_id",
               "type": "bigint",
               "remark": "开始节点(流程开始为-1 代表 开始)",
               "chnname": "开始节点",
@@ -1083,7 +830,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "next_node_id",
+              "name": "target_node_id",
               "type": "bigint",
               "remark": "结束节点(流程结束为-1 代表 结束)",
               "chnname": "结束节点",
@@ -1114,7 +861,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -1152,7 +899,8 @@
               "isUnique": true,
               "fields": [
                 "flow_id",
-                "node_id"
+                "source_node_id",
+                "target_node_id"
               ]
             }
           ],
@@ -1240,7 +988,7 @@
               "defaultValue": "0"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -1322,140 +1070,6 @@
           "chnname": "流程路由实例表"
         },
         {
-          "title": "chestnut_flow_param",
-          "fields": [
-            {
-              "name": "id",
-              "type": "bigserial",
-              "remark": "ID",
-              "chnname": "ID",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "flow_id",
-              "type": "bigint",
-              "remark": "流程id",
-              "chnname": "流程id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "param_name",
-              "type": "text",
-              "remark": "参数名称",
-              "chnname": "参数名称",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "param_type",
-              "type": "smallint",
-              "remark": "参数类型",
-              "chnname": "参数类型",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "param_init_value",
-              "type": "text",
-              "remark": "参数初始值",
-              "chnname": "参数初始值",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "param_desc",
-              "type": "text",
-              "remark": "参数备注",
-              "chnname": "参数备注",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "created_user",
-              "type": "bigint",
-              "remark": "创建者",
-              "chnname": "创建者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "update_user",
-              "type": "bigint",
-              "remark": "更新者",
-              "chnname": "更新者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_at",
-              "type": "timestamp",
-              "remark": "创建时间",
-              "chnname": "创建时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            },
-            {
-              "name": "updated_at",
-              "type": "timestamp",
-              "remark": "更新时间",
-              "chnname": "更新时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程参数表",
-          "remark": "流程参数表"
-        },
-        {
           "title": "chestnut_flow_node_instance_param",
           "fields": [
             {
@@ -1483,14 +1097,6 @@
               "defaultValue": "0"
             },
             {
-              "name": "param_id",
-              "type": "bigint",
-              "remark": "参数id",
-              "chnname": "参数id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
               "name": "param_value",
               "type": "text",
               "remark": "参数值",
@@ -1499,7 +1105,7 @@
               "defaultValue": "''"
             },
             {
-              "name": "created_user",
+              "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
               "chnname": "创建者",
@@ -1580,6 +1186,196 @@
           ],
           "chnname": "流程节点实例参数表",
           "remark": "流程节点实例参数表"
+        },
+        {
+          "title": "user_role",
+          "fields": [
+            {
+              "name": "user_id",
+              "type": "bigint",
+              "remark": "用户id",
+              "chnname": "ID",
+              "pk": true,
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "user_role",
+              "type": "smallint",
+              "remark": "用户角色",
+              "chnname": "用户名",
+              "notNull": true,
+              "defaultValue": "0",
+              "pk": true
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户角色表",
+          "remark": "用户表"
+        },
+        {
+          "title": "chestnut_flow_workflow_instance_param",
+          "fields": [
+            {
+              "name": "id",
+              "type": "bigserial",
+              "remark": "ID",
+              "chnname": "ID",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "flow_instance_id",
+              "type": "bigint",
+              "remark": "流程实例id",
+              "chnname": "流程实例id",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "param_value",
+              "type": "text",
+              "remark": "参数值",
+              "chnname": "参数值",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
+              "name": "create_user",
+              "type": "bigint",
+              "remark": "创建者",
+              "chnname": "创建者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "update_user",
+              "type": "bigint",
+              "remark": "更新者",
+              "chnname": "更新者",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "created_at",
+              "type": "timestamp",
+              "remark": "创建时间",
+              "chnname": "创建时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            },
+            {
+              "name": "updated_at",
+              "type": "timestamp",
+              "remark": "更新时间",
+              "chnname": "更新时间",
+              "notNull": true,
+              "defaultValue": "now()"
+            }
+          ],
+          "indexs": [
+            {
+              "name": "idx_chestnut_flow_workflow_instance_param",
+              "isUnique": true,
+              "fields": [
+                "flow_instance_id"
+              ]
+            }
+          ],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "流程节点实例参数表",
+          "remark": "流程实例参数表"
         }
       ],
       "graphCanvas": {
@@ -1685,35 +1481,16 @@
           {
             "shape": "erdRelation",
             "relation": "0,n:1",
-            "source": "c75f52dd",
-            "target": "a9d2a4f9",
-            "id": "b35b5e8c",
-            "controlPoints": [
-              {
-                "x": 569.8709106445312,
-                "y": 352.5108695652174
-              },
-              {
-                "x": 230.12908935546875,
-                "y": 372.1973684210526
-              }
-            ],
-            "sourceAnchor": 8,
-            "targetAnchor": 1
-          },
-          {
-            "shape": "erdRelation",
-            "relation": "0,n:1",
             "source": "ec43c2d4",
             "target": "525cf1cf",
             "id": "abdc9ed8",
             "controlPoints": [
               {
-                "x": 953.4573059082031,
-                "y": 1302.336956521739
+                "x": 951.7961730957031,
+                "y": 1292.31
               },
               {
-                "x": 1158.5427856445312,
+                "x": 1160.2039184570312,
                 "y": 1202.2205882352941
               }
             ],
@@ -1728,12 +1505,12 @@
             "id": "e603fc82",
             "controlPoints": [
               {
-                "x": 251.4574432373047,
+                "x": 249.7963104248047,
                 "y": 1122.3382352941176
               },
               {
-                "x": 666.5426940917969,
-                "y": 1262.1630434782608
+                "x": 668.2038269042969,
+                "y": 1252.15
               }
             ],
             "sourceAnchor": 3,
@@ -1751,8 +1528,8 @@
                 "y": 1532.5431034482758
               },
               {
-                "x": 666.5426940917969,
-                "y": 1262.1630434782608
+                "x": 668.2038269042969,
+                "y": 1252.15
               }
             ],
             "sourceAnchor": 13,
@@ -1770,7 +1547,7 @@
                 "y": 1342.2738095238096
               },
               {
-                "x": -71.45744323730469,
+                "x": -69.79631042480469,
                 "y": 1102.2205882352941
               }
             ],
@@ -1808,46 +1585,16 @@
                 "y": 732.3026315789474
               },
               {
-                "x": -285.5319519042969,
+                "x": -278.8639831542969,
                 "y": 682.15
               }
             ],
             "sourceAnchor": 2,
             "targetAnchor": 1
-          },
-          {
-            "shape": "erdRelation",
-            "relation": "0,n:1",
-            "source": "b6b08053",
-            "target": "459addb2",
-            "id": "2abf669f",
-            "controlPoints": [
-              {
-                "x": 182.2642364501953,
-                "y": 1982.4642857142858
-              },
-              {
-                "x": 8.130111694335938,
-                "y": 1912.1630434782608
-              }
-            ],
-            "sourceAnchor": 6,
-            "targetAnchor": 1
           }
         ]
       },
       "associations": [
-        {
-          "relation": "0,n:1",
-          "from": {
-            "entity": "chestnut_flow_enum",
-            "field": "parent_enum_id"
-          },
-          "to": {
-            "entity": "chestnut_flow_parent_enum",
-            "field": "id"
-          }
-        },
         {
           "relation": "0,n:1",
           "from": {
@@ -1911,17 +1658,6 @@
           },
           "to": {
             "entity": "chestnut_flow_node_router",
-            "field": "id"
-          }
-        },
-        {
-          "relation": "0,n:1",
-          "from": {
-            "entity": "chestnut_flow_node_instance_param",
-            "field": "param_id"
-          },
-          "to": {
-            "entity": "chestnut_flow_param",
             "field": "id"
           }
         }

@@ -1,12 +1,11 @@
-package org.moda.auth.dao
+package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.model.Tables
-import org.moda.common.database.DatabaseComponent
 import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
+import org.moda.common.database.DatabaseComponent
 import org.moda.idl.Bool._
-import org.moda.idl.{CreateUserReq, _}
-import reactivemongo.api.commands
+import org.moda.idl._
 
 import scala.concurrent.Future
 
@@ -14,13 +13,13 @@ import scala.concurrent.Future
  * @author moda-matser
  * 2020/9/11 下午2:52
  */
-object AuthUserDAO {
-  def apply()(implicit dcc: DatabaseComponent): AuthUserDAO = new AuthUserDAO {
+object ChestnutWorkFlowJsonDAO {
+  def apply()(implicit dcc: DatabaseComponent): ChestnutWorkFlowJsonDAO = new ChestnutWorkFlowJsonDAO {
     override val dc: DatabaseComponent = dcc
   }
 }
 
-trait AuthUserDAO extends AuthDAO {
+trait ChestnutWorkFlowJsonDAO extends CoreDAO {
   import dc.profile.api._
 
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -32,7 +31,7 @@ trait AuthUserDAO extends AuthDAO {
   def query(): Future[Seq[AuthUser]] = {
     val q = authUserTable
       .authUserPOs
-      .filter(_.isDeleted === (False: Bool))
+      .filter(_.isDelete === (False: Bool))
       .result
     logger.info("sql: {}", q.statements.mkString(","))
     dc.db.run(q)
@@ -41,7 +40,7 @@ trait AuthUserDAO extends AuthDAO {
   def queryById(userId: Long): Future[Option[AuthUser]] = {
     val q = authUserTable
       .authUserPOs
-      .filter(_.isDeleted === (False: Bool))
+      .filter(_.isDelete === (False: Bool))
       .filter(_.id === userId)
       .take(1)
       .result
@@ -57,7 +56,7 @@ trait AuthUserDAO extends AuthDAO {
   def findUserByUsernameOrEmail(uu: String): Future[Option[AuthUser]] = {
     val q = authUserTable
       .authUserPOs
-      .filter(_.isDeleted === (False: Bool))
+      .filter(_.isDelete === (False: Bool))
       .filter {xx => xx.username === uu || xx.email === uu }
       .take(1)
       .result
@@ -69,7 +68,7 @@ trait AuthUserDAO extends AuthDAO {
   def queryUserInfoById(userId: Long): Future[Option[(AuthUser, UserRole)]] = {
     val q = authUserTable.authUserPOs
       .filter(_.id === userId)
-      .filter(_.isDeleted === (False: Bool))
+      .filter(_.isDelete === (False: Bool))
       .join(userRoleTable.userRolePOs)
       .on(_.id === _.userId)
       .take(1)

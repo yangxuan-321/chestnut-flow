@@ -16,10 +16,11 @@ message ChestnutWorkFlow {
     string                  flow_name                   = 20;   // 流程名称
     // string                  flow_uuid                   = 30;   // flow_uuid 就是 一个流程 纵然版本不同 uuid 也是唯一的，用来标识 是同一个模板
     int64                   template_id                 = 30;   // 对应的 模板Id 纵然版本不同 模板Id用来标识 是同一个模板
-    int32                   flow_version                = 40;   // 流程版本
+    string                  flow_version                = 40;   // 流程版本
+    int32                   version                     = 45;   // 同一个流程版本的历史记录(覆盖保存一次，就会+1)
     FlowStatus              status                      = 50;   // 流程状态
     string                  description                 = 60;   // 流程备注描述
-    int64                   created_user                = 70;   // 创建者
+    int64                   create_user                 = 70;   // 创建者
     int64                   update_user                 = 80;   // 更新者
     int64                   created_at                  = 90 [(scalapb.field).type = "java.time.Instant"];   // 创建时间
     int64                   updated_at                  = 100[(scalapb.field).type = "java.time.Instant"];   // 更新时间

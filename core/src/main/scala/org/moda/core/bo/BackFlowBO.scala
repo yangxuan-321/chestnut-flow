@@ -5,16 +5,17 @@ import org.moda.common.database.DatabaseComponent
 import org.moda.idl.BackFlowNodeType._
 import org.moda.idl.{BackFlowNodeType, FlowManagerSaveReq, SimpleAuthUser}
 
+import scala.concurrent.Future
+
 object BackFlowBO {
   def apply()(implicit dc: DatabaseComponent): BackFlowBO = new BackFlowBO()
 }
 
 class BackFlowBO(implicit dc: DatabaseComponent) {
-  val logger: Logger = Logger(getClass)
 
-//  def saveFlow(req: FlowManagerSaveReq, u: SimpleAuthUser) = {
-//
-//  }
+  import scala.concurrent.ExecutionContext.Implicits.global
+
+  val logger: Logger = Logger(getClass)
 
   def verifyFlowData(req: FlowManagerSaveReq): Boolean = {
     // 1. 做完整性校验 -- 必须有开始节点和结束节点
@@ -39,7 +40,7 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
       start.fold(false) { s => !xx.edges.exists(_.targetNodeId == s.id) } &&
       !ends.exists(e => xx.edges.exists(_.sourceNodeId == e.id))
     }
-
+    // logger.info("x {},y {}, z {}", startEndCompleted, edgeCompleted, startEndLineComplete)
     startEndCompleted && edgeCompleted && startEndLineComplete
   }
 
@@ -52,5 +53,27 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
     )
 
     ms.getOrElse(str, BACK_FLOW_NODE_TYPE_UNKNOWN)
+  }
+
+  /**
+   * 保存模板
+   * @param req
+   * @param u
+   * @return
+   */
+  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Option[Int]] = {
+
+  }
+
+  /**
+   * 保存json的格式数据
+   * @param req
+   */
+  def saveFlowJson(req: FlowManagerSaveReq): Future[Int] = {
+    Future {0}
+  }
+
+  def saveFlowData(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Boolean] = {
+    Future {true}
   }
 }

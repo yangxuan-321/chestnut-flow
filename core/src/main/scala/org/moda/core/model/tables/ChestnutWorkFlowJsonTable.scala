@@ -10,7 +10,7 @@ import slick.collection.heterogeneous.HNil
  * @author moda-matser
  * 2020/9/11 下午2:41
  */
-trait TemplateTable {
+trait ChestnutWorkFlowJsonTable {
 
   this: ColumnTypesMapper with PgColumnMapping =>
   import org.moda.common.database.DatabaseComponent.profile.api._
