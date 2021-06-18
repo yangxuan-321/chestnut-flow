@@ -5,8 +5,7 @@ import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
 import org.moda.core.model.tables.ChestnutTemplateTable
 import org.moda.idl._
-
-import scala.concurrent.Future
+import slick.sql.FixedSqlAction
 
 /**
  * @author moda-matser
@@ -24,8 +23,9 @@ trait ChestnutTemplateDAO extends CoreDAO {
   val logger: Logger = Logger(getClass)
   val templateTable: ChestnutTemplateTable = new Tables(dc)
 
-  def insertTemplate(x: ChestnutTemplate): Future[Long] = {
+  def insertTemplate(x: ChestnutTemplate): FixedSqlAction[Long, NoStream, Effect.Write] = {
     val q = (templateTable.templatePOs returning templateTable.templatePOs.map(_.id)) += x
-    dc.db.run(q)
+    // dc.db.run(q.transactionally)
+    q
   }
 }

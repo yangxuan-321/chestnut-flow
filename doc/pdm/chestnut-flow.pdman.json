@@ -1390,8 +1390,8 @@
               "defaultValue": ""
             },
             {
-              "name": "flow_id",
-              "type": "bigint",
+              "name": "flow_version",
+              "type": "text",
               "remark": "对应的流程id",
               "chnname": "对应的流程id",
               "notNull": false,

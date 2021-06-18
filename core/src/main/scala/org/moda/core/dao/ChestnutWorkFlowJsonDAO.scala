@@ -5,6 +5,7 @@ import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
 import org.moda.core.model.tables.ChestnutWorkFlowJsonTable
 import org.moda.idl._
+import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future
 
@@ -26,8 +27,9 @@ trait ChestnutWorkFlowJsonDAO extends CoreDAO {
   val logger: Logger = Logger(getClass)
   val workFlowJsonTable: ChestnutWorkFlowJsonTable = new Tables(dc)
 
-  def insertWorkFlowJsonTable(x: ChestnutWorkFlowJson): Future[Boolean] = {
+  def insertWorkFlowJsonTable(x: ChestnutWorkFlowJson): FixedSqlAction[Int, NoStream, Effect.Write] = {
     val q = workFlowJsonTable.workFlowJsonPOs += x
-    dc.db.run(q).map(_ > 0)
+    // dc.db.run(q).map(_ > 0)
+    q
   }
 }

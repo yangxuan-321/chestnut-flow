@@ -7,6 +7,8 @@ import org.moda.idl.BackFlowNodeType._
 import org.moda.idl.{BackFlowNodeType, Bool, ChestnutTemplate, ChestnutWorkFlowJson, FlowManagerSaveReq, SimpleAuthUser}
 import io.circe.generic.auto._
 import io.circe.syntax._
+import slick.dbio.{DBIOAction, Effect, NoStream}
+import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future
 
@@ -67,7 +69,7 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
    * @param u
    * @return
    */
-  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Long] = {
+  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): FixedSqlAction[Long, NoStream, Effect.Write] = {
     templateDAO.insertTemplate(assembleTemplate(req, u))
   }
 
@@ -82,7 +84,7 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
    * 保存json的格式数据
    * @param req
    */
-  def saveFlowJson(req: FlowManagerSaveReq, templateId: Long): Future[Boolean] = {
+  def saveFlowJson(req: FlowManagerSaveReq, templateId: Long): FixedSqlAction[Int, workFlowJsonDAO.dc.profile.api.NoStream, Effect.Write] = {
     workFlowJsonDAO.insertWorkFlowJsonTable(assembleFlowJson(req, templateId))
   }
 

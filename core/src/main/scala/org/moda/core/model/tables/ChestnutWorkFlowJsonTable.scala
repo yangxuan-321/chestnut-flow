@@ -19,7 +19,7 @@ trait ChestnutWorkFlowJsonTable {
   class ChestnutWorkFlowJsonPOs(tag: Tag, tableName: String) extends Table[ChestnutWorkFlowJson](tag, tableName) {
     def templateId: Rep[Long]         = column[Long]("template_id", O.SqlType("BIGINT"), O.Default(0L))
     def flowVersion: Rep[String]        = column[String]("flow_version", O.SqlType("TEXT"), O.Default(""))
-    def flowData: Rep[String]           = column[String]("flow_data", O.SqlType("TEXT"), O.Default(""))
+    def flowData: Rep[String]           = column[String]("flow_data", O.SqlType("TEXT"), O.Default("{}"))
 
     def * = (
       templateId ::
