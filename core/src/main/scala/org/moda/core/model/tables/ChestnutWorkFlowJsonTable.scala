@@ -13,7 +13,7 @@ trait ChestnutWorkFlowJsonTable {
   this: ColumnTypesMapper with PgColumnMapping =>
   import org.moda.common.database.DatabaseComponent.profile.api._
 
-  val authUserPOs: TableQuery[ChestnutWorkFlowJsonPOs] =
+  val workFlowJsonPOs: TableQuery[ChestnutWorkFlowJsonPOs] =
     TableQuery[ChestnutWorkFlowJsonPOs]((tag: Tag) => new ChestnutWorkFlowJsonPOs(tag, "chestnut_flow_workflow_json"))
 
   class ChestnutWorkFlowJsonPOs(tag: Tag, tableName: String) extends Table[ChestnutWorkFlowJson](tag, tableName) {

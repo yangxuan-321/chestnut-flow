@@ -1,11 +1,9 @@
 package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
-import org.moda.core.model.Tables
-import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.model.tables.{ChestnutTemplateTable, ChestnutWorkFlowJsonTable}
-import org.moda.idl.Bool._
+import org.moda.core.model.Tables
+import org.moda.core.model.tables.ChestnutTemplateTable
 import org.moda.idl._
 
 import scala.concurrent.Future
@@ -23,13 +21,11 @@ object ChestnutTemplateDAO {
 trait ChestnutTemplateDAO extends CoreDAO {
   import dc.profile.api._
 
-  import scala.concurrent.ExecutionContext.Implicits.global
-
   val logger: Logger = Logger(getClass)
   val templateTable: ChestnutTemplateTable = new Tables(dc)
 
   def insertTemplate(x: ChestnutTemplate): Future[Long] = {
-    val q = (templateTable.authUserPOs returning templateTable.authUserPOs.map(_.id)) += x
+    val q = (templateTable.templatePOs returning templateTable.templatePOs.map(_.id)) += x
     dc.db.run(q)
   }
 }

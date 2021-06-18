@@ -1,11 +1,9 @@
 package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
-import org.moda.core.model.Tables
-import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.model.tables.{ChestnutTemplateTable, ChestnutWorkFlowJsonTable}
-import org.moda.idl.Bool._
+import org.moda.core.model.Tables
+import org.moda.core.model.tables.ChestnutWorkFlowJsonTable
 import org.moda.idl._
 
 import scala.concurrent.Future
@@ -29,7 +27,7 @@ trait ChestnutWorkFlowJsonDAO extends CoreDAO {
   val workFlowJsonTable: ChestnutWorkFlowJsonTable = new Tables(dc)
 
   def insertWorkFlowJsonTable(x: ChestnutWorkFlowJson): Future[Boolean] = {
-    val q = workFlowJsonTable.authUserPOs += x
+    val q = workFlowJsonTable.workFlowJsonPOs += x
     dc.db.run(q).map(_ > 0)
   }
 }

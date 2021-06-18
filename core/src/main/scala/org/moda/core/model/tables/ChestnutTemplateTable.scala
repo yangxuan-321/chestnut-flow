@@ -15,7 +15,7 @@ trait ChestnutTemplateTable {
   this: ColumnTypesMapper with PgColumnMapping =>
   import org.moda.common.database.DatabaseComponent.profile.api._
 
-  val authUserPOs: TableQuery[ChestnutTemplatePOs] =
+  val templatePOs: TableQuery[ChestnutTemplatePOs] =
     TableQuery[ChestnutTemplatePOs]((tag: Tag) => new ChestnutTemplatePOs(tag, "chestnut_flow_template"))
 
   class ChestnutTemplatePOs(tag: Tag, tableName: String) extends Table[ChestnutTemplate](tag, tableName) {
