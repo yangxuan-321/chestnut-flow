@@ -1376,6 +1376,85 @@
           ],
           "chnname": "流程节点实例参数表",
           "remark": "流程实例参数表"
+        },
+        {
+          "title": "chestnut_flow_workflow_json",
+          "fields": [
+            {
+              "name": "template_id",
+              "type": "bigint",
+              "remark": "流程模板id",
+              "chnname": "流程模板id",
+              "pk": true,
+              "notNull": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "flow_id",
+              "type": "bigint",
+              "remark": "对应的流程id",
+              "chnname": "对应的流程id",
+              "notNull": false,
+              "defaultValue": "",
+              "pk": true
+            },
+            {
+              "name": "flow_data",
+              "type": "JSONb",
+              "remark": "对应到前端的流程json格式",
+              "chnname": "对应到前端的流程json格式",
+              "notNull": true,
+              "defaultValue": "'{}'"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "流程内容表"
         }
       ],
       "graphCanvas": {
@@ -2170,6 +2249,15 @@
         "apply": {
           "Postgresql": {
             "type": "boolean"
+          }
+        }
+      },
+      {
+        "name": "jsonb",
+        "code": "JSONb",
+        "apply": {
+          "Postgresql": {
+            "type": "JSONb"
           }
         }
       }
