@@ -2,11 +2,10 @@ package org.moda.auth.dao
 
 import com.typesafe.scalalogging.Logger
 import org.moda.auth.model.Tables
-import org.moda.common.database.DatabaseComponent
 import org.moda.auth.model.tables.{AuthUserTable, UserRoleTable}
+import org.moda.common.database.DatabaseComponent
 import org.moda.idl.Bool._
-import org.moda.idl.{CreateUserReq, _}
-import reactivemongo.api.commands
+import org.moda.idl._
 
 import scala.concurrent.Future
 

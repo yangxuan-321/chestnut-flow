@@ -45,9 +45,23 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val validateFlowNameR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "flow" / "manager" / "validateFlowName" / Remaining) { flowName =>
+      get {
+        logger.info("校验流程名称: {}", flowName)
+        val r = backFlowService.validateFlowName(flowName)
+        onComplete(r) {
+          case Success(v) if v =>
+            complete(Pretty(v))
+          case _ =>
+            complete(ApiError.internalServerError.copy(message = Some("名称重复")))
+        }
+      }
+    }
+
   override def publicR: Option[Route] = None
 
   override def authedR: Option[SimpleAuthUser => Route] = Some {
-    u => saveFlowR(u) // ~ xxxR(u)
+    u => saveFlowR(u) ~ validateFlowNameR(u)
   }
 }
