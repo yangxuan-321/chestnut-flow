@@ -1,13 +1,13 @@
 package org.moda.core.bo
 
 import com.typesafe.scalalogging.Logger
+import io.circe.generic.auto._
+import io.circe.syntax._
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowJsonDAO}
 import org.moda.idl.BackFlowNodeType._
 import org.moda.idl.{BackFlowNodeType, Bool, ChestnutTemplate, ChestnutWorkFlowJson, FlowManagerSaveReq, SimpleAuthUser}
-import io.circe.generic.auto._
-import io.circe.syntax._
-import slick.dbio.{DBIOAction, Effect, NoStream}
+import slick.dbio.{Effect, NoStream}
 import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future

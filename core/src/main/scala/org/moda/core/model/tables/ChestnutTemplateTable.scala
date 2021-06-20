@@ -4,7 +4,7 @@ import java.sql.Timestamp
 
 import org.moda.common.database.PgColumnMapping
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.idl.{AuthUser, Bool, ChestnutTemplate}
+import org.moda.idl.{Bool, ChestnutTemplate}
 import slick.collection.heterogeneous.HNil
 /**
  * @author moda-matser
