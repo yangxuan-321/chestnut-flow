@@ -21,3 +21,10 @@ message FlowManagerMetaData {
     string                              flow_name                   = 10;   // 流程名称
     string                              flow_version                = 20;   // 流程版本
 }
+
+message FlowManagerListReq {
+    google.protobuf.StringValue         flow_name                   = 10;   // 流程名称
+    google.protobuf.BoolValue           show_version                = 20;   // 是否显示版本
+    google.protobuf.StringValue         start_date                  = 30;   // 开始时间
+    google.protobuf.StringValue         end_date                    = 40;   // 结束时间
+}

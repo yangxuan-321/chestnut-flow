@@ -59,9 +59,26 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val listFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "flow" / "manager" / "list") {
+      post {
+        entity(as[FlowManagerListReq]){ req =>
+          logger.info("流程列表查询: {}", req.asJson)
+          val r = backFlowService.listFlow(req)
+          val r = Future { req }
+          onComplete(r) {
+            case Success(v) =>
+              complete(Pretty(v))
+            case _ =>
+              complete(ApiError.internalServerError)
+          }
+        }
+      }
+    }
+
   override def publicR: Option[Route] = None
 
   override def authedR: Option[SimpleAuthUser => Route] = Some {
-    u => saveFlowR(u) ~ validateFlowNameR(u)
+    u => saveFlowR(u) ~ validateFlowNameR(u) ~ listFlowR(u)
   }
 }

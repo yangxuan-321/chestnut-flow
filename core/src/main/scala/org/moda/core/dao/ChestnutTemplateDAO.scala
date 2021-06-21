@@ -21,6 +21,7 @@ object ChestnutTemplateDAO {
 }
 
 trait ChestnutTemplateDAO extends CoreDAO {
+
   import dc.profile.api._
 
   val logger: Logger = Logger(getClass)
@@ -37,5 +38,11 @@ trait ChestnutTemplateDAO extends CoreDAO {
       .filter(_.isDeleted === (False: Bool))
       .result
     dc.db.run(q)
+  }
+
+  def listFlowTemplate(req: FlowManagerListReq) = {
+    val q = templateTable.templatePOs
+      .maybeFilter(req.flowName)((r, o) => r.name.like(s"$o"))
+      .maybeFilter(req.startDate)((r, o) => r.createdAt >=o)
   }
 }

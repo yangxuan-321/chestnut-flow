@@ -4,7 +4,7 @@ import com.typesafe.scalalogging.Logger
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
 import org.moda.core.dao.ChestnutTemplateDAO
-import org.moda.idl.{FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.idl.{FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
 
 import scala.concurrent.Future
 
@@ -38,5 +38,9 @@ class BackFlowService(implicit dc: DatabaseComponent) {
 
   def validateFlowName(flowName: String): Future[Boolean] = {
     templateDAO.findTemplateByFlowName(flowName).map(_.isEmpty)
+  }
+
+  def listFlow(req: FlowManagerListReq) = {
+    templateDAO.listFlowTemplate(req)
   }
 }
