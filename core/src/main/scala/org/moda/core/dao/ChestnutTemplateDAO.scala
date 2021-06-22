@@ -1,6 +1,7 @@
 package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
+import com.zz.cdp.common.util.TimeTransUtil
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
 import org.moda.core.model.tables.ChestnutTemplateTable
@@ -40,9 +41,15 @@ trait ChestnutTemplateDAO extends CoreDAO {
     dc.db.run(q)
   }
 
-  def listFlowTemplate(req: FlowManagerListReq) = {
+  def listFlowTemplate(req: FlowManagerListReq): Future[Seq[ChestnutTemplate]] = {
+    val startDate = req.startDate.map(TimeTransUtil.stringDateToLong)
+    val endDate = req.endDate.map(TimeTransUtil.stringDateToLong)
     val q = templateTable.templatePOs
-      .maybeFilter(req.flowName)((r, o) => r.name.like(s"$o"))
-      .maybeFilter(req.startDate)((r, o) => r.createdAt >=o)
+      .maybeFilter(req.flowName)((r, o) => r.name.like(s"%$o%"))
+      .maybeFilter(startDate)((r, o) => r.createdAt >= (o: Long).asTimestamp)
+      .maybeFilter(endDate)((r, o) => r.createdAt <= (o: Long).asTimestamp)
+      .filter(_.isDeleted === (False: Bool))
+      .result
+    dc.db.run(q)
   }
 }

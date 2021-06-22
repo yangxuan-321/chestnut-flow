@@ -1,10 +1,12 @@
 package org.moda.core.service
 
 import com.typesafe.scalalogging.Logger
+import com.zz.cdp.common.util.TimeTransUtil
+import org.moda.auth.dao.AuthUserDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
 import org.moda.core.dao.ChestnutTemplateDAO
-import org.moda.idl.{FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.idl.{ChestnutTemplate, ChestnutTemplateVO, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
 
 import scala.concurrent.Future
 
@@ -18,6 +20,7 @@ class BackFlowService(implicit dc: DatabaseComponent) {
   val logger: Logger = Logger(getClass)
   val backFlowBO: BackFlowBO = BackFlowBO()
   val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
+  val authUserDAO: AuthUserDAO = AuthUserDAO()
 
   def saveFlow(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
     // 1.判断流程数据的合法性
@@ -40,7 +43,24 @@ class BackFlowService(implicit dc: DatabaseComponent) {
     templateDAO.findTemplateByFlowName(flowName).map(_.isEmpty)
   }
 
-  def listFlow(req: FlowManagerListReq) = {
-    templateDAO.listFlowTemplate(req)
+  def listFlow(req: FlowManagerListReq): Future[Seq[ChestnutTemplateVO]] = {
+    for {
+      a <- templateDAO.listFlowTemplate(req)
+      b <- Future { (a.map(_.createUser) ++ a.map(_.updateUser)).distinct }
+      c <- authUserDAO.queryByIds(b.toList)
+    } yield {
+      a.map {ax =>
+        ChestnutTemplateVO(
+          id = ax.id,
+          name = ax.name,
+          createUser = ax.createUser,
+          updateUser = ax.updateUser,
+          createUserName = c.find(_.id == ax.createUser).fold("")(_.username),
+          updateUserName = c.find(_.id == ax.updateUser).fold("")(_.username),
+          createdAt = TimeTransUtil.instantToTimeString(ax.createdAt),
+          updatedAt = TimeTransUtil.instantToTimeString(ax.updatedAt)
+        )
+      }
+    }
   }
 }

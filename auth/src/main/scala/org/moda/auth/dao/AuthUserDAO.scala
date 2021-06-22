@@ -76,4 +76,14 @@ trait AuthUserDAO extends AuthDAO {
     logger.info("sql: {}", q.statements.mkString(","))
     dc.db.run(q).map(_.headOption)
   }
+
+  def queryByIds(userIds: List[Long]): Future[Seq[AuthUser]] = {
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDeleted === (False: Bool))
+      .filter(_.id.inSetBind(userIds))
+      .result
+    logger.info("sql: {}", q.statements.mkString(","))
+    dc.db.run(q)
+  }
 }

@@ -65,7 +65,6 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
         entity(as[FlowManagerListReq]){ req =>
           logger.info("流程列表查询: {}", req.asJson)
           val r = backFlowService.listFlow(req)
-          val r = Future { req }
           onComplete(r) {
             case Success(v) =>
               complete(Pretty(v))

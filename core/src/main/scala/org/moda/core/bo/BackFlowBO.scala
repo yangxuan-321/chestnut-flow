@@ -1,5 +1,8 @@
 package org.moda.core.bo
 
+import java.time.{Instant, LocalDateTime}
+import java.util.Date
+
 import com.typesafe.scalalogging.Logger
 import io.circe.generic.auto._
 import io.circe.syntax._
@@ -77,7 +80,9 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
     ChestnutTemplate(
       name = req.metaData.fold("")(_.flowName),
       isDeleted = Bool.False,
-      createUser = u.id
+      createUser = u.id,
+      createdAt = new Date().toInstant,
+      updatedAt = new Date().toInstant
     )
 
   /**
