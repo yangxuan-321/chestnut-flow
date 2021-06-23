@@ -5,8 +5,8 @@ import com.zz.cdp.common.util.TimeTransUtil
 import org.moda.auth.dao.AuthUserDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
-import org.moda.core.dao.ChestnutTemplateDAO
-import org.moda.idl.{ChestnutTemplate, ChestnutTemplateVO, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowJsonDAO}
+import org.moda.idl.{ChestnutTemplate, ChestnutTemplateVO, ChestnutWorkFlowJson, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
 
 import scala.concurrent.Future
 
@@ -15,12 +15,14 @@ object BackFlowService {
 }
 
 class BackFlowService(implicit dc: DatabaseComponent) {
+
   import DatabaseComponent.profile.api._
   import scala.concurrent.ExecutionContext.Implicits.global
   val logger: Logger = Logger(getClass)
   val backFlowBO: BackFlowBO = BackFlowBO()
   val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
   val authUserDAO: AuthUserDAO = AuthUserDAO()
+  val chestnutWorkFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
 
   def saveFlow(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
     // 1.判断流程数据的合法性
@@ -62,5 +64,9 @@ class BackFlowService(implicit dc: DatabaseComponent) {
         )
       }
     }
+  }
+
+  def detailFlow(templateId: Int): Future[Seq[ChestnutWorkFlowJson]] = {
+    chestnutWorkFlowJsonDAO.detailFlow(templateId)
   }
 }

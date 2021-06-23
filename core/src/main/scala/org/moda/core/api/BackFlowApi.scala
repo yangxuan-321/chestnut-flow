@@ -75,9 +75,24 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val detailFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    // path("v1" / "flow" / "manager" / IntNumber / Remaining) { (templateId, flowVersion) =>
+    path("v1" / "flow" / "manager" / IntNumber) { templateId =>
+      get {
+        logger.info("详细流程: {}", templateId)
+        val r = backFlowService.detailFlow(templateId)
+        onComplete(r) {
+          case Success(v) =>
+            complete(Pretty(v))
+          case _ =>
+            complete(ApiError.internalServerError.copy(message = Some("查询出错")))
+        }
+      }
+    }
+
   override def publicR: Option[Route] = None
 
   override def authedR: Option[SimpleAuthUser => Route] = Some {
-    u => saveFlowR(u) ~ validateFlowNameR(u) ~ listFlowR(u)
+    u => saveFlowR(u) ~ validateFlowNameR(u) ~ listFlowR(u) ~ detailFlowR(u)
   }
 }
