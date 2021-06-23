@@ -45,11 +45,11 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
-  val validateFlowNameR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "flow" / "manager" / "validateFlowName" / Remaining) { flowName =>
+  val validateFlowNameAndVerR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "flow" / "manager" / "validateFlowName" / Remaining / Remaining) { (flowName, flowVersion) =>
       get {
-        logger.info("校验流程名称: {}", flowName)
-        val r = backFlowService.validateFlowName(flowName)
+        logger.info("校验流程名称-版本: {}", flowName, flowVersion)
+        val r = backFlowService.validateFlowNameAndVer(flowName, flowVersion)
         onComplete(r) {
           case Success(v) if v =>
             complete(Pretty(v))

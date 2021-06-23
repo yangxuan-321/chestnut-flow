@@ -7,10 +7,10 @@ import com.typesafe.scalalogging.Logger
 import io.circe.generic.auto._
 import io.circe.syntax._
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowJsonDAO}
+import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowDAO, ChestnutWorkFlowJsonDAO}
 import org.moda.idl.BackFlowNodeType._
-import org.moda.idl.{BackFlowNodeType, Bool, ChestnutTemplate, ChestnutWorkFlowJson, FlowManagerSaveReq, SimpleAuthUser}
-import slick.dbio.{Effect, NoStream}
+import org.moda.idl.{BackFlowNodeType, Bool, ChestnutTemplate, ChestnutWorkFlow, ChestnutWorkFlowJson, FlowManagerSaveReq, FlowStatus, SimpleAuthUser}
+import slick.dbio.{DBIOAction, Effect, NoStream}
 import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future
@@ -27,6 +27,7 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
 
   val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
   val workFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
+  val workFlowDAO: ChestnutWorkFlowDAO = ChestnutWorkFlowDAO()
 
   def verifyFlowData(req: FlowManagerSaveReq): Boolean = {
     // 1. 做完整性校验 -- 必须有开始节点和结束节点
@@ -99,7 +100,22 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
     flowData = req.flowData.fold("{}")(_.asJson.toString)
   )
 
-  def saveFlowData(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Boolean] = {
-    Future {true}
+  def saveFlowData(req: FlowManagerSaveReq, u: SimpleAuthUser, templateId: Long): DBIOAction[Boolean, NoStream, Effect.Write] = {
+    for {
+      a <- workFlowDAO.insertWorkFlow(assembleWorkFlow(req, u, templateId))
+    } yield a > 0
   }
+
+  def assembleWorkFlow(req: FlowManagerSaveReq, u: SimpleAuthUser, templateId: Long): ChestnutWorkFlow = ChestnutWorkFlow(
+    flowName = req.metaData.fold("")(_.flowName),
+    templateId = templateId,
+    flowVersion = req.metaData.fold("")(_.flowVersion),
+    version = 0,
+    status = FlowStatus.FLOW_STATUS_NORMAL,
+    description = "",
+    createUser = u.id,
+    updateUser = 0L,
+    createdAt = new Date().toInstant,
+    updatedAt = new Date().toInstant
+  )
 }

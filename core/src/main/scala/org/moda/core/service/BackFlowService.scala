@@ -5,7 +5,7 @@ import com.zz.cdp.common.util.TimeTransUtil
 import org.moda.auth.dao.AuthUserDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
-import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowJsonDAO}
+import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowDAO, ChestnutWorkFlowJsonDAO}
 import org.moda.idl.{ChestnutTemplate, ChestnutTemplateVO, ChestnutWorkFlowJson, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
 
 import scala.concurrent.Future
@@ -21,6 +21,7 @@ class BackFlowService(implicit dc: DatabaseComponent) {
   val logger: Logger = Logger(getClass)
   val backFlowBO: BackFlowBO = BackFlowBO()
   val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
+  val chestnutWorkFlowDAO: ChestnutWorkFlowDAO = ChestnutWorkFlowDAO()
   val authUserDAO: AuthUserDAO = AuthUserDAO()
   val chestnutWorkFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
 
@@ -33,16 +34,16 @@ class BackFlowService(implicit dc: DatabaseComponent) {
       val action = for {
         a <- backFlowBO.saveTemplate(req, u)
         b <- backFlowBO.saveFlowJson(req, a)
-        // c <- if (b) backFlowBO.saveFlowData(req, u) else Future{false}
-      } yield a > 0 && b > 0
+        c <- backFlowBO.saveFlowData(req, u, a)
+      } yield a > 0 && b > 0 && c
       // transactionally事物
       dc.db.run(action.transactionally).map(if (_) Right(true) else Left("保存出错"))
     } else Future {Left("流程数据格式不正确")}
 
   }
 
-  def validateFlowName(flowName: String): Future[Boolean] = {
-    templateDAO.findTemplateByFlowName(flowName).map(_.isEmpty)
+  def validateFlowNameAndVer(flowName: String, flowVersion: String): Future[Boolean] = {
+    chestnutWorkFlowDAO.findByFlowNameAndVersion(flowName, flowVersion).map(_.isEmpty)
   }
 
   def listFlow(req: FlowManagerListReq): Future[Seq[ChestnutTemplateVO]] = {
