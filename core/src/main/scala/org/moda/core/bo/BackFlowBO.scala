@@ -73,8 +73,14 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
    * @param u
    * @return
    */
-  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): FixedSqlAction[Long, NoStream, Effect.Write] = {
-    templateDAO.insertTemplate(assembleTemplate(req, u))
+  def saveTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): DBIOAction[Long, NoStream, Effect.Read with Effect.Write] = {
+    for {
+      a <- templateDAO.findTemplateByFlowName1(req.metaData.fold("")(_.flowName)) map {
+        case Some(v)  => v.id
+        case _        => 0L
+      }
+      b <- if (a > 0) DBIOAction.successful(a) else templateDAO.insertTemplate(assembleTemplate(req, u))
+    } yield b
   }
 
   def assembleTemplate(req: FlowManagerSaveReq, u: SimpleAuthUser): ChestnutTemplate =

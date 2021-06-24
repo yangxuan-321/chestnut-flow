@@ -46,7 +46,8 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
     }
 
   val validateFlowNameAndVerR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "flow" / "manager" / "validateFlowName" / Remaining / Remaining) { (flowName, flowVersion) =>
+    // 此处小记，不能用两个Remaining，否则会404的
+    path("v1" / "flow" / "manager" / "validateFlowNameAndVer" / Segment / Remaining) { (flowName, flowVersion) =>
       get {
         logger.info("校验流程名称-版本: {}", flowName, flowVersion)
         val r = backFlowService.validateFlowNameAndVer(flowName, flowVersion)
@@ -77,12 +78,12 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
 
   val detailFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
     // path("v1" / "flow" / "manager" / IntNumber / Remaining) { (templateId, flowVersion) =>
-    path("v1" / "flow" / "manager" / IntNumber) { templateId =>
+    path("v1" / "flow" / "manager" / "detail" / LongNumber / Remaining) { (templateId, flowVersion) =>
       get {
         logger.info("详细流程: {}", templateId)
-        val r = backFlowService.detailFlow(templateId)
+        val r = backFlowService.detailFlow(templateId, flowVersion)
         onComplete(r) {
-          case Success(v) =>
+          case Success(Some(v)) =>
             complete(Pretty(v))
           case _ =>
             complete(ApiError.internalServerError.copy(message = Some("查询出错")))
@@ -93,6 +94,6 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
   override def publicR: Option[Route] = None
 
   override def authedR: Option[SimpleAuthUser => Route] = Some {
-    u => saveFlowR(u) ~ validateFlowNameR(u) ~ listFlowR(u) ~ detailFlowR(u)
+    u => saveFlowR(u) ~ listFlowR(u) ~ detailFlowR(u) ~ validateFlowNameAndVerR(u)
   }
 }

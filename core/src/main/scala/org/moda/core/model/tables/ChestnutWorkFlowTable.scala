@@ -23,7 +23,7 @@ trait ChestnutWorkFlowTable {
     def flowName: Rep[String]           = column[String]("flow_name", O.SqlType("TEXT"), O.Default(""))
     def templateId: Rep[Long]           = column[Long]("template_id", O.SqlType("BIGINT"), O.Default(0L))
     def flowVersion: Rep[String]        = column[String]("flow_version", O.SqlType("TEXT"), O.Default(""))
-    def version: Rep[Int]               = column[Int]("flow_version", O.SqlType("INT"), O.Default(0))
+    def version: Rep[Int]               = column[Int]("version", O.SqlType("INT"), O.Default(0))
     def status: Rep[FlowStatus]         = column[FlowStatus]("status", O.SqlType("SMALLINT"), O.Default(FlowStatus.FLOW_STATUS_NORMAL))
     def description: Rep[String]        = column[String]("description", O.SqlType("TEXT"), O.Default(""))
     def createUser: Rep[Long]           = column[Long]("create_user", O.SqlType("BIGINT"), O.Default(0L))

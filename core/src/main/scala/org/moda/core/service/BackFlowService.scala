@@ -6,7 +6,7 @@ import org.moda.auth.dao.AuthUserDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
 import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowDAO, ChestnutWorkFlowJsonDAO}
-import org.moda.idl.{ChestnutTemplate, ChestnutTemplateVO, ChestnutWorkFlowJson, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.idl.{ChestnutWorkFlowJson, ChestnutWorkFlowVO, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
 
 import scala.concurrent.Future
 
@@ -17,6 +17,7 @@ object BackFlowService {
 class BackFlowService(implicit dc: DatabaseComponent) {
 
   import DatabaseComponent.profile.api._
+
   import scala.concurrent.ExecutionContext.Implicits.global
   val logger: Logger = Logger(getClass)
   val backFlowBO: BackFlowBO = BackFlowBO()
@@ -46,16 +47,21 @@ class BackFlowService(implicit dc: DatabaseComponent) {
     chestnutWorkFlowDAO.findByFlowNameAndVersion(flowName, flowVersion).map(_.isEmpty)
   }
 
-  def listFlow(req: FlowManagerListReq): Future[Seq[ChestnutTemplateVO]] = {
+  def listFlow(req: FlowManagerListReq): Future[Seq[ChestnutWorkFlowVO]] = {
     for {
       a <- templateDAO.listFlowTemplate(req)
       b <- Future { (a.map(_.createUser) ++ a.map(_.updateUser)).distinct }
       c <- authUserDAO.queryByIds(b.toList)
     } yield {
       a.map {ax =>
-        ChestnutTemplateVO(
+        ChestnutWorkFlowVO (
           id = ax.id,
-          name = ax.name,
+          flowName = ax.flowName,
+          templateId = ax.templateId,
+          flowVersion = ax.flowVersion,
+          version = ax.version,
+          status = ax.status,
+          description = ax.description,
           createUser = ax.createUser,
           updateUser = ax.updateUser,
           createUserName = c.find(_.id == ax.createUser).fold("")(_.username),
@@ -67,7 +73,7 @@ class BackFlowService(implicit dc: DatabaseComponent) {
     }
   }
 
-  def detailFlow(templateId: Int): Future[Seq[ChestnutWorkFlowJson]] = {
-    chestnutWorkFlowJsonDAO.detailFlow(templateId)
+  def detailFlow(templateId: Long, flowVersion: String): Future[Option[ChestnutWorkFlowJson]] = {
+    chestnutWorkFlowJsonDAO.detailFlow(templateId, flowVersion)
   }
 }

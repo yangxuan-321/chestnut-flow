@@ -1,12 +1,11 @@
 package org.moda.core.dao
 
 import com.typesafe.scalalogging.Logger
-import com.zz.cdp.common.util.TimeTransUtil
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
-import org.moda.core.model.tables.{ChestnutTemplateTable, ChestnutWorkFlowTable}
-import org.moda.idl.{ChestnutWorkFlow, FlowStatus}
+import org.moda.core.model.tables.ChestnutWorkFlowTable
 import org.moda.idl.FlowStatus._
+import org.moda.idl.{ChestnutWorkFlow, FlowStatus}
 import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future
@@ -22,8 +21,9 @@ object ChestnutWorkFlowDAO {
 }
 
 trait ChestnutWorkFlowDAO extends CoreDAO {
-  import scala.concurrent.ExecutionContext.Implicits.global
   import dc.profile.api._
+
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   val logger: Logger = Logger(getClass)
   val workFlowTable: ChestnutWorkFlowTable = new Tables(dc)
@@ -41,17 +41,5 @@ trait ChestnutWorkFlowDAO extends CoreDAO {
       .take(1)
       .result
     dc.db.run(q.map(_.headOption))
-  }
-
-  def listFlowTemplate(req: FlowManagerListReq): Future[Seq[ChestnutTemplate]] = {
-    val startDate = req.startDate.map(TimeTransUtil.stringDateToLong)
-    val endDate = req.endDate.map(TimeTransUtil.stringDateToLong)
-    val q = templateTable.templatePOs
-      .maybeFilter(req.flowName)((r, o) => r.name.like(s"%$o%"))
-      .maybeFilter(startDate)((r, o) => r.createdAt >= (o: Long).asTimestamp)
-      .maybeFilter(endDate)((r, o) => r.createdAt <= (o: Long).asTimestamp)
-      .filter(_.isDeleted === (False: Bool))
-      .result
-    dc.db.run(q)
   }
 }
