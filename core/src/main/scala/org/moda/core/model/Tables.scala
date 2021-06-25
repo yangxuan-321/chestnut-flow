@@ -2,7 +2,7 @@ package org.moda.core.model
 
 import org.moda.common.database.{DatabaseComponent, HasDatabaseComponent, PgColumnMapping}
 import org.moda.common.model.ColumnTypesMapper
-import org.moda.core.model.tables.{ChestnutTemplateTable, ChestnutWorkFlowJsonTable, ChestnutWorkFlowTable}
+import org.moda.core.model.tables.{ChestnutNodeRouterTable, ChestnutNodeTable, ChestnutTemplateTable, ChestnutWorkFlowJsonTable, ChestnutWorkFlowTable}
 
 object Tables {
 
@@ -17,3 +17,5 @@ class Tables(val dc: DatabaseComponent)
     with ChestnutWorkFlowJsonTable
     with ChestnutTemplateTable
     with ChestnutWorkFlowTable
+    with ChestnutNodeTable
+    with ChestnutNodeRouterTable
