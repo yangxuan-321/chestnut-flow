@@ -58,9 +58,9 @@ enum RoleType {
 }
 
 enum FlowNodeType {
-    FLOW_NODE_TYPE_UNKNOWN             = 0; // 普通节点
+    FLOW_NODE_TYPE_UNKNOWN             = 0; // 未知节点
     FLOW_NODE_TYPE_START               = 1; // 开始节点
-    FLOW_NODE_TYPE_RECT                = 2; // 开始节点
+    FLOW_NODE_TYPE_USER                = 2; // 人工节点
     FLOW_NODE_TYPE_SWITCH              = 3; // 判断节点
     FLOW_NODE_TYPE_END                 = 4; // 结束节点
     FLOW_NODE_TYPE_AUTO                = 5; // 自动节点

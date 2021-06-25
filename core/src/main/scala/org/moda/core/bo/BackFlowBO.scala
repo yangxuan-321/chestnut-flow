@@ -58,9 +58,11 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
   def str2FlowNodeType(str: String): FlowNodeType = {
     val ms: Map[String, FlowNodeType] = Map(
       "start"   ->  FLOW_NODE_TYPE_START,
-      "rect"    ->  FLOW_NODE_TYPE_RECT,
+      "user"    ->  FLOW_NODE_TYPE_USER,
       "switch"  ->  FLOW_NODE_TYPE_SWITCH,
-      "end"     ->  FLOW_NODE_TYPE_END
+      "end"     ->  FLOW_NODE_TYPE_END,
+      "auto"    ->  FLOW_NODE_TYPE_AUTO,
+      "merge"   ->  FLOW_NODE_TYPE_MERGE
     )
 
     ms.getOrElse(str, FLOW_NODE_TYPE_UNKNOWN)
