@@ -6,6 +6,7 @@ import com.typesafe.scalalogging.Logger
 import io.circe.generic.auto._
 import io.circe.syntax._
 import org.moda.common.database.DatabaseComponent
+import org.moda.common.util.UUID
 import org.moda.core.dao._
 import org.moda.idl.FlowNodeType._
 import org.moda.idl._
@@ -120,6 +121,7 @@ class BackFlowBO(implicit dc: DatabaseComponent) {
 
   def assembleWorkFlow(req: FlowManagerSaveReq, u: SimpleAuthUser, templateId: Long): ChestnutWorkFlow = ChestnutWorkFlow(
     flowName = req.metaData.fold("")(_.flowName),
+    flowUuid = UUID.uuid(),
     templateId = templateId,
     flowVersion = req.metaData.fold("")(_.flowVersion),
     version = 0,

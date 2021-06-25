@@ -28,7 +28,7 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
   val backFlowService: BackFlowService = BackFlowService()
 
   val saveFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "flow" / "manager") {
+    path("v1" / "back" / "flow" / "manager") {
       post {
         entity(as[FlowManagerSaveReq]){ req =>
           logger.info("流程保存: {}", req.asJson)
@@ -47,7 +47,7 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
 
   val validateFlowNameAndVerR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
     // 此处小记，不能用两个Remaining，否则会404的
-    path("v1" / "flow" / "manager" / "validateFlowNameAndVer" / Segment / Remaining) { (flowName, flowVersion) =>
+    path("v1" / "back" / "flow" / "manager" / "validateFlowNameAndVer" / Segment / Remaining) { (flowName, flowVersion) =>
       get {
         logger.info("校验流程名称-版本: {}", flowName, flowVersion)
         val r = backFlowService.validateFlowNameAndVer(flowName, flowVersion)
@@ -61,7 +61,7 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
     }
 
   val listFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "flow" / "manager" / "list") {
+    path("v1" / "back" / "flow" / "manager" / "list") {
       post {
         entity(as[FlowManagerListReq]){ req =>
           logger.info("流程列表查询: {}", req.asJson)
@@ -78,7 +78,7 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
 
   val detailFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
     // path("v1" / "flow" / "manager" / IntNumber / Remaining) { (templateId, flowVersion) =>
-    path("v1" / "flow" / "manager" / "detail" / LongNumber / Remaining) { (templateId, flowVersion) =>
+    path("v1" / "back" / "flow" / "manager" / "detail" / LongNumber / Remaining) { (templateId, flowVersion) =>
       get {
         logger.info("详细流程: {}", templateId)
         val r = backFlowService.detailFlow(templateId, flowVersion)

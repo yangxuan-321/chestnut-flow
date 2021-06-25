@@ -42,7 +42,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
   }
 
   val queryR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "user" / "list") {
+    path("v1" / "back" / "user" / "list") {
       get {
         val q = userDAO.query()
         onComplete(q) {
@@ -57,7 +57,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
 
   val queryByIdR: SimpleAuthUser => Route = SimpleAuthUser =>
-    path("v1" / "user" / IntNumber) { userId =>
+    path("v1" / "back" / "user" / IntNumber) { userId =>
       get {
         val q = userDAO.queryById(userId)
         onComplete(q) {
@@ -71,7 +71,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
 
   val userInfoR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
-    path("v1" / "user" / "info") {
+    path("v1" / "back" / "user" / "info") {
       get {
         val q = userService.userInfo(u.id)
         onComplete(q) {
@@ -87,7 +87,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
 
   val createR: SimpleAuthUser => Route = SimpleAuthUser =>
-    path("v1" / "user") {
+    path("v1" / "back" / "user") {
      post {
       entity(as[CreateUserReq]){ u =>
         val r = userDAO.createUser(AuthUser(
@@ -132,7 +132,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
-  val registerR: Route = path("v2" / "user" / "register") {
+  val registerR: Route = path("v2" / "back" / "user" / "register") {
     auth.rootAuthenticate {param =>
       post {
         entity(as[RegisterUserInfo]) { params =>

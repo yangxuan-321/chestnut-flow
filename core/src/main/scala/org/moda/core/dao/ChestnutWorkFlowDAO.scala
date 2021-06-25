@@ -42,4 +42,14 @@ trait ChestnutWorkFlowDAO extends CoreDAO {
       .result
     dc.db.run(q.map(_.headOption))
   }
+
+  def queryWorkFlowByFlowUuid(flowUuid: String): Future[Option[ChestnutWorkFlow]] = {
+    val q = workFlowTable.chestnutWorkFlowPOs
+      .filter(_.flowUuid === flowUuid)
+      .take(1)
+      .result
+
+
+    dc.db.run(q.map(_.headOption))
+  }
 }

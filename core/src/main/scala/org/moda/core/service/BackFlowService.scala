@@ -57,6 +57,7 @@ class BackFlowService(implicit dc: DatabaseComponent) {
         ChestnutWorkFlowVO (
           id = ax.id,
           flowName = ax.flowName,
+          flowUuid = ax.flowUuid,
           templateId = ax.templateId,
           flowVersion = ax.flowVersion,
           version = ax.version,

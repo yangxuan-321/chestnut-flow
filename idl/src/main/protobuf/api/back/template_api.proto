@@ -14,6 +14,7 @@ import "enums.proto";
 message ChestnutWorkFlowVO {
     int64                   id                          = 10;   // ID
     string                  flow_name                   = 20;   // 模板名称
+    string                  flow_uuid                   = 25;   // flow_uuid
     int64                   template_id                 = 30;   // 对应的 模板Id 纵然版本不同 模板Id用来标识 是同一个模板
     string                  flow_version                = 40;   // 流程版本
     int32                   version                     = 50;   // 同一个流程版本的历史记录(覆盖保存一次，就会+1)
@@ -21,8 +22,8 @@ message ChestnutWorkFlowVO {
     string                  description                 = 70;   // 流程备注描述
     int64                   create_user                 = 80;   // 创建者
     int64                   update_user                 = 90;   // 更新者
-    string                  create_user_name            = 100;   // 创建者
-    string                  update_user_name            = 110;   // 更新者
-    string                  created_at                  = 120;   // 创建时间
-    string                  updated_at                  = 130;   // 更新时间
+    string                  create_user_name            = 100;  // 创建者
+    string                  update_user_name            = 110;  // 更新者
+    string                  created_at                  = 120;  // 创建时间
+    string                  updated_at                  = 130;  // 更新时间
 }
