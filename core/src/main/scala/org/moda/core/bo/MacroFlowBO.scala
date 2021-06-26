@@ -22,8 +22,6 @@ class MacroFlowBO(implicit dc: DatabaseComponent) {
 
   val logger: Logger = Logger(getClass)
 
-  val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()
-  val workFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
   val workFlowDAO: ChestnutWorkFlowDAO = ChestnutWorkFlowDAO()
   val nodeDAO: ChestnutNodeDAO = ChestnutNodeDAO()
   val nodeRouterDAO: ChestnutNodeRouterDAO = ChestnutNodeRouterDAO()
