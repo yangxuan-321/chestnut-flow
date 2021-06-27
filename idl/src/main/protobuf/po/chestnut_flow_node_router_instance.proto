@@ -12,10 +12,11 @@ import "enums.proto";
 
 // 流程路由实例表
 message ChestnutNodeRouterInstance {
-    int64                   id                          = 10;   // 节点实例ID
+    int64                   id                          = 10;   // 路由实例ID
     int64                   node_router_id              = 20;   // 对应路由id
     int64                   flow_instance_id            = 30;   // 对应流程路由实例id
-    int32                   seq                         = 50;   // 节点在流程实例中的递增序号
+    int64                   source_node_instance_id     = 40;   // 源节点的节点实例id
+    int64                   target_node_instance_id     = 45;   // 源节点的节点实例id
     string                  create_user                 = 60;   // 创建者
     string                  update_user                 = 70;   // 更新者
     int64                   created_at                  = 80 [(scalapb.field).type = "java.time.Instant"];   // 创建时间

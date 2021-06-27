@@ -4,7 +4,7 @@ import java.sql.Timestamp
 import java.time.Instant
 
 import org.moda.common.database.DatabaseComponent
-import org.moda.idl.{Bool, FlowNodeType, FlowStatus, RoleType}
+import org.moda.idl.{Bool, FlowNodeType, FlowStatus, NodeInstanceStatus, RoleType}
 import slick.ast.BaseTypedType
 import slick.lifted.MappedProjection
 
@@ -66,4 +66,6 @@ trait ColumnTypesMapper {
   implicit val FlowStatusColumnType: BaseTypedType[FlowStatus] = MappedColumnType.base(_.value, FlowStatus.fromValue)
 
   implicit val FlowNodeTypeColumnType: BaseTypedType[FlowNodeType] = MappedColumnType.base(_.value, FlowNodeType.fromValue)
+
+  implicit val NodeInstanceStatusColumnType: BaseTypedType[NodeInstanceStatus] = MappedColumnType.base(_.value, NodeInstanceStatus.fromValue)
 }

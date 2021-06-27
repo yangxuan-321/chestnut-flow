@@ -302,6 +302,14 @@
               "defaultValue": "0"
             },
             {
+              "name": "param_value",
+              "type": "text",
+              "remark": "流程实例参数值json",
+              "chnname": "流程实例参数值json",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
               "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
@@ -712,12 +720,12 @@
               "defaultValue": "0"
             },
             {
-              "name": "seq",
-              "type": "integer",
-              "remark": "节点在流程实例中的递增序号",
-              "chnname": "节点在流程实例中的递增序号",
+              "name": "param_value",
+              "type": "text",
+              "remark": "节点实例参数json",
+              "chnname": "节点实例参数json",
               "notNull": true,
-              "defaultValue": "0"
+              "defaultValue": "''"
             },
             {
               "name": "create_user",
@@ -980,10 +988,18 @@
               "defaultValue": "0"
             },
             {
-              "name": "seq",
-              "type": "integer",
-              "remark": "路由在流程实例中的递增序号",
-              "chnname": "节点在流程实例中的递增序号",
+              "name": "source_node_instance_id",
+              "type": "bigint",
+              "remark": "源节点的节点实例id",
+              "chnname": "源节点的节点实例id",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
+              "name": "target_node_instance_id",
+              "type": "bigint",
+              "remark": "源节点的节点实例id",
+              "chnname": "源节点的节点实例id",
               "notNull": true,
               "defaultValue": "0"
             },
@@ -1070,124 +1086,6 @@
           "chnname": "流程路由实例表"
         },
         {
-          "title": "chestnut_flow_node_instance_param",
-          "fields": [
-            {
-              "name": "id",
-              "type": "bigserial",
-              "remark": "ID",
-              "chnname": "ID",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "flow_instance_id",
-              "type": "bigint",
-              "remark": "流程实例id",
-              "chnname": "流程实例id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "node_instance_id",
-              "type": "bigint",
-              "remark": "节点实例id",
-              "chnname": "节点实例id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "param_value",
-              "type": "text",
-              "remark": "参数值",
-              "chnname": "参数值",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "create_user",
-              "type": "bigint",
-              "remark": "创建者",
-              "chnname": "创建者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "update_user",
-              "type": "bigint",
-              "remark": "更新者",
-              "chnname": "更新者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_at",
-              "type": "timestamp",
-              "remark": "创建时间",
-              "chnname": "创建时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            },
-            {
-              "name": "updated_at",
-              "type": "timestamp",
-              "remark": "更新时间",
-              "chnname": "更新时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            }
-          ],
-          "indexs": [],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程节点实例参数表",
-          "remark": "流程节点实例参数表"
-        },
-        {
           "title": "user_role",
           "fields": [
             {
@@ -1258,124 +1156,6 @@
           ],
           "chnname": "用户角色表",
           "remark": "用户表"
-        },
-        {
-          "title": "chestnut_flow_workflow_instance_param",
-          "fields": [
-            {
-              "name": "id",
-              "type": "bigserial",
-              "remark": "ID",
-              "chnname": "ID",
-              "pk": true,
-              "notNull": true
-            },
-            {
-              "name": "flow_instance_id",
-              "type": "bigint",
-              "remark": "流程实例id",
-              "chnname": "流程实例id",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "param_value",
-              "type": "text",
-              "remark": "参数值",
-              "chnname": "参数值",
-              "notNull": true,
-              "defaultValue": "''"
-            },
-            {
-              "name": "create_user",
-              "type": "bigint",
-              "remark": "创建者",
-              "chnname": "创建者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "update_user",
-              "type": "bigint",
-              "remark": "更新者",
-              "chnname": "更新者",
-              "notNull": true,
-              "defaultValue": "0"
-            },
-            {
-              "name": "created_at",
-              "type": "timestamp",
-              "remark": "创建时间",
-              "chnname": "创建时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            },
-            {
-              "name": "updated_at",
-              "type": "timestamp",
-              "remark": "更新时间",
-              "chnname": "更新时间",
-              "notNull": true,
-              "defaultValue": "now()"
-            }
-          ],
-          "indexs": [
-            {
-              "name": "idx_chestnut_flow_workflow_instance_param",
-              "isUnique": true,
-              "fields": [
-                "flow_instance_id"
-              ]
-            }
-          ],
-          "headers": [
-            {
-              "fieldName": "chnname",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "name",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "type",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "dataType",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "remark",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "pk",
-              "relationNoShow": false
-            },
-            {
-              "fieldName": "notNull",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "autoIncrement",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "defaultValue",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "relationNoShow",
-              "relationNoShow": true
-            },
-            {
-              "fieldName": "uiHint",
-              "relationNoShow": true
-            }
-          ],
-          "chnname": "流程节点实例参数表",
-          "remark": "流程实例参数表"
         },
         {
           "title": "chestnut_flow_workflow_json",
