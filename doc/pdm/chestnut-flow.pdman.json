@@ -135,6 +135,14 @@
               "notNull": true
             },
             {
+              "name": "flow_uuid",
+              "type": "text",
+              "remark": "流程UUID",
+              "chnname": "流程UUID",
+              "notNull": true,
+              "defaultValue": "''"
+            },
+            {
               "name": "flow_name",
               "type": "text",
               "remark": "流程名称",
@@ -1353,7 +1361,7 @@
                 "y": 1202.2205882352941
               }
             ],
-            "sourceAnchor": 5,
+            "sourceAnchor": 6,
             "targetAnchor": 0
           },
           {
