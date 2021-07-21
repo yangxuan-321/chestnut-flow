@@ -6,7 +6,6 @@ import org.moda.common.database.PgColumnMapping
 import org.moda.common.model.ColumnTypesMapper
 import org.moda.idl._
 import slick.collection.heterogeneous.HNil
-import slick.lifted.MappedToBase.mappedToIsomorphism
 
 /**
  * @author moda-matser
@@ -17,10 +16,10 @@ trait ChestnutNodeInstanceTable {
   this: ColumnTypesMapper with PgColumnMapping =>
   import org.moda.common.database.DatabaseComponent.profile.api._
 
-  val chestnutNodePOs: TableQuery[ChestnutNodePOs] =
-    TableQuery[ChestnutNodePOs]((tag: Tag) => new ChestnutNodePOs(tag, "chestnut_flow_node"))
+  val chestnutNodeInstancePOs: TableQuery[ChestnutNodeInstancePOs] =
+    TableQuery[ChestnutNodeInstancePOs]((tag: Tag) => new ChestnutNodeInstancePOs(tag, "chestnut_flow_node_instance"))
 
-  class ChestnutNodePOs(tag: Tag, tableName: String) extends Table[ChestnutNodeInstance](tag, tableName) {
+  class ChestnutNodeInstancePOs(tag: Tag, tableName: String) extends Table[ChestnutNodeInstance](tag, tableName) {
     def id                                = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def nodeId: Rep[Long]                 = column[Long]("node_id", O.SqlType("BIGINT"), O.Default(0L))
     def flowInstanceId: Rep[Long]         = column[Long]("flow_instance_id", O.SqlType("BIGINT"), O.Default(0L))

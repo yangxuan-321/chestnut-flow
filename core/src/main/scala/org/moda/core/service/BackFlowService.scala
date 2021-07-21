@@ -5,8 +5,8 @@ import com.zz.cdp.common.util.TimeTransUtil
 import org.moda.auth.dao.AuthUserDAO
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.bo.BackFlowBO
-import org.moda.core.dao.{ChestnutTemplateDAO, ChestnutWorkFlowDAO, ChestnutWorkFlowJsonDAO}
-import org.moda.idl.{ChestnutWorkFlowJson, ChestnutWorkFlowVO, FlowManagerListReq, FlowManagerSaveReq, SimpleAuthUser}
+import org.moda.core.dao._
+import org.moda.idl._
 
 import scala.concurrent.Future
 

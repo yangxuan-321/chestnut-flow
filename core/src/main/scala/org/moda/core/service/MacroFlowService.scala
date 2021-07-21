@@ -23,17 +23,18 @@ class MacroFlowService(implicit dc: DatabaseComponent) {
   val macroFlowBO: MacroFlowBO = MacroFlowBO()
 
   def startWorkFlow(req: WorkFlowServiceStartReq, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
-      val action = for {
-        // 1. uuid查询流程
-        a <- OptionT(chestnutWorkFlowDAO.queryWorkFlowByFlowUuid(req.flowUuid))
-        // 2. 查询流程对应的 开始节点
-        b <- OptionT(chestnutNodeDAO.queryStartNodeByFlowId(a.id))
-        // 3. 将流程数据插入流程实例表 并且 将开始节点插入到流程节点实例表
-        c <- OptionT(macroFlowBO.saveWorkFlowStartData())
-      } yield a > 0 && b > 0 && c
-      dc.db.run(action.transactionally).map(if (_) Right(true) else Left("保存出错"))
-    } else Future {Left("流程数据格式不正确")}
+    val r = for {
+      // 1. uuid查询流程
+      a <- OptionT(chestnutWorkFlowDAO.queryWorkFlowByFlowUuid(req.flowUuid))
+      // 2. 查询流程对应的 开始节点
+      b <- OptionT(chestnutNodeDAO.queryStartNodeByFlowId(a.id))
+      // 3. 将流程数据插入流程实例表 并且 将开始节点插入到流程节点实例表
+      c <- OptionT.liftF {
+        macroFlowBO.saveWorkFlowStartData(req, u, a, b)
+      }
+    } yield c
 
+    r.getOrElse(Left("保存失败"))
   }
 
 }
