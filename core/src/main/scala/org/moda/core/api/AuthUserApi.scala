@@ -70,6 +70,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  // userInfo的获取
   val userInfoR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
     path("v1" / "back" / "user" / "info") {
       get {
@@ -106,6 +107,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
      }
     }
 
+  // 登录
   val loginR: Route = path("v0" / "user" / "login") {
     post {
       entity(as[LoginForm]) { params =>
@@ -132,6 +134,7 @@ class AuthUserApi(implicit dc: DatabaseComponent) extends Api {
     }
   }
 
+  // 注册用户
   val registerR: Route = path("v2" / "back" / "user" / "register") {
     auth.rootAuthenticate {param =>
       post {

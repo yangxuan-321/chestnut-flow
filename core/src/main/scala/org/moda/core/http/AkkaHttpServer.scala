@@ -11,7 +11,7 @@ import com.typesafe.scalalogging.Logger
 import org.moda.auth.api.Api
 import org.moda.auth.middleware.TokenAuthenticate
 import org.moda.common.database.DatabaseComponent
-import org.moda.core.api.{AuthUserApi, BackFlowApi, SimpleMongoApi}
+import org.moda.core.api.{AuthUserApi, BackFlowApi, MacroFlowApi, SimpleMongoApi}
 import reactivemongo.api.DB
 
 import scala.concurrent.Future
@@ -38,7 +38,8 @@ class AkkaHttpServer(implicit system: ActorSystem[_], mat: Materializer, dc: Dat
     val apis: List[Api] = List(
       AuthUserApi(),
       SimpleMongoApi(),
-      BackFlowApi()
+      BackFlowApi(),
+      MacroFlowApi()
     )
 //    val routes = apis.map { ax =>
 //      ax.publicR ~ auth.authenticate {x => ax.authedR(x)}
