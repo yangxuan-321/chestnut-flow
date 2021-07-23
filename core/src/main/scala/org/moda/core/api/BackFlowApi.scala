@@ -91,9 +91,25 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
       }
     }
 
+  val deleteFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
+    path("v1" / "back" / "flow" / "manager" / "delete" / LongNumber) { flowId =>
+      get {
+        logger.info("删除流程: {}", flowId)
+        val r = backFlowService.deleteFlow(flowId, u)
+        onComplete(r) {
+          case Success(Right(v)) =>
+            complete(Pretty(v))
+          case Success(Left(v)) =>
+            complete(ApiError.internalServerError.copy(message = Some(v)))
+          case _ =>
+            complete(ApiError.internalServerError.copy(message = Some("删除出错")))
+        }
+      }
+    }
+
   override def publicR: Option[Route] = None
 
   override def authedR: Option[SimpleAuthUser => Route] = Some {
-    u => saveFlowR(u) ~ listFlowR(u) ~ detailFlowR(u) ~ validateFlowNameAndVerR(u)
+    u => saveFlowR(u) ~ listFlowR(u) ~ detailFlowR(u) ~ validateFlowNameAndVerR(u) ~ deleteFlowR(u)
   }
 }

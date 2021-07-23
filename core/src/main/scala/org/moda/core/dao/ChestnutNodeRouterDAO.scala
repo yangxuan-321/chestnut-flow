@@ -31,4 +31,8 @@ trait ChestnutNodeRouterDAO extends CoreDAO {
     val q = (chestnutNodeRouterTable.chestnutNodeRouterPOs returning chestnutNodeRouterTable.chestnutNodeRouterPOs) ++= x
     q
   }
+
+  def deleteNodeRouterByFlowId(id: Long): FixedSqlAction[Int, NoStream, Effect.Write] = {
+    chestnutNodeRouterTable.chestnutNodeRouterPOs.filter(_.flowId === id).delete
+  }
 }

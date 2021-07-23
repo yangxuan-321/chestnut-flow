@@ -49,7 +49,10 @@ trait ChestnutWorkFlowDAO extends CoreDAO {
       .take(1)
       .result
 
-
     dc.db.run(q.map(_.headOption))
+  }
+
+  def deleteWorkFlowId(id: Long): FixedSqlAction[Int, NoStream, Effect.Write] = {
+    workFlowTable.chestnutWorkFlowPOs.filter(_.id === id).delete
   }
 }

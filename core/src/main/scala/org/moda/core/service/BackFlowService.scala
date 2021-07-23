@@ -26,6 +26,9 @@ class BackFlowService(implicit dc: DatabaseComponent) {
   val authUserDAO: AuthUserDAO = AuthUserDAO()
   val chestnutWorkFlowJsonDAO: ChestnutWorkFlowJsonDAO = ChestnutWorkFlowJsonDAO()
 
+  val nodeDAO: ChestnutNodeDAO = ChestnutNodeDAO()
+  val nodeRouterDAO: ChestnutNodeRouterDAO = ChestnutNodeRouterDAO()
+
   def saveFlow(req: FlowManagerSaveReq, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
     // 1.判断流程数据的合法性
     val verify = backFlowBO.verifyFlowData(req)
@@ -76,5 +79,21 @@ class BackFlowService(implicit dc: DatabaseComponent) {
 
   def detailFlow(templateId: Long, flowVersion: String): Future[Option[ChestnutWorkFlowJson]] = {
     chestnutWorkFlowJsonDAO.detailFlow(templateId, flowVersion)
+  }
+
+  def deleteFlow(flowId: Long, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
+    // 1. 做权限认证
+    // TODO 此处暂未做实现
+    // 2. 做删除操作
+    val action = for {
+      // 删除流程定义表
+      a <- chestnutWorkFlowDAO.deleteWorkFlowId(flowId)
+      // 删除流程定义节点表
+      b <- nodeDAO.deleteNodeByFlowId(flowId)
+      // 删除流程定义节点路由表
+      c <- nodeRouterDAO.deleteNodeRouterByFlowId(flowId)
+    } yield a > 0 && b > 0 && c > 0
+
+    dc.db.run(action.transactionally).map(if (_) Right(true) else Left("删除出错"))
   }
 }

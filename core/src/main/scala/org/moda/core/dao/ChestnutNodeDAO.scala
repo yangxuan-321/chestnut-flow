@@ -42,4 +42,10 @@ trait ChestnutNodeDAO extends CoreDAO {
       .result
     dc.db.run(q).map(_.headOption)
   }
+
+  def deleteNodeByFlowId(flowId: Long): FixedSqlAction[Int, NoStream, Effect.Write] = {
+    chestnutNodeTable.chestnutNodePOs
+      .filter(_.flowId === flowId)
+      .delete
+  }
 }

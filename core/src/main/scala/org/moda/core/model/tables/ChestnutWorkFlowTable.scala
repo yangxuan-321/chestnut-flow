@@ -21,7 +21,7 @@ trait ChestnutWorkFlowTable {
   class ChestnutWorkFlowPOs(tag: Tag, tableName: String) extends Table[ChestnutWorkFlow](tag, tableName) {
     def id                              = column[Long]("id", O.PrimaryKey, O.AutoInc)
     def flowName: Rep[String]           = column[String]("flow_name", O.SqlType("TEXT"), O.Default(""))
-    def flowUuid: Rep[String]           = column[String]("flow_uuid", O.SqlType("CHAR"), O.Default(""))
+    def flowUuid: Rep[String]           = column[String]("flow_uuid", O.SqlType("TEXT"), O.Default(""))
     def templateId: Rep[Long]           = column[Long]("template_id", O.SqlType("BIGINT"), O.Default(0L))
     def flowVersion: Rep[String]        = column[String]("flow_version", O.SqlType("TEXT"), O.Default(""))
     def version: Rep[Int]               = column[Int]("version", O.SqlType("INT"), O.Default(0))
