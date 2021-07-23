@@ -93,7 +93,7 @@ class BackFlowApi(implicit dc: DatabaseComponent) extends Api {
 
   val deleteFlowR: SimpleAuthUser => Route = (u: SimpleAuthUser) =>
     path("v1" / "back" / "flow" / "manager" / "delete" / LongNumber) { flowId =>
-      get {
+      delete {
         logger.info("删除流程: {}", flowId)
         val r = backFlowService.deleteFlow(flowId, u)
         onComplete(r) {
