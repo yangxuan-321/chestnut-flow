@@ -20,3 +20,4 @@ message Page {
   int32             page_size       = 2;  // 每页多少条
   repeated Sort     sort            = 3;  // 排序方式
 }
+

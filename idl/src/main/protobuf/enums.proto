@@ -37,10 +37,10 @@ enum NodeInstanceStatus {
 }
 
 // 节点类型
-enum NodeType {
-    NODE_TYPE_PEOPLE                        = 0; // 人工节点
-    NODE_TYPE_AUTO                          = 1; // 自动节点
-}
+//enum NodeType {
+//    NODE_TYPE_PEOPLE                        = 0; // 人工节点
+//    NODE_TYPE_AUTO                          = 1; // 自动节点
+//}
 
 // 参数类型
 enum ParamType {

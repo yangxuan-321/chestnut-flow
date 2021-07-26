@@ -25,6 +25,7 @@ trait ChestnutNodeInstanceTable {
     def flowInstanceId: Rep[Long]         = column[Long]("flow_instance_id", O.SqlType("BIGINT"), O.Default(0L))
     def status: Rep[NodeInstanceStatus]   = column[NodeInstanceStatus]("status", O.SqlType("SMALLINT"), O.Default(NodeInstanceStatus.NODE_INSTANCE_STATUS_NEW))
     def paramValue: Rep[String]           = column[String]("param_value", O.SqlType("TEXT"), O.Default(""))
+    def version: Rep[Int]                 = column[Int]("version", O.SqlType("INTEGER"), O.Default(0))
     def createUser: Rep[Long]             = column[Long]("create_user", O.SqlType("BIGINT"), O.Default(0L))
     def updateUser: Rep[Long]             = column[Long]("update_user", O.SqlType("BIGINT"), O.Default(0L))
     def createdAt: Rep[Timestamp]         = column[Timestamp]("created_at", O.SqlType("timestamptz default now()"))
@@ -36,6 +37,7 @@ trait ChestnutNodeInstanceTable {
         flowInstanceId::
         status::
         paramValue::
+        version::
         createUser ::
         updateUser ::
         createdAt.mapToInstant ::

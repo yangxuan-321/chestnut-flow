@@ -14,6 +14,7 @@ object MacroFlowBO {
 }
 
 class MacroFlowBO(implicit dc: DatabaseComponent) {
+
   import DatabaseComponent.profile.api._
 
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -66,5 +67,9 @@ class MacroFlowBO(implicit dc: DatabaseComponent) {
       createdAt = new Date().toInstant,
       updatedAt = new Date().toInstant
     )
+  }
+
+  def queryTaskInstanceInfo(nodeTypes: Vector[FlowNodeType]): Future[Vector[ChestnutNodeInstance]] = {
+    nodeInstanceDAO.queryTaskInstanceInfo(nodeTypes)
   }
 }

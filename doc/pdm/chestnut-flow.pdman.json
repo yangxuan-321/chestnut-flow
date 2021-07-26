@@ -736,6 +736,14 @@
               "defaultValue": "''"
             },
             {
+              "name": "version",
+              "type": "integer",
+              "remark": "版本",
+              "chnname": "版本",
+              "notNull": true,
+              "defaultValue": "0"
+            },
+            {
               "name": "create_user",
               "type": "bigint",
               "remark": "创建者",
