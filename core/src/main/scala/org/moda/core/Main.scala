@@ -43,7 +43,7 @@ object Main extends App {
   }
 
   // 集群
-  startAkkaCluster()
+//  startAkkaCluster()
 
   // 流
   StreamsManager.start()
@@ -55,11 +55,11 @@ object Main extends App {
 
   Await.result(system.whenTerminated, Duration.Inf)
 
-  def startAkkaCluster(): Option[ActorRef[_]] =
-    ConfigSource.default
-      .at("akka.cluster.seed-nodes")
-      .load[Vector[String]] match {
-      case Right(xs) if xs.nonEmpty => None
-      case _                        => Option(ConsulAkkaNodeDiscoverer(selfUuid))
-    }
+//  def startAkkaCluster(): Option[ActorRef[_]] =
+//    ConfigSource.default
+//      .at("akka.cluster.seed-nodes")
+//      .load[Vector[String]] match {
+//      case Right(xs) if xs.nonEmpty => None
+//      case _                        => Option(ConsulAkkaNodeDiscoverer(selfUuid))
+//    }
 }
