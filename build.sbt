@@ -75,6 +75,7 @@ lazy val core = project
   .enablePlugins(JavaAppPackaging)
   .enablePlugins(UniversalPlugin)
   .settings(depOverrides)
+  // .settings(clusterDeps)
   .settings(chestnutCoreDeps)
   .settings(packagerSettings)
 
@@ -93,6 +94,7 @@ val circeV        = "0.13.0"
 val prometheusV   = "0.8.0"
 val nettyV        = "4.1.38.Final"
 val silencerV     = "1.6.0"
+val akkaDiscoveryV = "0.0.7"
 
 lazy val jettyAlpnAgent   = javaAgents += "org.mortbay.jetty.alpn" % "jetty-alpn-agent" % "2.0.9" % "runtime;test"
 lazy val scalapbDeps      = libraryDependencies += "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf"
@@ -203,6 +205,17 @@ lazy val depOverrides = libraryDependencies ++= Seq(
   "io.circe"          %% "circe-parser"         % circeV,
   "io.circe"          %% "circe-generic-extras" % circeV
 )
+
+//lazy val clusterDeps = libraryDependencies ++= List(
+//  "com.typesafe.akka" %% "akka-cluster"               % akkaV,
+//  "com.typesafe.akka" %% "akka-cluster-tools"         % akkaV,
+//  "com.typesafe.akka" %% "akka-cluster-metrics"       % akkaV,
+//  "com.typesafe.akka" %% "akka-cluster-typed"         % akkaV,
+//  "io.aeron"          % "aeron-driver"                % "1.25.1",
+//  "io.aeron"          % "aeron-client"                % "1.25.1",
+//  "com.ag"            % "akka-node-discovery-consul" % akkaDiscoveryV,
+//  "com.twitter"       %% "chill-akka"                 % "0.9.5",
+//)
 
 lazy val packagerSettings = Seq(mappings in Universal += baseDirectory.value / "deploy/app.sh" -> "app.sh") ++
   Option(System.getProperty("conf")).toList.map { conf =>

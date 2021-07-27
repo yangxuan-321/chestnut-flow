@@ -33,7 +33,7 @@ trait AuthUserDAO extends AuthDAO {
       .authUserPOs
       .filter(_.isDeleted === (False: Bool))
       .result
-    logger.info("sql: {}", q.statements.mkString(","))
+    logger.info("query: {}", q.statements.mkString(","))
     dc.db.run(q)
   }
 
@@ -44,7 +44,7 @@ trait AuthUserDAO extends AuthDAO {
       .filter(_.id === userId)
       .take(1)
       .result
-    logger.info("sql: {}", q.statements.mkString(","))
+    logger.info("queryById: {}", q.statements.mkString(","))
     dc.db.run(q).map(_.headOption)
   }
 
@@ -73,7 +73,7 @@ trait AuthUserDAO extends AuthDAO {
       .on(_.id === _.userId)
       .take(1)
       .result
-    logger.info("sql: {}", q.statements.mkString(","))
+    logger.info("queryUserInfoById: {}", q.statements.mkString(","))
     dc.db.run(q).map(_.headOption)
   }
 
@@ -83,7 +83,20 @@ trait AuthUserDAO extends AuthDAO {
       .filter(_.isDeleted === (False: Bool))
       .filter(_.id.inSetBind(userIds))
       .result
-    logger.info("sql: {}", q.statements.mkString(","))
+    logger.info("queryByIds: {}", q.statements.mkString(","))
     dc.db.run(q)
+  }
+
+  def queryByRoleType(roles: List[RoleType]): Future[Option[AuthUser]] = {
+    val q = authUserTable
+      .authUserPOs
+      .filter(_.isDeleted === (False: Bool))
+      .join(userRoleTable.userRolePOs.filter(_.roleType inSetBind roles))
+      .on(_.id === _.userId)
+      .take(1)
+      .map(_._1)
+      .result
+    logger.info("queryByRoleType: {}", q.statements.mkString(","))
+    dc.db.run(q).map(_.headOption)
   }
 }

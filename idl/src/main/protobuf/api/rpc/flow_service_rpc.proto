@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option optimize_for = SPEED;
+
+package org.moda.idl.rpc;
+
+import "scalapb/scalapb.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "enums.proto";
+import "api/service/workflow_service_api.proto";
+
+message RpcWorkFlowServiceStartRes {
+    int32                       status              =   1;
+    google.protobuf.Int64Value  flow_instance_id    =   2;
+    google.protobuf.StringValue message             =   3;
+}
+
+service RpcFlowService {
+    rpc startFlow(WorkFlowServiceStartReq) returns (RpcWorkFlowServiceStartRes) {}
+}

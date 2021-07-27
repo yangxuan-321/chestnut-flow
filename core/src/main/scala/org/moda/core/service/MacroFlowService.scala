@@ -22,7 +22,7 @@ class MacroFlowService(implicit dc: DatabaseComponent) {
   val chestnutNodeDAO: ChestnutNodeDAO = ChestnutNodeDAO()
   val macroFlowBO: MacroFlowBO = MacroFlowBO()
 
-  def startWorkFlow(req: WorkFlowServiceStartReq, u: SimpleAuthUser): Future[Either[String, Boolean]] = {
+  def startWorkFlow(req: WorkFlowServiceStartReq, u: SimpleAuthUser): Future[Either[String, Long]] = {
     val r = for {
       // 1. uuid查询流程
       a <- OptionT(chestnutWorkFlowDAO.queryWorkFlowByFlowUuid(req.flowUuid))
@@ -34,7 +34,7 @@ class MacroFlowService(implicit dc: DatabaseComponent) {
       }
     } yield c
 
-    r.getOrElse(Left("保存失败"))
+    r.getOrElse(Left("流程对应的数据不存在"))
   }
 
 }

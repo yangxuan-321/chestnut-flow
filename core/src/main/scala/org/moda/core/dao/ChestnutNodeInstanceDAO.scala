@@ -1,12 +1,13 @@
 package org.moda.core.dao
 
+import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.Logger
 import org.moda.common.database.DatabaseComponent
 import org.moda.core.model.Tables
-import org.moda.core.model.tables.{ChestnutNodeInstanceTable, ChestnutNodeRouterTable, ChestnutNodeTable}
+import org.moda.core.model.tables.{ChestnutNodeInstanceTable, ChestnutNodeTable}
 import org.moda.idl._
-import slick.sql.FixedSqlAction
 import slick.jdbc.GetResult
+import slick.sql.FixedSqlAction
 
 import scala.concurrent.Future
 
@@ -23,8 +24,6 @@ object ChestnutNodeInstanceDAO {
 trait ChestnutNodeInstanceDAO extends CoreDAO {
 
   import dc.profile.api._
-
-  import scala.concurrent.ExecutionContext.Implicits.global
 
   implicit val nodeInstanceResult: AnyRef with GetResult[ChestnutNodeInstance] = GetResult(
     r => ChestnutNodeInstance(
@@ -50,21 +49,47 @@ trait ChestnutNodeInstanceDAO extends CoreDAO {
     q
   }
 
-  def queryTaskInstanceInfo(nodeTypes: Vector[FlowNodeType], size: Int = 50): Future[Vector[ChestnutNodeInstance]] = {
+  def queryNewTaskInstanceInfo(nodeTypes: Vector[FlowNodeType], size: Int = 50): Future[Vector[ChestnutNodeInstance]] = {
     val nodeTypesStr = nodeTypes.map(_.value).mkString(", ")
     val sql = sql"""
       with x as (
         select id, version from chestnut_flow_node_instance
-        where status = ${NodeInstanceStatus.NODE_INSTANCE_STATUS_NEW.value}
+        where status = #${NodeInstanceStatus.NODE_INSTANCE_STATUS_NEW.value} and
         node_id in (
-          select id from chestnut_flow_node where node_type in ($nodeTypesStr)
+          select id from chestnut_flow_node where node_type in (#$nodeTypesStr)
         )
         order by updated_at asc limit $size
         for update
       )
       update chestnut_flow_node_instance t
       set
-        status = ${NodeInstanceStatus.NODE_INSTANCE_STATUS_OBTAIN.value}
+        status = #${NodeInstanceStatus.NODE_INSTANCE_STATUS_OBTAIN.value},
+        version = t.version + 1,
+        updated_at = now()
+      from x
+      where t.id = x.id and t.version = x.version
+      returning t.id, t.node_id, t.flow_instance_id, t.status, t.param_value,
+      t.version, t.create_user, t.update_user, t.created_at, t.updated_at
+    """.as[ChestnutNodeInstance]
+
+    dc.db.run(sql)
+  }
+
+  def queryObtainTaskInstanceInfo(nodeTypes: Vector[FlowNodeType], ms: Long): Future[Vector[ChestnutNodeInstance]] = {
+    val nodeTypesStr = nodeTypes.map(_.value).mkString(", ")
+    val sql = sql"""
+      with x as (
+        select id, version from chestnut_flow_node_instance
+        where status = #${NodeInstanceStatus.NODE_INSTANCE_STATUS_OBTAIN.value} and
+        node_id in (
+          select id from chestnut_flow_node where node_type in (#$nodeTypesStr)
+        ) and
+        extract(epoch FROM (now() - updated_at))*1000 > #$ms
+        for update
+      )
+      update chestnut_flow_node_instance t
+      set
+        status = #${NodeInstanceStatus.NODE_INSTANCE_STATUS_NEW.value},
         version = t.version + 1,
         updated_at = now()
       from x

@@ -9,6 +9,7 @@ import org.moda.auth.model.Auth.UserAuthToken
 import org.moda.common.database.DatabaseComponent
 import org.moda.common.util.MessageDigest
 import org.moda.common.util.trans.UserTrans
+import org.moda.idl.RoleType._
 import org.moda.idl.{AuthUser, LoginForm, RegisterUserInfo, SimpleAuthUser, UserInfo}
 
 import scala.concurrent.Future
@@ -72,6 +73,18 @@ trait UserService {
             roles = Seq(UserTrans.roleType2Str(r.userRole))
         ))
       case _       => Option.empty[UserInfo]
+    }
+  }
+
+  def queryAdminUserInfo(): Future[SimpleAuthUser] = {
+    userDAO.queryByRoleType(List(ADMIN)).map { x =>
+      x.fold(SimpleAuthUser())(xx =>
+        SimpleAuthUser(
+          id = xx.id,
+          username = xx.username,
+          email = xx.email
+        )
+      )
     }
   }
 

@@ -17,8 +17,8 @@ object BackFlowService {
 class BackFlowService(implicit dc: DatabaseComponent) {
 
   import DatabaseComponent.profile.api._
-
   import scala.concurrent.ExecutionContext.Implicits.global
+
   val logger: Logger = Logger(getClass)
   val backFlowBO: BackFlowBO = BackFlowBO()
   val templateDAO: ChestnutTemplateDAO = ChestnutTemplateDAO()

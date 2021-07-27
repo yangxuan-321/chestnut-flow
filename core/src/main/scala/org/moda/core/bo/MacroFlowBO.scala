@@ -25,21 +25,20 @@ class MacroFlowBO(implicit dc: DatabaseComponent) {
   val nodeInstanceDAO: ChestnutNodeInstanceDAO = ChestnutNodeInstanceDAO()
 
   def saveWorkFlowStartData(req: WorkFlowServiceStartReq, u: SimpleAuthUser,
-                            workFlow: ChestnutWorkFlow, node: ChestnutNode): Future[Either[String, Boolean]] = {
+                            workFlow: ChestnutWorkFlow, node: ChestnutNode): Future[Either[String, Long]] = {
     val flowInstance = assembleWorkFlowInstance(req, u, workFlow)
     val nodeInstance = assembleNodeInstance(req, u, node)
-    val action: DBIOAction[Boolean, NoStream, Effect.Write with Effect.Write] = for {
+    val action: DBIOAction[Long, NoStream, Effect.Write with Effect.Write] = for {
       // 插入流程实例表
       a <- workFlowInstanceDao.insertWorkFlowInstance(flowInstance)
       // 插入开始节点
       b <- nodeInstanceDAO.insertFlowNodeInstances(
         List(nodeInstance.copy(flowInstanceId = a))
       )
-    } yield b.size == 1
+    } yield if (b.size == 1) a else 0L
 
-    dc.db.run(action.transactionally).map {
-      case true => Right(true)
-      case _  => Left("保存失败")
+    dc.db.run(action.transactionally).map { x =>
+      if (x > 0) Right(x) else Left("保存失败")
     }
   }
 
@@ -63,13 +62,18 @@ class MacroFlowBO(implicit dc: DatabaseComponent) {
       nodeId = node.id,
       status = NodeInstanceStatus.NODE_INSTANCE_STATUS_NEW,
       paramValue = "{}",
+      version = 0,
       createUser = u.id,
       createdAt = new Date().toInstant,
       updatedAt = new Date().toInstant
     )
   }
 
-  def queryTaskInstanceInfo(nodeTypes: Vector[FlowNodeType]): Future[Vector[ChestnutNodeInstance]] = {
-    nodeInstanceDAO.queryTaskInstanceInfo(nodeTypes)
+  def queryNewTaskInstanceInfo(nodeTypes: Vector[FlowNodeType]): Future[Vector[ChestnutNodeInstance]] = {
+    nodeInstanceDAO.queryNewTaskInstanceInfo(nodeTypes)
+  }
+
+  def queryObtainTaskInstanceInfo(nodeTypes: Vector[FlowNodeType], ms: Long): Future[Vector[ChestnutNodeInstance]] = {
+    nodeInstanceDAO.queryObtainTaskInstanceInfo(nodeTypes, ms)
   }
 }
